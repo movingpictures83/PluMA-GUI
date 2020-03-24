@@ -1,0 +1,698 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<img src= "biorg.png" width = "150" height = "50" >
+		<title>PluMA</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="import" href="sections/welcome.html">
+
+		<!-- CSS styling for input/output file upload buttons *Bhavyta -->
+		<style>
+			#custom-IFB {
+				padding: 10px;
+				color: white;
+				background-color: #00b0b3;
+			}
+
+			#custom-IFB:hover {
+				background-color: #00e2e6;
+			}
+
+			#custom-IFB-text {
+				margin-left: 10px;
+				font-family: sans-serif;
+				font-size: 14px;
+				color: black;
+			}
+
+			#custom-OFB {
+				padding: 10px;
+				color: white;
+				background-color: #00b0b3;
+			}
+
+			#custom-OFB:hover {
+				background-color: #00e2e6;
+			}
+
+			#custom-OFB-text {
+				margin-left: 10px;
+				font-family: sans-serif;
+				font-size: 14px;
+				color: black;
+			}
+		</style>
+	</head>
+
+	<body>
+
+			<div id="wrapper">
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+      <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
+			<script>window.i18n = new(require('./translations/i18n'));</script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+      <script>
+        require('./assets/js/menu')
+				require('./assets/js/translations')
+				require('./assets/js/ipc')
+				require('./assets/js/dialog')
+	  </script>
+	  
+<!-- Choosing plugin from the pluma feature *cesia*-->
+<div class="container">
+	<h2 class="text">Installed Plugins</h2>
+	<div class="box">
+			<p id="demo"></p>
+		
+		<!-- li class= "hover">something</li>
+			<li id='bottom'>something</li>-->
+		</ul>
+	</div>
+
+</div>
+<div> </div>
+
+	<script>
+<<<<<<< HEAD
+		// const testFolder = '/Users/cesiabulnes/Desktop/PluMA/plugins';
+		const testFolder = '/Users/bhavytachauhan/Desktop/PluMA/plugins';
+=======
+		const testFolder = '/Users/rishabh/Desktop/bioOrg/PluMA/plugins';
+>>>>>>> 0985443a63ce5d5c5c491610e9921ac683f2b0c1
+		const fs = require('fs');
+
+		const plugin_folders_fullpath = fs.readdirSync(testFolder)
+		.map(function (file_path) {
+			return testFolder + '/' + file_path;
+		})
+		.filter(function (absolute_file_path) {
+			const fileInfo = fs.lstatSync(absolute_file_path);
+			if (!fileInfo.isDirectory()) {
+				return false;
+			}
+			return fs.existsSync(absolute_file_path + '/README.md');
+		});
+		console.log(plugin_folders_fullpath);
+		const plugin_folders_input_output = plugin_folders_fullpath
+		.map(function(total_file_path){
+			var input_output = fs.readFileSync(total_file_path + '/README.md', 'utf8');
+			input_output = input_output.split("\n");
+			input_index = input_output.reduce(function (index, input_output, actual_index) {
+				if (index !== -1) {
+					return index;
+				}
+
+				if (input_output.substr(0, 10).toLowerCase().indexOf("input:") > -1) {
+					 return actual_index;
+				}
+
+				return -1;
+			}, -1);
+			output_index = input_output.reduce(function (index, input_output, actual_index) {
+				if (index !== -1) {
+					return index;
+				}
+
+				if (input_output.substr(0, 10).toLowerCase().indexOf("output:") > -1) {
+					 return actual_index;
+				}
+
+				return -1;
+			}, -1);
+			
+			return [input_output[input_index].replace("# ","",1), input_output[output_index].replace("# ","",1)];
+
+		});
+		console.log(plugin_folders_input_output);
+
+		const plugin_folders = plugin_folders_fullpath
+		.map(function (absolute_file_path) {
+			return absolute_file_path.replace(testFolder + '/', '');
+		});
+		console.log(plugin_folders);
+		
+		var flen, i , text;
+		flen = plugin_folders.length;
+		console.log(flen);
+		text = "<table>";
+		for (i = 0; i < flen; i++) {
+		text += "<tr>";
+<<<<<<< HEAD
+		text += "<td id = 'pname' class = 'a' draggable = true > " + plugin_folders[i] + "</td>";
+		text += "<td draggable = true> " + plugin_folders_input_output[0] + "</td>";
+||||||| merged common ancestors
+		text += "<td class = 'a'> " + plugin_folders[i] + "</td>";
+		text += "<td> " + plugin_folders_input_output[0] + "</td>";
+=======
+		text += "<td class = 'a'> " + plugin_folders[i] + "</td>";
+		text += "<td> " + plugin_folders_input_output[i	] + "</td>";
+>>>>>>> 4465c0204c88fad11fe454a8ae39e770b62f30d1
+		text += "</tr>";
+		}
+		text += "</table>";
+		/*text = "<ul style='list-style-type: none';>";
+		for (i = 1; i < flen; i++) {
+		text += "<li class = 'a'> " + plugin_folders[i] + " - " 
+			+ plugin_folders_input_output[0] + "</li>";
+		}
+		text += "</ul>";*/
+		document.getElementById("demo").innerHTML = text;
+		console.log(text);
+	</script>
+
+<div>
+
+
+<h2 class= "text">Add and Install more Plugins</h2>
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Search Plugin Pool</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+		<p id="bioOrg"></p>
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+	openModal();
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+	closeModal();
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+		closeModal();
+  }
+}
+
+function closeModal() {
+	document.getElementById("bioOrg").innerHTML = '';
+}
+
+function openModal() {
+	loadHtmlToModal('http://biorg.cs.fiu.edu/pluma/plugins/');
+}
+
+function loadHtmlToModal(webAddress) {
+	var request = require('request');
+	var cheerio = require('cheerio');
+
+	return new Promise(function (resolve, reject) {
+		request(webAddress, function(err, resp, html) {
+			if (err) {
+				reject(err);
+				return;
+			}
+
+			const $ = cheerio.load(html);
+			console.log(html);
+			document.getElementById("bioOrg").innerHTML = html;
+			resolve(html);
+		});
+	});
+}
+
+document.getElementById("bioOrg").addEventListener(
+	"click", 
+	function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+		const url = e.target.href;
+		loadHtmlToModal(url);
+	}, 
+	true
+);
+</script>
+</div>
+
+<script>
+
+$.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
+<<<<<<< HEAD
+  // console.log(response);
+=======
+ // console.log(response);
+>>>>>>> 0985443a63ce5d5c5c491610e9921ac683f2b0c1
+});
+</script>
+
+	<!-- Drag and Drop Feature  *Rishabh-->
+	<div class= "file_drag_area" id="file"></div>
+	<i class="arrow right"></i>
+	<div class= "empty" id="file"></div>	
+	<i class="arrow right"></i>
+	<div class= "empty" id="file"></div>		
+	<i class="arrow right"></i>
+	<div class= "empty" id="file"></div>		
+	<div id= "uploaded_file"></div>
+
+			
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+			
+	<script>
+
+		//once the save button is clicked, the filenames are saved into a text file
+		function parseInput(event){
+			require('fs');
+			var data = 	document.getElementById("file").textContent;
+
+			var cl = document.getElementById("file").className;
+			var cl2 = document.getElementsByClassName("empty");
+			
+			data = data.trim();
+			fs.writeFileSync('assets/plugins.txt', data + "\n", (err) => {throw err});
+
+				for(var i =0; i < document.getElementsByClassName("empty").length; i++){
+					var n = document.getElementsByClassName("empty")[i].textContent; 
+					n = n.trim();
+					fs.appendFileSync('assets/plugins.txt', n + "\n", (err) => {throw err});
+				}
+			alert("Data has been saved");
+			
+
+		}
+		
+    
+		document.addEventListener("dragstart", function(event) {
+		  // sets the data type and the value of the dragged filename
+		 event.dataTransfer.setData("text", event.target.textContent);
+		  // Changes the opacity of the draggable element
+		  event.target.style.opacity = "0.4";
+			
+		});
+		
+		
+		//Resets the opacity to 1
+		document.addEventListener("dragend", function(event) {
+		  event.target.style.opacity = "1";
+		});
+				
+
+		//The border is changed when the dragged filename enters the file_drag_area classes
+		document.addEventListener("dragenter", function(event) {
+			if(event.target.className == "file_drag_area" || event.target.className == "empty"){
+			event.target.style.border = "3px dotted black";
+			}
+		});
+		
+
+		//allows user to dragover filenames
+		document.addEventListener("dragover", function(event) {
+		  event.preventDefault();
+		});
+		
+		//the border is set back to normal once the filenames are dragged out of the empty class
+		document.addEventListener("dragleave", function(event) {
+			event.target.style.border = "";
+		  
+		});
+
+
+		
+		//the filenames in the empty classes are ready to be parsed
+		//when dropped into the boxes
+		document.addEventListener("drop", function(event) {
+		  event.preventDefault();
+			if(event.target.className == "file_drag_area" || event.target.className == "empty"){
+				event.target.style.backgroundColor = "#FFFFE0";
+				event.target.style.border = "";
+				var node = document.createElement("UL");
+				var tempNode = document.createElement("UL");
+				node.id = "plugin";
+				node.setAttribute('draggable', true);
+				var d = document.createTextNode(event.dataTransfer.getData("text"));
+				var random = Math.floor(Math.random() * 20); 
+				var temp = "\n" + random.toString();
+				temp += ".CSV";
+				var tempText = document.createTextNode(temp);
+				node.appendChild(d);
+				tempNode.appendChild(tempText);
+				event.target.appendChild(node);
+				event.target.appendChild(tempNode);
+				console.log(tempNode);
+				tempNode.style.visibility = "hidden";
+				
+			}
+			
+		});
+
+
+
+		function drop(ev){
+
+			ev.preventDefault();
+			var r = document.getElementById("plugin"); 
+			var s = document.getElementsByClassName("empty");
+			var txt = event.dataTransfer.getData("Text");
+			var count  = r.parentNode.childElementCount;
+			var count2 = s.length;
+			var child_index = 0 ;
+			var sec_index = 0 ;
+			txt = txt.trim();
+			console.log(txt);
+			var str = "";
+			console.log(s);
+			for(var g =0; g < count2; g++){
+				str = s[g].innerText.trim();
+					if(txt === str){
+						sec_index = g;
+						break;
+					}
+			}
+			var newStr = str.split("")
+
+			str = s[sec_index].innerText.trim();
+			console.log(str);
+
+			if(txt === str){
+				s[sec_index].innerText = "";
+			}
+			
+			
+			try{
+				for (var i = 0; i < count; i++) {
+						if(txt === r.parentNode.children[i].innerText){
+							child_index = i;
+							break;
+						}
+				}
+			
+				
+				if(txt === r.parentNode.children[child_index].innerText){
+					r.parentNode.children[child_index].innerText = "";
+				}
+			}
+			catch(error){
+				console.error(error);
+			}
+			//r.parentNode.children[0].innerText = " ";
+			ev.target.style.opacity = "1";
+			
+		}
+
+		function dragenter(ev){
+			ev.target.style.opacity = "0.4";
+		}
+		
+		function dragleave(ev){
+			ev.target.style.opacity = "1";
+		}
+
+		function dragend(ev){
+			ev.target.style.opacity = "1";
+		}
+
+	</script>
+
+	<div  id="trash" ondrop="drop(event)" ondragenter="dragenter(event)" ondragleave="dragleave(event)" ondragend="dragend(event)">
+		<img class = "trashcan" src= "trash.png" >
+	</div>
+	<button class= "button save" onclick="parseInput()">Save</button>
+	
+	<script src = "assets/js/drag.js"></script>
+
+    <!-- Feature: input/output file uploading for each plugin *Bhavyta -->
+	<div id="upload-input-output-files">	
+		<!-- input file button (IFB) -->
+		<input type="file" id="input-file" hidden="hidden" />
+		<button type="button" id="custom-IFB">INPUT FILE</button> <br/>
+		<span id="custom-IFB-text">No file chosen</span>
+		<br/>
+
+		<!-- output file button (OFB) -->
+		<input type="file" id="output-file" hidden="hidden" />
+		<button type="button" id="custom-OFB">OUTPUT FILE</button> <br/>
+		<span id="custom-OFB-text">No file chosen</span>
+		<br/>
+
+		<script>
+			// function to extract name of uploaded file from the fake path
+			function getNameFromPath(filePath) {
+				return filePath.substr(filePath.lastIndexOf('\\') + 1);
+			}
+
+			// function that returns valid extension for uploaded file after parsing through the ReadME of the specific plugin 
+			function getValidExt(pluginName) {
+
+			}
+
+			// function to validate uploaded file type
+			function ValidateType(uploadedFile) {
+				var isValid = false;
+				if (uploadedFile.type == "file") {
+					var fileName = getNameFromPath(uploadedFile.value);
+         			if (fileName.length > 0) {
+						var validExt = ".pdf";
+						var fileExt = fileName.substr(fileName.length - validExt.length, validExt.length);
+						if (fileExt.toLowerCase() == validExt.toLowerCase())
+							isValid = true;
+						if(!isValid) {
+							alert("ERROR: " + fileName + " couldn't be uploaded"
+							+ "\n Only " + validExt + " files are allowed"
+							+ "\n Please try again");
+							uploadedFile.value = "";
+						}
+					}
+				}
+				return isValid;
+			}
+
+			function createFileBrowserBtn(actualFileBtn, customBtn, customTxt) {
+				customBtn.addEventListener("click", function(){
+					actualFileBtn.click();
+				});
+				actualFileBtn.addEventListener("change", function(){
+					if(ValidateType(actualFileBtn)){
+						customTxt.innerHTML = actualFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+					} else{
+						customTxt.innerHTML = "No file chosen";
+					}
+				});
+			}
+			// create input file browser button
+			createFileBrowserBtn(document.getElementById("input-file"), document.getElementById("custom-IFB"), document.getElementById("custom-IFB-text"));
+			// create output file browser button
+			createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
+		</script>
+	</div>
+
+	<!-- IN PROGRESS -->
+	<!-- get names of uploaded files *Bhavyta -->
+	<div id="uploaded-file-names">
+		<script>
+			// variables to store uploaded file names
+			var inputFileName = "", outputFileName = "";
+			
+			/*
+			var inputUpload = document.getElementById("input-file");
+			if(ValidateType(inputUpload)) {
+				inputUpload.onchange = function() {
+					inputFileName = getNameFromPath(inputUpload.value);
+				}
+			}
+			console.log(inputFileName);
+
+			var outputUpload = document.getElementById("output-file");
+			if(ValidateType(outputUpload)) {
+				outputUpload.onchange = function() {
+					outputFileName = getNameFromPath(outputUpload.value);
+				}
+			}
+			console.log(outputFileName);
+			*/
+
+		
+			/*
+			// reading input file
+			const input = document.querySelector('input[id="input-file"]')
+			input.addEventListener('change', function (e) {
+			console.log(input.files)
+			const reader = new FileReader()
+			// callback function once the file is read
+			reader.onload = function () {
+				console.log(reader.result)
+			}
+			reader.readAsText(input.files[0])
+			}, false)
+
+			// reading output file
+			const output = document.querySelector('input[id="output-file"]')
+			output.addEventListener('change', function (e) {
+				console.log(output.files)
+			}, false)
+			*/
+
+			/*
+			$(document).ready(function(){
+				$('input[id="input-file"]').change(function(e){
+					//if(ValidateType(document.getElementById("input-file").value)) {
+						var inputFileName = e.target.files[0].name;
+						var inputExtension = inputFileName.split('.')[1];
+						console.log(inputFileName);
+						console.log(inputExtension);
+					//}
+				});
+		
+			
+				if(ValidateType(document.getElementById("input-file").value)) {
+					$('input[id="output-file"]').change(function(e){
+						var outputFileName = e.target.files[0].name;
+						var outputExtension = outputFileName.split('.')[1];
+						console.log(outputFileName);
+						console.log(outputExtension);
+					});
+				}
+			});
+			*/
+		</script>
+	</div>
+
+	<!-- ReadME Parsing to get input/output file types *Bhavyta -->
+	<div id="readme-parsing">
+	 <script>
+		 const testPath = '/Users/bhavytachauhan/Desktop/PluMA/plugins';
+		 // array containing names of (LOCAL) plugin folders
+		 const pluginFolderNames = fs.readdirSync(testPath);
+		 console.log(pluginFolderNames); // debugging
+		 console.log(pluginFolderNames[0]); // debugging
+		 // array containing full paths of plugin folders
+		 const pluginFullPaths = pluginFolderNames
+		 .map(function (folder_name) {
+			 return testPath + '/' + folder_name;
+		 });
+		 console.log(pluginFullPaths[0]); // full path of first plugin folder; debugging
+		 // array containing plugin folder paths filtered to make sure only those plugins are included whose readme files exist
+		 const filtered = pluginFullPaths
+		 .filter(function (full_path) {
+			 const folderInfo = fs.statSync(full_path);
+			 if (!folderInfo.isDirectory()) {
+				 return false;
+			 }
+			 return fs.existsSync(full_path + '/README.md');
+		 });
+		 console.log(filtered); // debugging
+
+		 /* testing readFileSync
+		 var content = fs.readFileSync(filtered[0] + '/README.md', 'utf8');
+		 console.log(content);
+
+		 // array that will contain content of readme file for each plugin
+		 const readmeContent = [];
+		 // initialization
+		 for (var i = 0; i < filtered.length; i++){
+			 readmeContent[i] = fs.readFileSync(filtered[i] + '/README.md', 'utf8');
+			 // console.log(readmeContent[i]); // debugging 
+		 }
+		 console.log(readmeContent[0]); */
+
+		 /*  NOTE: The split() method is used to split a string into an array of substrings, and returns the new array.
+			 Tip: If an empty string ("") is used as the separator, the string is split between each character.
+			 Note: The split() method does not change the original string. 
+		 */
+
+		 // array containing name of each plugin 
+		 const pluginNames = filtered
+		 .map(function (folder_path){
+			 var readmeContent = fs.readFileSync(folder_path + '/README.md', 'utf8');
+			 // console.log(readmeContent);
+			 readmeContent = readmeContent.split("\n");   
+			 var firstLine = readmeContent[0];
+			 // console.log(firstLine);
+			 firstLine = firstLine.split(" ");
+			 // console.log(firstLine);
+			 var pluginName = firstLine[1];
+			 return pluginName;
+		 });
+		 console.log(pluginNames);
+
+		 // array containing input file types for each plugin 
+		 const pluginInputTypes = filtered
+		 .map(function (folder_path){
+			 var readmeContent = fs.readFileSync(folder_path + '/README.md', 'utf8');
+			 // console.log(readmeContent);
+			 readmeContent = readmeContent.split("\n");   
+			 inputLineIndex = readmeContent.reduce(function (index, readmeContent, actual_index) {
+				if (index !== -1) 
+					return index;
+				if (readmeContent.substr(0, 10).toLowerCase().indexOf("input:") > -1)
+					return actual_index;
+				return -1;
+			 }, -1);
+			 var inputLine = readmeContent[inputLineIndex];
+			 // console.log(inputLine);
+			 inputLine = inputLine.split(" ");
+			 // console.log(inputLine);
+		     const inputFileType = inputLine[2];
+			 return inputFileType.toLowerCase();
+		 });
+		 console.log(pluginInputTypes);
+
+		 // array containing output file types for each plugin 
+		 const pluginOutputTypes = filtered
+		 .map(function (folder_path){
+			 var readmeContent = fs.readFileSync(folder_path + '/README.md', 'utf8');
+			 readmeContent = readmeContent.split("\n");   
+			 outputLineIndex = readmeContent.reduce(function (index, readmeContent, actual_index) {
+				if (index !== -1) 
+					return index;
+				if (readmeContent.substr(0, 10).toLowerCase().indexOf("output:") > -1)
+					return actual_index;
+				return -1;
+			 }, -1);
+			 var outputLine = readmeContent[outputLineIndex];
+			 // console.log(outputLine);
+			 outputLine = outputLine.split(" ");
+			 // console.log(outputLine);
+		     const outputFileType = outputLine[2];
+			 return outputFileType.toLowerCase();
+		 });
+		 console.log(pluginOutputTypes); 
+	 </script>
+	</div>
+	</body>
+</html>

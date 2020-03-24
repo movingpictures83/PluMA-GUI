@@ -1,0 +1,651 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<img src= "biorg.png" width = "150" height = "50" >
+		<title>PluMA</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="import" href="sections/welcome.html">
+	</head>
+
+	<body>
+
+			<div id="wrapper">
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+      <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
+			<script>window.i18n = new(require('./translations/i18n'));</script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+      <script>
+        require('./assets/js/menu')
+				require('./assets/js/translations')
+				require('./assets/js/ipc')
+				require('./assets/js/dialog')
+	  </script>
+	  
+<!-- Choosing plugin from the pluma feature *cesia*-->
+<div class="container">
+	<h2 class="text">Installed Plugins</h2>
+
+	<div class="box">
+			<p id="demo"></p>
+		
+		<!-- li class= "hover">something</li>
+			<li id='bottom'>something</li>-->
+		</ul>
+	</div>
+
+</div>
+<div> </div>
+
+	<script>
+		const testFolder = '/Users/cesiabulnes/Desktop/PluMA/plugins';
+		const fs = require('fs');
+
+		const plugin_folders_fullpath = fs.readdirSync(testFolder)
+		.map(function (file_path) {
+			return testFolder + '/' + file_path;
+		})
+		.filter(function (absolute_file_path) {
+			const fileInfo = fs.lstatSync(absolute_file_path);
+			if (!fileInfo.isDirectory()) {
+				return false;
+			}
+			return fs.existsSync(absolute_file_path + '/README.md');
+		});
+
+		const plugin_folders_input_output = plugin_folders_fullpath
+		.map(function(total_file_path){
+			var input_output = fs.readFileSync(total_file_path + '/README.md', 'utf8');
+			input_output = input_output.split("\n");
+			input_index = input_output.reduce(function (index, input_output, actual_index) {
+				if (index !== -1) {
+					return index;
+				}
+
+				if (input_output.substr(0, 10).toLowerCase().indexOf("input:") > -1) {
+					 return actual_index;
+				}
+
+				return -1;
+			}, -1);
+			output_index = input_output.reduce(function (index, input_output, actual_index) {
+				if (index !== -1) {
+					return index;
+				}
+
+				if (input_output.substr(0, 10).toLowerCase().indexOf("output:") > -1) {
+					 return actual_index;
+				}
+
+				return -1;
+			}, -1);
+			
+			return [input_output[input_index].replace("# ","",1), input_output[output_index].replace("# ","",1)];
+
+		});
+
+		const plugin_folders = plugin_folders_fullpath
+		.map(function (absolute_file_path) {
+			return absolute_file_path.replace(testFolder + '/', '');
+		});
+		
+		var flen, i , text;
+		flen = plugin_folders.length;
+		text = "<table>";
+		for (i = 0; i < flen; i++) {
+		text += "<tr>";
+		text += "<td id = 'pname' class = 'a' draggable = true > " + plugin_folders[i] + "</td>";
+		text += "<td draggable = true> " + plugin_folders_input_output[i] + "</td>";
+		text += "</tr>";
+		}
+		text += "</table>";
+		/*text = "<ul style='list-style-type: none';>";
+		for (i = 1; i < flen; i++) {
+		text += "<li class = 'a'> " + plugin_folders[i] + " - " 
+			+ plugin_folders_input_output[0] + "</li>";
+		}
+		text += "</ul>";*/
+		document.getElementById("demo").innerHTML = text;
+	</script>
+
+<div>
+
+
+<h2 class= "text">Add and Install more Plugins</h2>
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Search Plugin Pool</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+		<p id="bioOrg"></p>
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+	openModal();
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+	closeModal();
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+		closeModal();
+  }
+}
+
+function closeModal() {
+	document.getElementById("bioOrg").innerHTML = '';
+}
+
+function openModal() {
+	loadHtmlToModal('http://biorg.cs.fiu.edu/pluma/plugins/').then(() => {
+		const child_process = require("child_process");
+		const { dialog } = require("electron").remote;
+
+		// Attach a click event listener to all plugin links so that when clicked, 
+		// they fire a git clone
+		[].slice.call(
+			document
+				.querySelectorAll("#bigcolumn table")[1]
+				.querySelectorAll("table")).map(tableElem => {
+					const rowList = [].slice.call(tableElem.querySelectorAll("tr"));
+					rowList.shift();
+					rowList.shift();
+					return rowList;
+				}).reduce((aggList, currInnerList) => {
+					for (elem of currInnerList) {
+						aggList.push(elem);
+					}
+					return aggList;
+				}, [])
+				.filter(rowElem => rowElem.querySelector("td:nth-child(3)").innerHTML == 'C++' || rowElem.querySelector("td:nth-child(3)").innerHTML == 'CUDA')
+				.map(rowElem => rowElem.querySelector("a"))
+				.forEach(aElem => { 
+					aElem.addEventListener("click", (e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						child_process.exec(`git status`, {
+							cwd: "/Users/cesiabulnes/Desktop/PluMA/plugins"
+						}, (error, stdout, stderr) => {
+							if (error) {
+								dialog.showMessageBox({
+									type: "error",
+									title: "Plugin download error",
+									message: `Plugin cant be downloaded, please refer to PluMA in order to recompile with C++ or CUDA`
+								})
+								return;
+							}
+
+							dialog.showMessageBox({
+								type: "error",
+								title: "Plugin download success",
+								message: "Plugin cant be downloaded, please refer to PluMA in order to recompile with C++ or CUDA"
+							});
+						});
+					});
+				});
+
+
+
+
+		[].slice.call(
+			document
+				.querySelectorAll("#bigcolumn table")[1]
+				.querySelectorAll("table")).map(tableElem => {
+					const rowList = [].slice.call(tableElem.querySelectorAll("tr"));
+					rowList.shift();
+					rowList.shift();
+					return rowList;
+				}).reduce((aggList, currInnerList) => {
+					for (elem of currInnerList) {
+						aggList.push(elem);
+					}
+					return aggList;
+				}, [])
+				.filter(rowElem => rowElem.querySelector("td:nth-child(3)").innerHTML != 'C++' && rowElem.querySelector("td:nth-child(3)").innerHTML != 'CUDA')
+				.map(rowElem => rowElem.querySelector("a"))
+				.forEach(aElem => { 
+					aElem.addEventListener("click", (e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						child_process.exec(`git clone ${aElem.href}`, {
+							cwd: "/Users/cesiabulnes/Desktop/PluMA/plugins"
+						}, (error, stdout, stderr) => {
+							
+							if (error) {
+								dialog.showMessageBox({
+									type: "error",
+									title: "Plugin download error",
+									message: `Plugin was already downloaded at ${aElem.href} \n\n ${stderr} ${error}`
+								})
+								return;
+							}
+
+							dialog.showMessageBox({
+								type: "info",
+								title: "Plugin download success",
+								message: "Plugin was successfully downloaded in the installed plugin list!"
+							});
+						});
+					});
+				});
+
+				// Stop any link on loaded HTML to go anywhere
+				document.getElementById("bioOrg").addEventListener("click", (e) => {
+					e.preventDefault();
+				});
+	});
+}
+
+function loadHtmlToModal(webAddress) {
+	var request = require('request');
+	var cheerio = require('cheerio');
+
+	return new Promise(function (resolve, reject) {
+		request(webAddress, function(err, resp, html) {
+			if (err) {
+				reject(err);
+				return;
+			}
+
+			const $ = cheerio.load(html);
+			document.getElementById("bioOrg").innerHTML = html;
+			resolve(html);
+		});
+	});
+}
+
+</script>
+</div>
+
+<script>
+
+$.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
+  // console.log(response);
+});
+
+</script>
+
+<br/>
+<!-- Feature: input/output file uploading for each plugin *Bhavyta -->
+<div id="upload-input-file">	
+	<!-- input file button (IFB) -->
+	<input type="file" id="input-file" hidden="hidden" />
+	<button type="button" id="custom-IFB">INPUT FILE</button>	<br/>
+	<span id="custom-IFB-text">No file chosen</span>
+
+	<!-- CHECK TEST PATH HERE IF ERROR -->
+	<script src = "assets/js/readmeparser.js"></script>
+
+	<script>
+		// function to extract name of uploaded file from the fake path
+		function getNameFromPath(filePath) {
+			return filePath.substr(filePath.lastIndexOf('\\') + 1);
+		}
+
+		// function to validate uploaded file type
+		function ValidateType(uploadedFile) {
+			var isValid = false;
+			if (uploadedFile.type == "file") {
+				var fileName = getNameFromPath(uploadedFile.value);
+				if (fileName.length > 0) {
+					// p is the plugin associated with the specific button
+					var p="";
+					// if input button, get plugin name from first box
+					if (uploadedFile.id==="input-file"){
+						p = document.getElementById("first-plugin");
+						console.log(p);
+						console.log(p.innerText + "...");
+					}	
+					// if output button, get plugin name from last box
+					if (uploadedFile.id==="output-file"){
+						p = document.getElementById("last-plugin");
+						console.log(p);
+						console.log(p.innerText);
+					}
+					// now p.innerText contains name of plugin
+
+					// variable to store valid extension
+					var validExt = "";
+					// simple search for now
+					for (var i=0; i<pluginNames.length; i++){
+						var compareText = pluginNames[i]+'\n';
+						if(p.innerText === compareText){
+							if(uploadedFile.id==="input-file"){
+								validExt = "." + pluginInputTypes[i];
+							}
+							if(uploadedFile.id==="output-file"){
+								validExt = "." + pluginOutputTypes[i];
+							}
+						}
+					}
+					console.log(validExt);
+					var fileExt = fileName.substr(fileName.length - validExt.length, validExt.length);
+					if (fileExt.toLowerCase() == validExt.toLowerCase())
+						isValid = true;
+					if(!isValid) {
+						alert("ERROR: " + fileName + " couldn't be uploaded"
+						+ "\n Only " + validExt + " files are allowed"
+						+ "\n Please try again");
+						uploadedFile.value = "";
+					}
+				}
+			}
+			return isValid;
+		}
+
+		function createFileBrowserBtn(actualFileBtn, customBtn, customTxt) {
+			customBtn.addEventListener("click", function(){
+				// p is the plugin associated with the specific button
+				var p="";
+				// assign value to p depending on which button it is
+				console.log(actualFileBtn.id);
+				if(actualFileBtn.id==="input-file"){
+					p = document.getElementById("first-plugin");
+				}
+
+				if(actualFileBtn.id==="output-file"){
+					p = document.getElementById("last-plugin");
+				}
+
+				// check if p is empty
+				if(p.innerText===""){
+					alert("Please add a plugin first");
+				}
+				else {
+					actualFileBtn.click();
+				}
+			});
+			actualFileBtn.addEventListener("change", function(){
+				if(ValidateType(actualFileBtn)){
+					customTxt.innerHTML = actualFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+				} else{
+					customTxt.innerHTML = "No file chosen";
+				}
+			});
+		}
+		// create input file browser button
+		createFileBrowserBtn(document.getElementById("input-file"), document.getElementById("custom-IFB"), document.getElementById("custom-IFB-text"));
+		</script>
+	</div>
+
+	<img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/>
+
+	<!-- Drag and Drop Feature  *Rishabh-->
+	<div id="first-plugin" style="display: inline-block;">
+		<!-- <img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/> -->
+		<div class= "file_drag_area" id="file"></div>
+	</div>
+
+	<!--CESIA-->
+	<div class="optionBox">
+			<div class="block"></div>
+			<div class="block">
+				<span class="add">Add Plugin</span>
+			</div>
+	</div>
+
+	<img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/>
+
+	<div class= "empty" id="file" ></div>
+	 <script>
+		$('.add').click(function() {
+		$(this).before('<div class="optionBox"><img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/><div class= "empty" id="file"><span class="remove">Remove Plugin</span></div>');
+		});
+
+		$(document).on('click','.remove',function() {
+			$(this).parent('div').parent('div').remove();
+		});
+
+	</script>
+
+	<img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/>
+	<div class= "empty" id="file"></div>	
+	<img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/>
+	<div id="last-plugin" style="display: inline-block;">
+		<div class= "empty" id="file"></div>
+		<!-- <img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/> -->
+	</div>		
+
+	<img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/>
+
+	<div id="upload-output-file">
+		<!-- output file button (OFB) -->
+		<input type="file" id="output-file" hidden="hidden" />
+		<button type="button" id="custom-OFB">OUTPUT FILE</button> <br/>
+		<span id="custom-OFB-text">No file chosen</span>
+		<br/>
+		<script>
+			// create output file browser button
+			createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
+		</script>
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+			
+	<script>
+
+		//once the save button is clicked, the filenames are saved into a text file
+		function parseInput(event){
+			require('fs');
+			var data = 	document.getElementById("file").textContent;
+			var inputName = document.getElementById("custom-IFB-text").textContent;
+			var outputName = document.getElementById("custom-OFB-text").textContent;
+			
+			var cl = document.getElementById("file").className;
+			var cl2 = document.getElementsByClassName("empty");
+			
+
+			inputName = inputName.trim()
+			fs.writeFileSync('assets/config.txt', inputName + "\n", (err) => {throw err});
+
+			data = data.trim();
+			fs.appendFileSync('assets/config.txt', data + "\n", (err) => {throw err});
+
+			for(var i =0; i < document.getElementsByClassName("empty").length; i++){
+					var n = document.getElementsByClassName("empty")[i].textContent; 
+					n = n.trim();
+					fs.appendFileSync('assets/config.txt', n + "\n", (err) => {throw err});
+			}
+			outputName = outputName.trim()
+			fs.appendFileSync('assets/config.txt', outputName + "\n", (err) => {throw err});
+			alert("Data has been saved");
+			
+
+		}
+		
+    //calls function at the start of draggging the function
+		document.addEventListener("dragstart", function(event) {
+		  // sets the data type and the value of the dragged filename
+		 event.dataTransfer.setData("text", event.target.textContent);
+		  // Changes the opacity of the draggable element
+		  event.target.style.opacity = "0.4";
+			
+		});
+		
+		
+		//Resets the opacity to 1
+		document.addEventListener("dragend", function(event) {
+		  event.target.style.opacity = "1";
+		});
+				
+
+		//The border is changed when the dragged filename enters the file_drag_area classes
+		document.addEventListener("dragenter", function(event) {
+			if(event.target.className == "file_drag_area" || event.target.className == "empty"){
+			event.target.style.border = "3px dotted black";
+			}
+		});
+		
+
+		//allows user to dragover filenames
+		document.addEventListener("dragover", function(event) {
+		  event.preventDefault();
+		});
+		
+		//the border is set back to normal once the filenames are dragged out of the empty class
+		document.addEventListener("dragleave", function(event) {
+			event.target.style.border = "";
+		  
+		});
+
+		//generates random hash string for temporary filenames
+		function hash(s){
+  			return s.split("").reduce(
+				function(a,b){
+			 		a=((a<<5)-a)+b.charCodeAt(0);return a&a
+				} ,0);              
+		}	
+		
+		//the filenames in the empty classes are ready to be parsed
+		//when dropped into the boxes
+		document.addEventListener("drop", function(event) {
+		  event.preventDefault();
+			if(event.target.className == "file_drag_area" || event.target.className == "empty"){
+				event.target.style.backgroundColor = "#FFFFE0";
+				event.target.style.border = "";
+				var node = document.createElement("UL");
+				var tempNode = document.createElement("UL");
+				node.id = "plugin";
+				node.setAttribute('draggable', true);
+				var d = document.createTextNode(event.dataTransfer.getData("text"));
+				var random = hash(Math.random().toString(2));
+				var temp = "\n" + random.toString();
+				temp += ".CSV";
+				var tempText = document.createTextNode(temp);
+				node.appendChild(d);
+				tempNode.appendChild(tempText);
+				event.target.appendChild(node);
+				event.target.appendChild(tempNode);
+				console.log(tempNode);
+				tempNode.style.visibility = "hidden";
+			}
+			
+		});
+
+		/** delete plugin code **/
+
+		//calls function when draggable element is dropped
+		//drops plugins into the trash can to be deleted
+		function drop(ev){
+
+			ev.preventDefault();
+			var r = document.getElementById("plugin"); 
+			var s = document.getElementsByClassName("empty");
+			var txt = event.dataTransfer.getData("Text");
+			var count  = r.parentNode.childElementCount;
+			var count2 = s.length;
+			var child_index = 0 ;
+			var sec_index = 0 ;
+			txt = txt.trim();
+			console.log(txt);
+			var str = "";
+			console.log(s);
+			for(var g =0; g < count2; g++){
+				str = s[g].innerText.trim();
+					if(txt === str){
+						sec_index = g;
+						break;
+					}
+			}
+			var newStr = str.split("")
+
+			str = s[sec_index].innerText.trim();
+			console.log(str);
+
+			if(txt === str){
+				s[sec_index].innerText = "";
+			}
+			
+			
+			try{
+				for (var i = 0; i < count; i++) {
+						if(txt === r.parentNode.children[i].innerText){
+							child_index = i;
+							break;
+						}
+				}
+			
+				
+				if(txt === r.parentNode.children[child_index].innerText){
+					r.parentNode.children[child_index].innerText = "";
+				}
+			}
+			catch(error){
+				console.error(error);
+			}
+			//r.parentNode.children[0].innerText = " ";
+			ev.target.style.opacity = "1";
+			
+		}
+
+		//changes opacity when draggable element enters trash can div
+		function dragenter(ev){
+			ev.target.style.opacity = "0.4";
+		}
+		
+		//changes opacity when draggable element leaves trash can div
+		function dragleave(ev){
+			ev.target.style.opacity = "1";
+		}
+
+		//changes opacity when dragging ends
+		function dragend(ev){
+			ev.target.style.opacity = "1";
+		}
+
+	</script>
+
+	<div  id="trash" ondrop="drop(event)" ondragenter="dragenter(event)" ondragleave="dragleave(event)" ondragend="dragend(event)">
+		<img class = "trashcan" src= "trash.png" >
+	</div>
+	<button class= "button save" onclick="parseInput()">Save</button>
+	
+	<script src = "assets/js/drag.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,272 @@
+h1{
+    color: rgb(204, 153, 0);
+}
+
+body{
+    background-color: white;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+.a {
+    background-color: #FFFFE0;
+}
+
+.a:hover{
+    background-color: #FFFF00;
+}
+
+.text{
+    padding: 10px;
+    color: darkblue;
+    font-size: 20px;
+}
+
+#myBtn{
+    padding: 15px 65px;
+    background-color: rgb(224, 229, 255); /* Green */
+    border: none;
+    color: black;
+    border-radius: 8px;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+/* .fill{
+    text-align: center;
+    position: relative;
+    height: 300px;
+    width: 300px;
+    top: 5px;
+    left: 5px;
+    cursor: pointer;
+}
+
+.empty{
+    display: inline-block;
+    height: 160px;
+    width: 160px;
+    margin: 10px;
+    border: 3px black;
+    background-color: white;
+
+}
+
+.hold{
+    border: solid #ccc 4px; 
+}
+
+.hovered{
+    background: #f4f4f4;
+    border-style: dashed;
+}
+
+.invisible{
+    display: none; 
+} */
+
+
+.file_drag_area{
+    display: inline-block;
+    margin: 50px 10px 10px 10px ; 
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #ccc;
+    color: #ccc;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 50px;
+    text-align: left; 
+}
+
+
+
+.empty{
+    display: inline-block;
+    margin: 50px 10px 10px 10px ; 
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #ccc;
+    color: #ccc;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 50px;
+    text-align: left; 
+    overflow:scroll;
+    scrollbar-base-color:black;
+
+}
+
+.file_drag_over{
+    border-color: #000;
+    color: #000;
+}
+
+
+#file{
+    overflow: scroll;
+    scrollbar-base-color:black;
+    text-align: left;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: black;
+}
+
+#custom-button{
+    padding: 3px;
+    color:white;
+    background-color: black;
+    border: 1px solid #000;
+    border-radius:1px;
+    margin: 10px;
+    cursor: pointer; 
+}
+
+#custom-text{
+    margin-left: 0px;
+    font-size: 10pt;
+    font-family:sans-serif;
+    color: black;
+}
+
+.save{
+    background-color: green; 
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 6px 4px;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+#trash img{
+    margin-right:30px;
+    height:75px;
+    width:75px;
+    float:right;
+}
+
+/* Input/output file upload buttons *Bhavyta */
+#custom-IFB {
+    position: relative;
+    right: 8px;
+    bottom: 54px;
+    margin-inline-start: 8px;
+    padding: 10px;
+    color: white;
+    background-color: #00b0b3;
+    cursor: pointer; 
+    border: none;
+    border-radius: 8px;
+}
+
+#custom-IFB:hover {
+    background-color: #00e2e6;
+}
+
+#custom-IFB-text {
+    position: relative;
+    right: 8px;
+    bottom: 54px;
+    margin-inline-start: 8px;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: black;
+}
+
+#custom-OFB {
+    position: relative;
+    left: 8px;
+    bottom: 54px;
+    padding: 10px;
+    color: white;
+    background-color: #00b0b3;
+    cursor: pointer; 
+    border: none;
+    border-radius: 8px;
+}
+
+#custom-OFB:hover {
+    background-color: #00e2e6;
+}
+
+#custom-OFB-text {
+    position: relative;
+    left: 8px;
+    bottom: 54px;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: black;
+}
+
+#upload-input-file{
+    display: inline-block;
+}
+
+#upload-output-file{
+    display: inline-block;
+}
+
+/* Arrows */
+.arrow-right {
+    position: relative;
+    bottom: 50px;
+}
+
+.optionBox {
+    display: inline-block;
+}
