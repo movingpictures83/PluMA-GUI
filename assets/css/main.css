@@ -1,9 +1,5 @@
-h1{
-    color: rgb(204, 153, 0);
-}
-
 body{
-    background-color: white;
+    background-color: #FFFDEE;
 }
 
 table {
@@ -14,7 +10,7 @@ table {
   
 td, th {
     border: 1px solid #dddddd;
-    text-align: left;
+    text-align: left;#221D5C
     padding: 8px;
 }
 
@@ -32,8 +28,9 @@ tr:nth-child(even) {
 
 .text{
     padding: 10px;
-    color: darkblue;
+    color:#221D5C;
     font-size: 20px;
+    font-family: Roboto;
 }
 
 #myBtn{
@@ -131,18 +128,10 @@ tr:nth-child(even) {
 
 
 .empty{
-    display: inline-block;
-    margin: 50px 10px 10px 10px ; 
-    width: 150px;
-    height: 150px;
-    border: 2px dashed #ccc;
-    color: #ccc;
-    font-family: sans-serif;
-    font-size: 14px;
-    line-height: 50px;
-    text-align: left; 
-    overflow:scroll;
-    scrollbar-base-color:black;
+    border: 1px solid #D3D1BF;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 300px;
 
 }
 
@@ -153,12 +142,10 @@ tr:nth-child(even) {
 
 
 #file{
-    overflow: scroll;
     scrollbar-base-color:black;
     text-align: left;
-    font-family: sans-serif;
+    font-family: Roboto;
     font-size: 14px;
-    color: black;
 }
 
 #custom-button{
@@ -202,13 +189,12 @@ tr:nth-child(even) {
 
 /* Input/output file upload buttons *Bhavyta */
 #custom-IFB {
-    position: relative;
     right: 8px;
     bottom: 54px;
     margin-inline-start: 8px;
     padding: 10px;
-    color: white;
-    background-color: #00b0b3;
+    color: #FFFDEE;
+    background-color: #221D5C;
     cursor: pointer; 
     border: none;
     border-radius: 8px;
@@ -219,7 +205,6 @@ tr:nth-child(even) {
 }
 
 #custom-IFB-text {
-    position: relative;
     right: 8px;
     bottom: 54px;
     margin-inline-start: 8px;
@@ -229,12 +214,11 @@ tr:nth-child(even) {
 }
 
 #custom-OFB {
-    position: relative;
     left: 8px;
     bottom: 54px;
     padding: 10px;
-    color: white;
-    background-color: #00b0b3;
+    color: #FFFDEE;
+    background-color: #221D5C;
     cursor: pointer; 
     border: none;
     border-radius: 8px;
@@ -245,9 +229,9 @@ tr:nth-child(even) {
 }
 
 #custom-OFB-text {
-    position: relative;
     left: 8px;
     bottom: 54px;
+    margin-inline-start: 8px;
     font-family: sans-serif;
     font-size: 14px;
     color: black;
@@ -270,3 +254,56 @@ tr:nth-child(even) {
 .optionBox {
     display: inline-block;
 }
+
+.site-footer
+{
+  background-color:#221D5C;;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#FFFDEE;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+}
+.site-footer h6
+{
+  font-size:16px;
+  margin-top:5px;
+  letter-spacing:2px;
+  text-align: center
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links a
+{
+  color:#FFFDEE
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-about {
+    float: left;
+    padding: 10px;
+    font-family: Roboto
+}
+.footer-links {
+    padding: 10px;
+    font-family: Roboto;
+    display: inline-block;
+    text-align: center;
+}
+.footer-image {
+    float: right;
+    padding: 50px 0
+}
+.footer-container {
+    min-height: 200px;
+}
+
+

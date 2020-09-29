@@ -57,7 +57,7 @@
 <div> </div>
 
 	<script>
-		const testFolder = '/Users/cesiabulnes/Desktop/PluMA/plugins';
+		const testFolder = '/Users/Rebecca_Dupuis/Desktop/PluMA/plugins';
 		const fs = require('fs');
 
 		const plugin_folders_fullpath = fs.readdirSync(testFolder)
@@ -208,7 +208,7 @@ function openModal() {
 						e.preventDefault();
 						e.stopPropagation();
 						child_process.exec(`git status`, {
-							cwd: "/Users/cesiabulnes/Desktop/PluMA/plugins"
+							cwd: "/Users/Rebecca_Dupuis/Desktop/PluMA/plugins"
 						}, (error, stdout, stderr) => {
 							if (error) {
 								dialog.showMessageBox({
@@ -252,7 +252,7 @@ function openModal() {
 						e.preventDefault();
 						e.stopPropagation();
 						child_process.exec(`git clone ${aElem.href}`, {
-							cwd: "/Users/cesiabulnes/Desktop/PluMA/plugins"
+							cwd: "/Users/Rebecca_Dupuis/Desktop/PluMA/plugins"
 						}, (error, stdout, stderr) => {
 							
 							if (error) {
@@ -412,25 +412,16 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 		</script>
 	</div>
 
-	<img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/>
 
 	<!-- Drag and Drop Feature  *Rishabh-->
-	<div id="first-plugin" style="display: inline-block;">
+	<div id="first-plugin" style="display: block;">
 		<!-- <img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/> -->
-		<div class= "file_drag_area" id="file"></div>
+		<div class= "empty" id="file">Plugin 1</div>
 	</div>
 
-	<!--CESIA-->
-	<div class="optionBox">
-			<div class="block"></div>
-			<div class="block">
-				<span class="add">Add Plugin</span>
-			</div>
-	</div>
 
-	<img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/>
 
-	<div class= "empty" id="file" ></div>
+	<div class= "empty" id="file" >Plugin 2</div>
 	 <script>
 		$('.add').click(function() {
 		$(this).before('<div class="optionBox"><img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/><div class= "empty" id="file"><span class="remove">Remove Plugin</span></div>');
@@ -442,15 +433,14 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 
 	</script>
 
-	<img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/>
-	<div class= "empty" id="file"></div>	
-	<img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/>
-	<div id="last-plugin" style="display: inline-block;">
-		<div class= "empty" id="file"></div>
+	<div id="last-plugin" style="display: block;">
+		<div class= "empty" id="file">Plugin 3</div>
 		<!-- <img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/> -->
 	</div>		
 
-	<img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/>
+	<div id="add-plugin" style="display: block;">
+		<div class= "empty" id="file">Add Plugin</div>
+	</div>
 
 	<div id="upload-output-file">
 		<!-- output file button (OFB) -->
@@ -647,5 +637,28 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	
 	<script src = "assets/js/drag.js"></script>
 
+	  <!-- footer -->
+	<footer class="site-footer">
+		<div class="footer-container">
+		  <div class="row">
+			<div class="footer-about">
+			  <h6>About</h6>
+			  <p>School of Computing and Information Sciences <br> Florida International University <br>ECS-254 University Park Campus Miami, FL 33199 USA<br>E-mail: biorg.fiu@gmail.com or <br>giri.narasimhan@fiu.edu</p>
+			</div>
+  
+			<div class="footer-links">
+			  <h6>Helpful Links</h6>
+			  <ul class="footer-links">
+				<li><a href="http://biorg.cis.fiu.edu/pluma/">About PluMA</a></li>
+				<li><a href="http://biorg.cis.fiu.edu/pluma/userguide.pdf">User Guide</a></li>
+			  </ul>
+			</div>
+  
+			<div class="footer-image">
+				<img src="fiuscis.png" alt="FIU SCIS" width = "300" height = "100">
+			</div>
+		  </div>
+		</div>
+    </footer>
 	</body>
 </html>
