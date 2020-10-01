@@ -8,7 +8,7 @@ import scrapy
 class PlumaItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-##    name = scrapy.Field()
-##    description = scrapy.Field()
-##    language = scrapy.Field()
-    pass
+    Name = scrapy.Field()
+    Description = scrapy.Field()
+    Language = scrapy.Field()
+    #pass

@@ -14,12 +14,13 @@ NEWSPIDER_MODULE = 'PluMA.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'PluMA (+http://www.yourdomain.com)'
+#USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
-
+#Fix the order of extraction in CSV file
+FEED_EXPORT_FIELDS = ['Name', 'Description', 'Language']
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -64,13 +65,15 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-##ITEM_PIPELINES = {
-##  'PluMA.pipelines.PlumaPipeline': 300,
-##   
-##}
+ITEM_PIPELINES = {
+  'PluMA.pipelines.PlumaPipeline': 1, 
+}
 
-#DETAIL_STORAGE = '/Users/edwardpalermo/Desktop/Web_Scraping/PluMA/PluMA'
+#Testing
+DETAIL_STORAGE = '/Users/edwardpalermo/Desktop/seniorProject2/PluMA/PluMA-GUI/Web_Scraping/PluMA/PluMA'
 
+FEED_URI = 'pluginNames.csv'
+FEED_FORMAT = 'csv'
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True

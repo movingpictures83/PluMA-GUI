@@ -12,17 +12,17 @@ import os
 class PlumaPipeline(object):
     
     def process_item(self, item, spider):
-        os.chdir('/Users/edwardpalermo/Desktop/Web_Scraping/PluMA/PluMA')
-
-        if item['name'][0] :
-            pluginName = item['name'][0]
-            pluginDesc = item['description'][1]
-            pluginLang = item['language'][1]
+##        os.chdir('/Users/edwardpalermo/Desktop/seniorProject2/PluMA/PluMA-GUI/Web_Scraping/PluMA/PluMA')
+##
+##        if item['name'][0] :
+##            pluginName = item['name'][0]
+##            pluginDesc = item['description'][1]
+##            pluginLang = item['language'][1]
             
 
             #os.rename(pluginDesc, pluginLang)
             
 
-        #return item
+        return item
 
     

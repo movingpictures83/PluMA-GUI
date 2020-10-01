@@ -12,7 +12,7 @@ class PluginnamesSpider(Spider):
     name = 'pluginNames'
     allowed_domains = ['http://biorg.cis.fiu.edu/pluma/plugins/']
     start_urls = ['http://biorg.cis.fiu.edu/pluma/plugins/']
-##    custom_settings = {"FEEDS" : {"results.csv" : {"format" : "csv"}}}
+    custom_settings = {'FEED_URI' : 'results.csv'}
 
     def parse(self, response):
         categories = response.xpath('.//table/tr/a') 
@@ -21,24 +21,28 @@ class PluginnamesSpider(Spider):
         for tr in trs:
         
             # Obtain all plugin names
-            name = tr.xpath('.//td[1]/u/a//text()').extract()
-            description = tr.xpath('.//tr/td[2]//text()').extract()
-            language = tr.xpath('.//td[3]//text()').extract()
+            name = tr.xpath('.//td/u/a//text()').extract()
+            description = tr.xpath('.//tr/td//text()').extract()
+            language = tr.xpath('.//td//text()').extract()
 
             #Writes to text file.
-            yield{
-                'name' : name,
-                'description' : description,
-                'language' : language
-            }
+##            yield{
+##                'Name' : name,
+##                'Description' : description,
+##                'Language' : language
+##            }
 
-##        l = ItemLoader(item=PlumaItem(), response=response)
-##
-##        l.add_value('name', name)
-##        l.add_value('description', description)
-##        l.add_value('language', language)
-##
-##        return l.load_item()
+    #def parse_details(self, response):
+
+            l = ItemLoader(item=PlumaItem(), response=response)
+
+            #l.add_value('Name', name)
+            #l.add_value('Description', description)
+            l.add_value('Language', language)
+
+            return l.load_item()
+
+        return 
             
         
 
