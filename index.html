@@ -13,36 +13,38 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="import" href="sections/welcome.html">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	</head>
 
 	<body>
 		<div class="navbar">
-			<img src= "biorg.png" width = "150" height = "50" >
-			<a href="#home">PluMA: Plugin-based Microbiome Analysis</a>
-
-			<div class="dropdown">
-				<button class="dropbtn">Search
+			<img src= "biorg.png" width = "100" height = "40" >
+			<span><a href ="#home">PluMA: Plugin-based Microboime analysis</a></span>
+			<div class="dropdown">	
+				<button class="dropbtn" style="padding-top: 25%;">Search
 					<i class="fa fa-caret-down"></i>
 				</button>
+
 				<div class="dropdown-content">	
 					<!-- Search for plug-ins -->
-						<div class="spacingTitle"></div>
-						<div class="AdvSearch_Background ">
-							<div>
-								<span class="material-icons">search</span>
-								<input type="text" id="enter" onkeyup="myFunction()" placeholder="Search for plugins here" style="width:fixed">
-								
-									<button class="accordion" style="padding-left: 250px ">
-										<span class="material-icons">filter_alt</span>
-									</button>
-										<div class="Accordian_Panel">
-											Input Type: <input type="text" placeholder="Input"> 
-											Output Type: <input type="text" placeholder="OutType" >
-											<div>Language: <input type="text" placeholder="Language"></div>
-											<div class="spacingTitle"></div>
-										</div>			
-							</div>
+					<div class="spacingTitle"></div>
+					<div class="AdvSearch_Background ">
+						<div>
+							<span class="material-icons">search</span>
+							<input type="text" id="enter" onkeyup="myFunction()" placeholder="Search for plugins here" style="width:fixed">
+							
+								<button class="accordion" style="padding-left: 250px ">
+									<span class="material-icons">filter_alt</span>
+								</button>
+									<div class="Accordian_Panel">
+										Input Type: <input type="text" placeholder="Input"> 
+										Output Type: <input type="text" placeholder="OutType" >
+										<div>Language: <input type="text" placeholder="Language"></div>
+										<div class="spacingTitle"></div>
+									</div>			
 						</div>
+					</div>
 
 					<div class="spacingContainer"></div>
 
@@ -83,26 +85,27 @@
 					<form>
 						<div style="padding-left: 10px">Plugin | Descriptions</div>
 						<div class="spacingTitle"></div>
+
+						<button type="button" name="load_data" id="load_data" class="btn btn-info">Load Csv</button>
+
+						<div class="spacingTitle"></div>
 						<table>
 							<tr>
 								<th>Plugins</th>
 								<th>Descriptions</th>
 							</tr>
+							<div id="employee_table">
+							</div>
 						</table>
 					</form>
 					<div class="spacingContainer"></div>
-
 				</div>
-			</div>
+			</div>	
 		</div> <!-- Close navbar-->
-
-		<div>
 		<div class="spacingContainer"></div>
 
 			    
-				<!-- <div class="RUT_dropdown">View Recently used plug-ins. -->
-
-					
+				<!-- <div class="RUT_dropdown">View Recently used plug-ins. -->		
 					<div class="setRUT_width">
 						<!-- <button onclick="myFunction()" class="dropbtn">Click here</button>
 						<div id="myDropdown" class="dropdown-content"> -->
@@ -129,10 +132,7 @@
 							</div>
 					</div>
 	
-				</div> 
-			
-		</div>
-
+				<!-- </div>  -->
 			<div id="wrapper">
 			</div>
 
@@ -767,3 +767,43 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 
 	</body>
 </html>
+
+<script>
+	$(document).ready(function(){
+	 $('#load_data').click(function(){
+	  $.ajax({
+	   url:"plugins.csv",
+	   dataType:"text",
+	   success:function(data)
+	   {
+		var employee_data = data.split(/\r?\n|\r/);
+		var table_data = '<table class="table table-bordered table-striped">';
+		for(var count = 0; count<employee_data.length; count++)
+		{
+		 var cell_data = employee_data[count].split(",");
+		 table_data += '<tr>';
+		 for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+		 {
+		  if(count === 0)
+		  {
+		   table_data += '<th>'+cell_data[cell_count]+'</th>';
+		  }
+		  else
+		  {
+		   table_data += '<td>'+cell_data[cell_count]+'</td>';
+		  }
+		 }
+		 table_data += '</tr>';
+		}
+		table_data += '</table>';
+		$('#employee_table').html(table_data);
+	   }
+	  });
+	 });
+	 
+	});
+	</script>
+
+
+
+

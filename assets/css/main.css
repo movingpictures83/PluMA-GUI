@@ -6,7 +6,7 @@
     overflow: hidden;
     background-color:#221D5C;
     font-family: Arial;
-    padding-top:15px;
+    /* padding-top:15px; */
   }
   
   /* Links inside the navbar */
@@ -16,39 +16,54 @@
     color:#F2F0DF; /* Text color */
     /* padding: 14px 16px; */
     text-decoration: none;
+    margin: auto;
+    
   }
   
   /* The dropdown container */
-  .dropdown {
-      
-    width: 50%;
+  .dropdown {   
+    /* width: 50%; */
     float: right;
-    position: inherit;
-    padding: 1px;
+    /* position: inherit; */
+    /* padding: 1px; */
     overflow: hidden;
     z-index: 1;
   }
-  
+
+  .csv_button{
+    float: right;
+    margin: auto;
+    background-color: inherit;
+    color: white;
+    padding-right:15px;
+    
+    text-align: center;
+    border: none; 
+    outline: none;
+    font-family: inherit;
+    font-size: 15px;
+  }
+
+
   /* Dropdown button */
   .dropdown .dropbtn {
-    float: right;  /* Places "search" on the right end of navbar. */
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-right: 25px;
-    width: 10%;
+    /* float: right;   */
+    /* padding-top: 15px; */
+    /* padding-bottom: 15px; */
+    /* padding-right: 50px; */
+    /* width: 5%; */
     font-size: 15px;
-    border: none;
-    outline: none;
+    border: none; 
     color: white;
+    outline: none;
     text-align: center;
-   
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
+    margin: auto; /* Important for vertical align on mobile phones */
   }
   
   /* Add a red background color to navbar links on hover */
-  .navbar a:hover, .dropdown:hover .dropbtn {
+  .navbar a:hover, .dropdown:hover .dropbtn, .csv_button:hover {
     background-color: red;
   }
   
@@ -57,18 +72,16 @@
     color:#F2F0DF; /* Text color */
     display: none;
     position: absolute;
-
+    left:50%;
     background-color:#221D5C;
     /* min-width: 100px; */
     padding: 5px;
-   
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
   
   /* Links inside the dropdown */
-  .dropdown-content a {
-    
+  .dropdown-content a { 
     /* float: bottom;  */
     color: black; 
     padding: 1px;
