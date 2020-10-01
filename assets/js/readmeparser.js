@@ -1,6 +1,6 @@
 /* ReadME Parsing to get input/output file types *Bhavyta */
 
-const testPath = '/Users/cesiabulnes/Desktop/PluMA/plugins';
+const testPath = '/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins';
 // array containing names of (LOCAL) plugin folders
 const pluginFolderNames = fs.readdirSync(testPath);
 console.log(pluginFolderNames); // debugging
