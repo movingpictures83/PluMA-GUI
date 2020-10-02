@@ -1,5 +1,6 @@
 body{
     background-color: #FFFDEE;
+    counter-reset: plugin;
 }
 
 table {
@@ -132,7 +133,11 @@ tr:nth-child(even) {
     box-sizing: border-box;
     padding: 10px;
     width: 300px;
+}
 
+.empty::before {
+    counter-increment: plugin;
+    content: "Plugin " counter(plugin);
 }
 
 .file_drag_over{
@@ -185,6 +190,21 @@ tr:nth-child(even) {
     height:75px;
     width:75px;
     float:right;
+}
+
+#add-plugin-btn {
+    padding: 8px;
+}
+
+#add-plugin-inner {
+    left: 8px;
+    bottom: 54px;
+    padding: 10px;
+    color: #FFFDEE;
+    background-color: #221D5C;
+    cursor: pointer; 
+    border: none;
+    border-radius: 8px;
 }
 
 /* Input/output file upload buttons *Bhavyta */

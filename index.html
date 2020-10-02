@@ -416,12 +416,16 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	<!-- Drag and Drop Feature  *Rishabh-->
 	<div id="first-plugin" style="display: block;">
 		<!-- <img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/> -->
-		<div class= "empty" id="file">Plugin 1</div>
+		<div class= "empty" id="file">
+			<!-- <button class="deleteButton">D</button> -->
+		</div>
 	</div>
 
 
 
-	<div class= "empty" id="file" >Plugin 2</div>
+	<div class= "empty" id="file" >
+		<!-- <button class="deleteButton">D</button> -->
+	</div>
 	 <script>
 		$('.add').click(function() {
 		$(this).before('<div class="optionBox"><img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/><div class= "empty" id="file"><span class="remove">Remove Plugin</span></div>');
@@ -434,13 +438,27 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	</script>
 
 	<div id="last-plugin" style="display: block;">
-		<div class= "empty" id="file">Plugin 3</div>
+		<div class= "empty" id="file">
+			<!--<button class="deleteButton">D</button> -->
+		</div>
 		<!-- <img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/> -->
 	</div>		
 
-	<div id="add-plugin" style="display: block;">
-		<div class= "empty" id="file">Add Plugin</div>
+	<div id="add-plugin-btn" style="display: block;">
+		<button type="button" id="add-plugin-inner" onclick="addPluginBox('empty')">ADD PLUGIN</button>
 	</div>
+
+	<script>
+		function addPluginBox(i) {
+			var div = document.createElement("div");   // Create a <div> element
+			div.className = "empty";
+			div.id = "file";         
+			var plugin = document.getElementById("last-plugin").appendChild(div);
+			var deleteButton = document.getElementById("deleteButton");
+			deleteButton.value = "D";
+			deleteButton.appendChild(plugin);
+		}
+		</script>
 
 	<div id="upload-output-file">
 		<!-- output file button (OFB) -->
