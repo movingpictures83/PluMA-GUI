@@ -26,24 +26,24 @@ class PluginnamesSpider(Spider):
             language = tr.xpath('.//td//text()').extract()
 
             #Writes to text file.
-##            yield{
-##                'Name' : name,
-##                'Description' : description,
-##                'Language' : language
-##            }
+            #yield{
+                #'Name' : name,
+                #'Description' : description,
+                #'Language' : language
+            #}
 
     #def parse_details(self, response):
-
+##
             l = ItemLoader(item=PlumaItem(), response=response)
-
+        
             #l.add_value('Name', name)
             #l.add_value('Description', description)
             l.add_value('Language', language)
 
             return l.load_item()
 
-        return 
-            
+        return l.load_item()
+##            
         
 
 
