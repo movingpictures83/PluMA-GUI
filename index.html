@@ -776,11 +776,11 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	   dataType:"text",
 	   success:function(data)
 	   {
-		var employee_data = data.split(/\r?\n|\r/);
+		var pluginDetails = data.split(/\r?\n|\r/);
 		var table_data = '<table class="table table-bordered table-striped">';
-		for(var count = 0; count<employee_data.length; count++)
+		for(var count = 0; count<pluginDetails.length; count++)
 		{
-			var cell_data = employee_data[count].split(",");
+			var cell_data = pluginDetails[count].split(",");
 			table_data += '<tr>';
 			if (cell_data.length >= 3 ) {		
 				cell_data = cell_data.splice(1,2);
