@@ -7,6 +7,8 @@ from PluMA.items import PlumaItem
 #import requests
 from scrapy.crawler import CrawlerProcess
 
+import string
+
 
 class PluginnamesSpider(Spider):
     name = 'pluginNames'
@@ -24,19 +26,25 @@ class PluginnamesSpider(Spider):
      
         for tr in trs:
             # Obtain all plugin names
-            name = tr.xpath('.//td[1]//text()').extract_first()
-            description = tr.xpath('.//td[2]//text()').extract_first()
-            language = tr.xpath('.//td[3]//text()').extract_first()
+            name = tr.xpath('normalize-space(.//td[1]//u//text())').extract_first()
+            description = tr.xpath('normalize-space(.//td[2]//text())').extract_first()
+            language = tr.xpath('normalize-space(.//td[3]//text())').extract_first()
+
 
             if (name == "AbundCSV2NOA"):
                 cycle = cycle + 1
 
             if (cycle == 2):
-                name.remove('')
-                description.remove('')
-                language.remove('')
-                                   
                 break
+
+##            if (name == ""):
+##                name.replace('',"Name")
+##                description.replace("Short Description", '')
+##                language.replace("Language", '')
+                
+
+
+
 
             #Writes to text file.  
             yield{
@@ -45,24 +53,28 @@ class PluginnamesSpider(Spider):
                 'Language' : language
             }
 
+#Testing function
+    def remove(string): 
+        return "".join(string.split())  
+
                 
         
 
-    #def parse_details(self, response):
-
-##            l = ItemLoader(item=PlumaItem(), response=response)    
-##            l.add_value('Name', name)
-##            l.add_value('Description', description)
-##            l.add_value('Language', language)
+##    def parse_details(self, response):
+##
+##        l = ItemLoader(item=PlumaItem(), response=response)    
+##        l.add_value('Name', name)
+##        l.add_value('Description', description)
+##        l.add_value('Language', language)
 ##            
-##            return l.load_item()
+##            
 ##        
 ##        return l.load_item()
-            
+##            
         
 
 
-
+##SCRAPY TOOL PATHS
 #All tables and rows.
 #response.xpath('//div[contains(@id,"bigcolumn")]//table//text()').extract()
 

@@ -22,6 +22,10 @@ ROBOTSTXT_OBEY = False
 #Fix the order of extraction in CSV file
 FEED_EXPORT_FIELDS = ['Name', 'Description', 'Language']
 
+#Fix empty rows.
+
+
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
