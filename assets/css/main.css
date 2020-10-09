@@ -135,9 +135,20 @@ tr:nth-child(even) {
     width: 300px;
 }
 
+#plugin {
+    box-sizing: border-box;
+    width: 300px;
+}
+
 .empty::before {
     counter-increment: plugin;
     content: "Plugin " counter(plugin);
+}
+
+#deleteButton {
+    width: 20px;
+    height: 20px;
+    float: right;
 }
 
 .file_drag_over{
@@ -269,6 +280,18 @@ tr:nth-child(even) {
 .arrow-right {
     position: relative;
     bottom: 50px;
+}
+
+#downArrow {
+    margin: 10px auto 20px; 
+    width: 30px;
+    height: 30px;
+}
+
+#plus-sign {
+    margin: 10px auto 20px;
+    width: 15px;
+    height: 15px
 }
 
 .optionBox {
