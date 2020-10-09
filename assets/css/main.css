@@ -706,6 +706,7 @@ tr:nth-child(even) {
     cursor: pointer; 
     border: none;
     border-radius: 8px;
+    display: inline-block;
 }
 
 #custom-IFB:hover {

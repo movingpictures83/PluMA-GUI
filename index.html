@@ -175,7 +175,7 @@
 <div> </div>
 
 	<script>
-		const testFolder = '/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins';
+		const testFolder = '/Users/Rebecca_Dupuis/Desktop/seniorProject/PluMA/plugins';
 		const fs = require('fs');
 
 		const plugin_folders_fullpath = fs.readdirSync(testFolder)
@@ -429,13 +429,12 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 
 <br/>
 <!-- Feature: input/output file uploading for each plugin *Bhavyta -->
-<!-- <div id="upload-input-file">	
-	input file button (IFB)
-	<input type="file" id="input-file" hidden="hidden" /> -->
-	<!-- <button type="button" id="custom-IFB">INPUT FILE</button>	<br/> -->
-	<!-- <span id="custom-IFB-text">No file chosen</span>
+    <div id="upload-input-file">	
+	<input type="file" id="input-file" hidden="hidden" /> 
+	<button type="button" id="custom-IFB">INPUT FILE</button>	<br/> 
+	<span id="custom-IFB-text">No file chosen</span>
 
-	// CHECK TEST PATH HERE IF ERROR
+	<!--// CHECK TEST PATH HERE IF ERROR
 	<script src = "assets/js/readmeparser.js"></script>
 
 	<script>
@@ -564,7 +563,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 
 	</script> 
 
-	<div id="plugin" style="display: block;">
+	<div id="plugin3" style="display: block;">
 		<div class= "empty" id="file">
 			<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
 		</div>
@@ -583,7 +582,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			outerDiv.id = "plugin";
 			outerDiv.style = "display: block";
 			outerDiv.innerHTML = '<div class= "empty" id="file"><img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/></div><img id= "downArrow" src="down_arrow.png"/><img id= "plus-sign" src="plus_sign.png"/>'
-			document.getElementById("plugin").appendChild(outerDiv);
+			document.getElementById("plugin3").appendChild(outerDiv);
 		}
 	</script>
 
@@ -594,7 +593,6 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	</script>
 
 	<div id="upload-output-file">
-		// output file button (OFB) 
 		<input type="file" id="output-file" hidden="hidden" />
 		<button type="button" id="custom-OFB">OUTPUT FILE</button> <br/>
 		<span id="custom-OFB-text">No file chosen</span>
@@ -779,7 +777,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			ev.target.style.opacity = "1";
 		}
 
-	</script> -->
+	</script> 
 
 	<!-- <div  id="trash" ondrop="drop(event)" ondragenter="dragenter(event)" ondragleave="dragleave(event)" ondragend="dragend(event)">
 		<img class = "trashcan" src= "trash.png" >
