@@ -1,3 +1,5 @@
+import exec from 'child_process';
+
 var expanded = false;
 function showCheckboxes(){
     var checkboxes = document.getElementById("checkboxes");
@@ -10,7 +12,23 @@ function showCheckboxes(){
     }
 }
 
+function update(){ //this should work, but I am getting a stupid function not defined error
+  exec('cd Web_Scraping/PluMA');
 
+  exec("scrapy crawl pluginNames -o results.csv -t csv", (error, stdout, stderr) => {
+    if (error){
+      console.log(`error: ${error.message}`);
+      return;
+    }
+    if(stderr){
+      console.log(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
+
+  exec('python fileCleaning.py');
+}
 
 
 

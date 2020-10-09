@@ -53,13 +53,24 @@ class PluginnamesSpider(Spider):
                 'Language' : language
             }
 
+
+# To run code:
+# Go to directory
+# cd /Users/edwardpalermo/Desktop/seniorProject2/PluMA/PluMA-GUI/Web_Scraping/PluMA
+
+#In terminal type the following to execute:
+# scrapy crawl pluginNames -o results.csv -t csv
+
+
+
+
+
+
 #Testing function
     def remove(string): 
         return "".join(string.split())  
 
                 
-        
-
 ##    def parse_details(self, response):
 ##
 ##        l = ItemLoader(item=PlumaItem(), response=response)    
