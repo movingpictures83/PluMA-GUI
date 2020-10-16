@@ -530,16 +530,14 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	</div> -->
 
 
+	<div id = "top-column"></div>
 	<!-- Drag and Drop Feature  *Rishabh-->
 	<div id="plugin" style="display: block;">
-		<!-- <img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/> -->
 		<div class= "empty" id="file">
 			<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
 		</div>
-		<div>
-			<img id= "downArrow" src="down_arrow.png"/>
-			<img id= "plus-sign" src="plus_sign.png"/>
-		<div>
+		<img id= "downArrow" src="down_arrow.png"/>
+		<img id= "plus-sign" src="plus_sign.png"/>
 	</div>
 
 
@@ -582,7 +580,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			outerDiv.id = "plugin";
 			outerDiv.style = "display: block";
 			outerDiv.innerHTML = '<div class= "empty" id="file"><img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/></div><img id= "downArrow" src="down_arrow.png"/><img id= "plus-sign" src="plus_sign.png"/>'
-			document.getElementById("plugin3").appendChild(outerDiv);
+			document.getElementById("top-column").appendChild(outerDiv);
 		}
 	</script>
 
