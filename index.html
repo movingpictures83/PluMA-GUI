@@ -15,6 +15,9 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+		
+
 	</head>
 
 	<body>
@@ -22,9 +25,10 @@
 			<img src= "biorg.png" width = "100" height = "40" >
 			<span><a href ="#home">PluMA: Plugin-based Microboime analysis</a></span>
 			<div class="dropdown">	
-				<button class="dropbtn" style="padding-top: 25%;">Search
+				<!-- <button class="dropbtn" style="padding-top: 25%;">Search
 					<i class="fa fa-caret-down"></i>
-				</button>
+				</button> -->
+				<button type="button" name="load_data" id="load_data" class="btn btn-info dropbtn">SEARCH</button>
 
 				<div class="dropdown-content">	
 					<!-- Search for plug-ins -->
@@ -32,8 +36,17 @@
 					<div class="AdvSearch_Background ">
 						<div>
 							<span class="material-icons">search</span>
-							<input type="text" id="enter" onkeyup="myFunction()" placeholder="Search for plugins here" style="width:fixed">
+
+
+
+
 							
+							<!-- <input type="text" id="enter" onkeyup="RUT()" placeholder="Search for plugins here"
+								 style="width:fixed"> -->
+							<input type="text" id="myInput" onkeyup="startFiltering()" placeholder="Type to search">
+							
+
+
 								<button class="accordion" style="padding-left: 250px ">
 									<span class="material-icons">filter_alt</span>
 								</button>
@@ -81,23 +94,29 @@
 					</form>
 
 					<div class="spacingContainer"></div>
-					
-					<form>
+					<div id="details_table"></div>
+					<!-- <form>
+
+
 						<div style="padding-left: 10px">Plugin | Descriptions</div>
 						<div class="spacingTitle"></div>
 
-						<button type="button" name="load_data" id="load_data" class="btn btn-info" onclick="update()">Update</button>
-
+						<button type="button" id="load_data" onclick="update()">Update</button>
+			
 						<div class="spacingTitle"></div>
 						<table>
-							<tr>
-								<th>Plugins</th>
-								<th>Descriptions</th>
-							</tr>
-							<div id="details_table">
-							</div>
-						</table>
-					</form>
+							< <tr> -->
+								<!-- <th>Plugins</th>
+								<th>Descriptions</th> -->
+							<!-- </tr> -->
+							
+							<!-- <div id="details_table"></div> -->
+								
+							
+							
+							<!--</div>-->
+						<!-- </table> -->
+					<!-- </form> --> 
 					<div class="spacingContainer"></div>
 				</div>
 			</div>	
@@ -795,13 +814,13 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			</div>
 		  </div>
 		</div>
-    </footer>
+	</footer>
 	</body>
 </html>
 
 <script>
 	$(document).ready(function(){
-		$.ajax({
+	$.ajax({
 	   url:"Web_Scraping/PluMA/results.csv",
 	   dataType:"text",
 	   success:function(data)
@@ -837,5 +856,21 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	</script>
 
 
-
-
+<!-- Trigger update button -->
+<!-- <script>
+	$(document).ready(function(){
+		$("#load_data").click(function(){
+			$.ajax({
+				method: "GET",
+				url: "PluMA/PluMA-GUI/Web_Scraping/PluMA/fileCleaning.py ", 
+				data: {"place" : value},
+				dataType: "text",
+				success: function(result){
+					var data=CSV.parse(result);
+					console.log(result);
+					console.log("Button pressed")
+				}
+			});
+		});
+	})
+</script> -->

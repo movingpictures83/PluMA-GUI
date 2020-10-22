@@ -153,8 +153,7 @@ LMS,"Least Mean Squares method for regression analysis (Widrow and Hoff, 1960)",
 Manhattan,Manhattan Distance,R,Dissimilarity
 Morisita,"Morisita Overlap (Morisita, 1959)",R,Dissimilarity
 Mountford,"Mountford Dissimilariy Index (Mountford, 1962)",R,Dissimilarity
-MT,"Multiple Testing of Taxa Abundances According to Sample Category (McMurdie, 2020) (",R,Transformations
-,,
+MT,"Multiple Testing of Taxa Abundances According to Sample Category (McMurdie, 2020)",R,Dissimilarity
 NetRep,"NetRep algorithm (Ritchie et al, 2016) for detecting amount of preservation between two datasets",R,Dissimilarity
 PCA,"Principle Component Analysis (Pearson, 1901)",R,Dissimilarity
 PCoA,"Principle Coordinate Analysis (Gower, 1966)",R,Dissimilarity

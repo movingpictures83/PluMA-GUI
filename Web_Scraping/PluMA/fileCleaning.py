@@ -1,3 +1,4 @@
+import subprocess
 import os
 
 def letsClean():
@@ -15,8 +16,6 @@ def letsClean():
                     break
                 line = line.strip('\r\n')
                 if not ",," in line:
-                    if "MT" in line: #to be removed after Trevor's fix
-                        counter = counter - 1
                     output.append(line + ',' + categoriesList[counter] + '\n')
                 else:
                     output.append(line + '\n')
@@ -26,6 +25,14 @@ def letsClean():
     f.close()
     print(categoriesList)
 
-if __name__ == "__main__":
-#os.system("scrapy crawl pluginNames -o results.csv -t csv")
-    letsClean()
+   
+
+
+print("File has been executed")
+
+
+if(os.path.isfile('./results.csv')):
+    os.remove('./results.csv')
+#Source: https://pymotw.com/2/subprocess/
+subprocess.call(['scrapy crawl pluginNames -o results.csv -t csv'], shell=True)
+letsClean()
