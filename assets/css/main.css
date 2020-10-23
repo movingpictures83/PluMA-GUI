@@ -615,6 +615,17 @@ tr:nth-child(even) {
 #plugin {
     box-sizing: border-box;
     width: 300px;
+    display: table-cell;
+}
+
+#pluginVertical {
+  box-sizing: border-box;
+  width: 100%;
+  display: table-row;
+}
+
+#top-column {
+  display: table;
 }
 
 .empty::before {

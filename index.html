@@ -530,63 +530,71 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	</div> -->
 
 
-	<div id = "top-column"></div>
-	<!-- Drag and Drop Feature  *Rishabh-->
-	<div id="plugin" style="display: block;">
-		<div class= "empty" id="file">
-			<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
+	<div id = "top-column">
+		<!-- Drag and Drop Feature  *Rishabh-->
+		<div id="pluginVertical">
+			<div class= "empty" id="file">
+				<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
+			</div>
+			<img id= "downArrow" src="down_arrow.png"/>
+			<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
 		</div>
-		<img id= "downArrow" src="down_arrow.png"/>
-		<img id= "plus-sign" src="plus_sign.png"/>
 	</div>
-
-
-
-	<div id="plugin" style="display: block;">
-		<div class= "empty" id="file" >
-			<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
-		</div>
-		<img id= "downArrow" src="down_arrow.png"/>
-		<img id= "plus-sign" src="plus_sign.png"/>
-	</div>
-
-	 <script>
-		$('.add').click(function() {
-		$(this).before('<div class="optionBox"><img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/><div class= "empty" id="file"><span class="remove">Remove Plugin</span></div>');
-		});
-
-		$(document).on('click','.remove',function() {
-			$(this).parent('div').parent('div').remove();
-		});
-
-	</script> 
-
-	<div id="plugin3" style="display: block;">
-		<div class= "empty" id="file">
-			<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
-		</div>
-		<img id= "downArrow" src="down_arrow.png"/>
-		<img id= "plus-sign" src="plus_sign.png"/>
-		<!-- <img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/> -->
-	</div>		
 
 	<div id="add-plugin-btn" style="display: block;">
-		<button type="button" id="add-plugin-inner" onclick="addPluginBox('empty')">ADD PLUGIN</button>
+		<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">ADD STAGE</button>
 	</div>
 
 	<script>
-		function addPluginBox(i) {
+		function addHorizontalPlugin(i) {
 			var outerDiv = document.createElement("div");
 			outerDiv.id = "plugin";
-			outerDiv.style = "display: block";
-			outerDiv.innerHTML = '<div class= "empty" id="file"><img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/></div><img id= "downArrow" src="down_arrow.png"/><img id= "plus-sign" src="plus_sign.png"/>'
-			document.getElementById("top-column").appendChild(outerDiv);
+			var innerDiv = document.createElement("div");
+			innerDiv.className = "empty";
+			innerDiv.id = "file";
+			var deleteImg = document.createElement("img");
+			deleteImg.src = "trash.png";
+			deleteImg.id = "deleteButton"
+			deleteImg.onclick = function(){deletePlugin(this)};
+			innerDiv.appendChild(deleteImg);
+			outerDiv.appendChild(innerDiv);
+			var arrowImg = document.createElement("img");
+			arrowImg.src = "down_arrow.png";
+			arrowImg.id = "downArrow"
+			outerDiv.appendChild(arrowImg);
+			(i.parentNode).appendChild(outerDiv);
 		}
 	</script>
 
 	<script>
 		function deletePlugin(i) {
 			((((i.parentNode).parentNode)).parentNode).removeChild(i.parentNode.parentNode)
+		}
+	</script>
+
+	<script>
+		function addPluginBox(i) {
+			var outerDiv = document.createElement("div");
+			outerDiv.id = "pluginVertical";
+			var innerDiv = document.createElement("div");
+			innerDiv.className = "empty";
+			innerDiv.id = "file";
+			var deleteImg = document.createElement("img");
+			deleteImg.src = "trash.png";
+			deleteImg.id = "deleteButton"
+			deleteImg.onclick = function() {deletePlugin(this)};
+			innerDiv.appendChild(deleteImg);
+			outerDiv.appendChild(innerDiv);
+			var arrowImg = document.createElement("img");
+			arrowImg.src = "down_arrow.png";
+			arrowImg.id = "downArrow"
+			outerDiv.appendChild(arrowImg);
+			var plusImg = document.createElement("img");
+			plusImg.src = "plus_sign.png";
+			plusImg.id = "plus-sign"
+			plusImg.onclick = function() {addHorizontalPlugin(this)};
+			outerDiv.appendChild(plusImg);
+			document.getElementById("top-column").appendChild(outerDiv);
 		}
 	</script>
 
