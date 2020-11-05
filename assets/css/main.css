@@ -230,6 +230,14 @@
 /*==========================================================================================*/
 /* Checkbox Filter selections Inside dropdown menu */
 /*==========================================================================================*/
+.showItem {
+  display: list-item;
+}
+.hideItem {
+  display: none;
+}
+
+
 #checkboxes{
     /* display: none; */
     border: 1px #dadada solid;

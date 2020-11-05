@@ -20,7 +20,7 @@ NEWSPIDER_MODULE = 'PluMA.spiders'
 ROBOTSTXT_OBEY = False
 
 #Fix the order of extraction in CSV file
-FEED_EXPORT_FIELDS = ['Name', 'Description', 'Language']
+FEED_EXPORT_FIELDS = ['Name', 'Description', 'Language', 'Link', 'Time']
 
 #Fix empty rows.
 

@@ -7,6 +7,8 @@ from PluMA.items import PlumaItem
 from scrapy.crawler import CrawlerProcess
 import string
 
+import os.path, time
+
 class PluginnamesSpider(scrapy.Spider):
     name = 'pluginNames'
     allowed_domains = ['http://biorg.cis.fiu.edu/pluma/plugins/']
@@ -19,28 +21,35 @@ class PluginnamesSpider(scrapy.Spider):
 
         cycle = 0
         for tr in trs:
-            # Obtain all plugin names
+            # Obtain all plugin details
             name = tr.xpath('normalize-space(.//td[1]//u//text())').extract_first()
             description = tr.xpath('normalize-space(.//td[2]//text())').extract_first()
             language = tr.xpath('normalize-space(.//td[3]//text())').extract_first()
+            link = tr.xpath('.//td//u//a').extract_first()
+            
+
 
             if (name == "AbundCSV2NOA"):
                 cycle = cycle + 1
 
             if (cycle == 2):
-                
                 break
                 
             #Writes to text file.  
             yield{
                 'Name' : name,
                 'Description' : description,
-                'Language' : language
+                'Language' : language,
+                'Link' : link,
             }
+        # t =  time.ctime(os.path.getmtime("results.csv"))
+        # yield{
+        #         'Time': t,
+        #     }
 
 
+        
 
-    
 
 # To run code:
 # Go to directory
