@@ -14,9 +14,11 @@
 		<link rel="import" href="sections/welcome.html">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-		
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 	</head>
 
@@ -33,26 +35,24 @@
 				<div class="dropdown-content">	
 					<!-- Search for plug-ins -->
 					<div class="spacingTitle"></div>
+					
 					<div class="AdvSearch_Background ">
 						<div>
-							<span class="material-icons">search</span>
 
-							<!-- <input type="text" id="enter" onkeyup="RUT()" placeholder="Search for plugins here"
-								 style="width:fixed"> -->
-							<input type="text" id="myInput" onkeyup="startFiltering()" placeholder="Type to search">
+							<!-- <span class="material-icons">search</span> -->
+
+
+							<input style="width: 250px; height: 20px"type="text" id="myInput" onkeyup="startFiltering()" placeholder="Type to search">
+							<hr>
+							<div style="padding-left: 10px">
+								Last Modified: 
+								<div id="getMeTime"></div> 
 							
-								<button class="accordion" style="padding-left: 250px ">
-									<span class="material-icons">filter_alt</span>
-								</button>
-									<div class="Accordian_Panel">
-										Input Type: <input type="text" placeholder="Input"> 
-										Output Type: <input type="text" placeholder="OutType" >
-										<div>Language: <input type="text" placeholder="Language"></div>
-										<div class="spacingTitle"></div>
-									</div>			
+							</div>
 						</div>
+						
 					</div>
-
+					
 					<div class="spacingContainer"></div>
 
 					<!-- Filter Checkboxes  -->
@@ -94,7 +94,6 @@
 						
 					
 					<form>
-						<div style="padding-left: 10px">Last Modified: <p id="getMeTime"></p> </div>
 						<div class="spacingTitle"></div>
 						<div class="spacingTitle"></div>
 						<table>
@@ -111,45 +110,49 @@
 			</div>	
 		</div> <!-- Close navbar-->
 		<div class="spacingContainer"></div>
+			
 
-			    
-				<!-- <div class="RUT_dropdown">View Recently used plug-ins. -->		
-					<div class="setRUT_width">
-						<!-- <button onclick="myFunction()" class="dropbtn">Click here</button>
-						<div id="myDropdown" class="dropdown-content"> -->
-							<div id="menu">
-								<ul>		
-									<li id="categories"><a href="#">Recently Used Plug-ins</a>
-										<ul>
-											<li><a href="#">Plugin-1 Descriptions from Python and if it was this long then what</a></li>
-											<li><a href="#">Plugin-2 Descriptions from C# and it wil help you with this and that</a></li>
-											<li><a href="#">Plugin-3 Descriptions from C++ and will guide you in conecting oscillators for your synthesizers</a></li>
-																						
-											<!-- <li id="da">
-												<a href="#">DESKTOP APPLICATIONS +</a>
-												<ul>
-													<li><a href="#">Test1 (C#)</a></li>
-													<li><a href="#">Test2</a></li>
-												</ul>
-											</li> -->
-											
-										</ul>
-									</li>
-									<!-- <li><a href="#">CONTACT</a></li> -->
-								</ul>
-							</div>
-					</div>
-	
-				<!-- </div>  -->
-			<div id="wrapper">
+
+
+
+		<!-- Recently Used -->
+		
+		
+		<div class="w3-container" style="width:auto; height:200px;">
+			<button onclick="iPushContent('Demo1')" class="w3-button w3-light-grey">Recently used</button>
+				
+			<!-- <i class="fa fa-caret-down"></i> -->
+			<div id="Demo1" class="w3-hide w3-container w3-light-grey">
+				<table>
+					<tr>
+						<td>This will be a plugin using C++ for synthesizers.</td>
+					</tr>
+					<tr>
+						<td>This will be a plugin using C++ for synthesizers.</td>
+					</tr>
+					<tr>
+						<td>This will be a plugin using C++ for synthesizers.</td>
+					</tr>
+				</table>		
 			</div>
+		</div>
+
+
+
+
+		<div class="spacingContainer"></div>				
+		<div id="wrapper"></div>
+			
+
+
+
+
+
 
 		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
-				<div class="inner">
-
-				</div>
-			</footer>
+		<footer id="footer" class="wrapper style1-alt">
+			<div class="inner"></div>	
+		</footer>
 
 		<!-- Scripts -->
       <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
@@ -167,20 +170,26 @@
 				require('./assets/js/dialog')
 	  </script>
 	  
-<!-- Choosing plugin from the pluma feature *cesia*-->
-<div class="container">
-	<!-- <h2 class="text">Installed Plugins</h2> -->
 
-	<div class="box">
-			<p id="demo"></p>
-		
-		<!-- li class= "hover">something</li>
-			<li id='bottom'>something</li>-->
-		</ul>
-	</div>
 
-</div>
+
+
+
+
+
+		<!-- Choosing plugin from the pluma feature *cesia*-->
+		<!-- <div class="container">
+			<div class="box">
+				<p id="demo"></p>
+			</div>
+		</div> -->
 <div> </div>
+
+
+
+
+
+
 
 	<script>
 		const testFolder = '/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins';
@@ -570,9 +579,6 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 		<!-- <img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/> -->
 	</div>		
 
-	<div id="add-plugin-btn" style="display: block;">
-		<button type="button" id="add-plugin-inner" onclick="addPluginBox('empty')">ADD PLUGIN</button>
-	</div>
 
 	<script>
 		function addPluginBox(i) {
@@ -584,14 +590,19 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			deleteButton.value = "D";
 			deleteButton.appendChild(plugin);
 		}
-		</script>
+	</script>
+
+	<div id="add-plugin-btn" style="display: block;">
+		<div class="spacingContainer"></div>
+		<button type="button" id="add-plugin-inner" onclick="addPluginBox('empty')">ADD PLUGIN</button>
+	</div>
 
 	<div id="upload-output-file">
-		// output file button (OFB) 
+		<!-- // output file button (OFB)  -->
 		<input type="file" id="output-file" hidden="hidden" />
 		<button type="button" id="custom-OFB">OUTPUT FILE</button> <br/>
 		<span id="custom-OFB-text">No file chosen</span>
-		<br/>
+		<br>
 		<script>
 			// create output file browser button
 			createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
@@ -807,8 +818,86 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	</body>
 </html>
 
-<script>
+<script type="module">
 	$(document).ready(writeFullTable());
+</script>
+
+<script>
+	function writeFullTable() {
+  $.ajax({
+    url: "Web_Scraping/PluMA/results.csv",
+    dataType: "text",
+    success: function (data) {
+      var pluginDetails = data.split(/\r?\n|\r/);
+      var date;
+      var table_data = '<table class="table table-bordered table-striped">';
+
+  
+      for (var count = 0; count < pluginDetails.length; count++) {
+        if (count == pluginDetails.length - 1) {
+          date = pluginDetails[count]
+          break;
+        }
+        var cell_data = pluginDetails[count].split(/[,]+/)
+        table_data += '<tr>';
+        if (cell_data.length >= 3) {
+          cell_data[1] = cell_data[1].replace(/^"|"$/g, '');
+          var site = cell_data[3] + '.git'; //need to use this to clone repo
+          cell_data = cell_data.splice(0, 2);
+          for (var cell_count = 0; cell_count < cell_data.length; cell_count++) {
+            if (cell_count == 0) {
+              table_data += `<td><a onclick="openTheWindow('${site}');">` + cell_data[cell_count] + '</a></td>';
+
+              //git clone ${site} 
+              
+
+
+              // clone('https://github.com/owner/repo')
+              //     .then(repo => {
+              //         // Access any repository methods here.
+              //         console.log(repo.path());
+              //     });
+
+			  // path/to/repo/.git
+           
+            
+            }
+            else {
+              table_data += '<td>' + cell_data[cell_count] + '</td>';
+            }
+          }
+          table_data += '</tr>';
+        }
+      }
+      table_data += '</table>';
+      $('#details_table').html(table_data);
+      document.getElementById("getMeTime").innerHTML = date;
+    }
+  });
+}
+
+function openTheWindow(url) {
+const child_process = require("child_process");
+  child_process.exec(`git clone ${url}`, {
+    cwd: "/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins"
+  }, (error, stdout, stderr) => {
+    
+    if (error) {
+      dialog.showMessageBox({
+        type: "error",
+        title: "Plugin download error",
+        message: `Plugin was already downloaded at ${url} \n\n ${stderr} ${error}`
+      })
+      return;
+    }
+
+    dialog.showMessageBox({
+      type: "info",
+      title: "Plugin download success",
+      message: "Plugin was successfully downloaded in the installed plugin list!"
+    });
+  });
+}//we don't need this
 </script>
 
 <!-- Trigger update button -->

@@ -69,11 +69,14 @@
   
   /* Dropdown content (hidden by default) */
   .dropdown-content {
-    color:#F2F0DF; /* Text color */
+    /* color:#F2F0DF; Text color */
     display: none;
     position: absolute;
-    left:50%;
-    background-color:#221D5C;
+    left:51%;
+    background-color:#221d5c;  
+    /* color: rgb(255, 250, 204); */
+    color: white;
+    /* background-color:#a1e7e1; */
     /* min-width: 100px; */
     padding: 5px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -83,7 +86,8 @@
   /* Links inside the dropdown */
   .dropdown-content a { 
     /* float: bottom;  */
-    color: black; 
+    /* color: rgb(255, 250, 204); */
+    color: white;
     padding: 1px;
     text-decoration: none;
     display: block;
@@ -144,11 +148,12 @@
 .InsideSearch_dropdown-menu {
   position: relative;
   display: inline-block;
+  background-color: #017575;
 }
 .InsideSearch_menu-content {
   display: none;
   position: absolute;
-  /* background-color: #017575; */
+  
   width: 50%;
   z-index: 1;
 }
@@ -161,6 +166,17 @@
   font-weight: bold;
   border-bottom: 1px solid black;
 }
+
+
+tr:nth-child(1n+2){
+  
+  text-transform: bold;
+  background-color: #5D5F71;
+  /* background-color: #5D5F71; */
+  color:white;
+}
+
+
 /* .InsideSearch_links:hover {
   background-color: rgb(8, 107, 46);
 } */
@@ -171,56 +187,7 @@
 /*==========================================================================================*/
 /* PUSHING DOWN CONTENT AS OPEN @ Navbar right corner -> Search bar with a dropdown button   */
 /*==========================================================================================*/
-.accordion {
-  background-color: rgba(179, 179, 179, 0.3);
-  color: grey;
-  cursor: pointer;
-  padding: 15px;
-  width: fixed;
-  /* position: inherit; */
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
-  background-clip: border-box;  
-}
 
-.Accordian_Active, .accordion:hover {
-  background: rgba(179, 179, 179, 0.3);
-}
-
-.Accordian_Panel {
-  padding: 5px;
-  display: none;
-  width: fixed;
-  /* background: rgba(179, 179, 179, 0.3); */
-  overflow: hidden;
-  /* background-clip: border-box;   */
-}
-
-.Accordion:after {
-  /* content: '\002B'; */
-  /* background: rgba(179, 179, 179, 0.3); */
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
-}
-
-.Accordian_Active:after {
-  /* content: "\2212"; */
-  background: rgba(179, 179, 179, 0.3);
-}
-
-/* Background of above search */
-.AdvSearch_Background {
-  /* border: 10px dotted black; */
-  /* width: 500px; */
-  padding: 5px;
-  background: rgba(179, 179, 179, 0.3);
-  background-clip: content-box;  
-  border-radius: 15px;
-}
 
 
 
@@ -281,7 +248,7 @@
 /*==========================================================================================*/
 /* Recently Used PLug-ins Table */
 /*==========================================================================================*/
-.RUT_dropbtn {
+/* .RUT_dropbtn {
     background-color: rgb(255, 250, 204);
     color:black;
     padding: 16px;
@@ -303,8 +270,8 @@
     display: none;
     position: absolute;
     background-color: #f1f1f1;
+    color: red;
     min-width: 160px;
-    /* width: 90%; */
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -317,7 +284,6 @@
     text-decoration: none;
     display: block;
 
-    
   }
   
   .RUT_dropdown a:hover {background-color: #ddd;}
@@ -332,7 +298,7 @@
 
   .setRUT_pads{
     padding:25px;
-  }
+  } */
 
  
 /*====================================================================================================*/

@@ -58,17 +58,6 @@ class PluginnamesSpider(scrapy.Spider):
 # In terminal type the following to execute:
 # scrapy crawl pluginNames -o results.csv -t csv
 
-
-##    def parse_details(self, response):
-##
-##        l = ItemLoader(item=PlumaItem(), response=response)    
-##        l.add_value('Name', name)
-##        l.add_value('Description', description)
-##        l.add_value('Language', language) 
-##        return l.load_item()
-##            
-        
-
 ##SCRAPY TOOL TESTS PATHS
 #All tables and rows.
 #response.xpath('//div[contains(@id,"bigcolumn")]//table//text()').extract()

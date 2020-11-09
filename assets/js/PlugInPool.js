@@ -12,10 +12,6 @@ function showCheckboxes() {
   }
 }
 
-function openTheWindow(url) {
-  window.open(url);
-}//we don't need this
-
 // url: "PluMA/PluMA-GUI/Web_Scraping/PluMA/fileCleaning.py ", 
 // Update Data in search.
 //this should work, but I am getting a stupid function not defined error
@@ -80,75 +76,44 @@ window.onclick = function (event) {
 
 //PushDown content when advanced search opens - STARTS
 //=============================================================================================
-var acc = document.getElementsByClassName("accordion");
-var i;
+// var acc = document.getElementsByClassName("accordion");
+// var i;
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function () {
-    this.classList.toggle("Accordian_Active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  });
-}
+// for (i = 0; i < acc.length; i++) {
+//   acc[i].addEventListener("click", function () {
+//     this.classList.toggle("Accordian_Active");
+//     var panel = this.nextElementSibling;
+//     if (panel.style.display === "block") {
+//       panel.style.display = "none";
+//     } else {
+//       panel.style.display = "block";
+//     }
+//   });
+// }
+
 
 //PushDown content - ENDS
 //=============================================================================================
 
 // Accordion button size
-function myFunction(id) {
+function iPushContent(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
-  } else {
+  } else { 
     x.className = x.className.replace(" w3-show", "");
   }
 }
 
-function writeFullTable() {
-  $.ajax({
-    url: "Web_Scraping/PluMA/results.csv",
-    dataType: "text",
-    success: function (data) {
-      var pluginDetails = data.split(/\r?\n|\r/);
-      var date;
-      var table_data = '<table class="table table-bordered table-striped">';
-      for (var count = 0; count < pluginDetails.length; count++) {
-        if (count == pluginDetails.length - 1) {
-          date = pluginDetails[count]
-          break;
-        }
-        var cell_data = pluginDetails[count].split(/[,]+/)
-        table_data += '<tr>';
-        if (cell_data.length >= 3) {
-          cell_data[1] = cell_data[1].replace(/^"|"$/g, '');
-          var site = cell_data[3] + '.git'; //need to use this to clone repo
-          cell_data = cell_data.splice(0, 2);
-          for (var cell_count = 0; cell_count < cell_data.length; cell_count++) {
-            if (cell_count == 0) {
-              table_data += `<td><a onclick="window.open('${site}');">` + cell_data[cell_count] + '</a></td>';
+// Alternates color inside the table 
 
-              
-            
 
-              //git clone ${site} 
-            }
-            else {
-              table_data += '<td>' + cell_data[cell_count] + '</td>';
-            }
-          }
-          table_data += '</tr>';
-        }
-      }
-      table_data += '</table>';
-      $('#details_table').html(table_data);
-      document.getElementById("getMeTime").innerHTML = date;
-    }
-  });
-}
+
+// var NodeGit = require("nodegit");
+// var cloneURL = "https://github.com/movingpictures83/";
+
+
+
 
 
 function updateTable(answer) {
@@ -264,6 +229,8 @@ function checkboxClicked() {
   if (favorites.checked == true) {
     checked.push("Favorites");
   } 
+
+ 
 
   var dataArray = []
   $.ajax({
