@@ -192,7 +192,7 @@
 
 
 	<script>
-		const testFolder = '/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins';
+		const testFolder = '/Users/Rebecca_Dupuis/Desktop/seniorProject/PluMA/plugins';
 		const fs = require('fs');
 
 		const plugin_folders_fullpath = fs.readdirSync(testFolder)
@@ -446,13 +446,12 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 
 <br/>
 <!-- Feature: input/output file uploading for each plugin *Bhavyta -->
-<!-- <div id="upload-input-file">	
-	input file button (IFB)
-	<input type="file" id="input-file" hidden="hidden" /> -->
-	<!-- <button type="button" id="custom-IFB">INPUT FILE</button>	<br/> -->
-	<!-- <span id="custom-IFB-text">No file chosen</span>
+    <div id="upload-input-file">	
+	<input type="file" id="input-file" hidden="hidden" /> 
+	<button type="button" id="custom-IFB">INPUT FILE</button>	<br/> 
+	<span id="custom-IFB-text">No file chosen</span>
 
-	// CHECK TEST PATH HERE IF ERROR
+	<!--// CHECK TEST PATH HERE IF ERROR
 	<script src = "assets/js/readmeparser.js"></script>
 
 	<script>
@@ -548,57 +547,75 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	</div> -->
 
 
-	<!-- Drag and Drop Feature  *Rishabh-->
-	<div id="first-plugin" style="display: block;">
-		<!-- <img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/> -->
-		<div class= "empty" id="file">
-			<!-- <button class="deleteButton">D</button> -->
+	<div id = "top-column">
+		<!-- Drag and Drop Feature  *Rishabh-->
+		<div id="pluginVertical">
+			<div class= "empty" id="file">
+				<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
+			</div>
+			<img id= "downArrow" src="down_arrow.png"/>
+			<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
 		</div>
 	</div>
 
-
-
-	<div class= "empty" id="file" >
-		<!-- <button class="deleteButton">D</button> -->
+	<div id="add-plugin-btn" style="display: block;">
+		<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">ADD STAGE</button>
 	</div>
-	 <script>
-		$('.add').click(function() {
-		$(this).before('<div class="optionBox"><img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/><div class= "empty" id="file"><span class="remove">Remove Plugin</span></div>');
-		});
-
-		$(document).on('click','.remove',function() {
-			$(this).parent('div').parent('div').remove();
-		});
-
-	</script> 
-
-	<div id="last-plugin" style="display: block;">
-		<div class= "empty" id="file">
-			<!--<button class="deleteButton">D</button> -->
-		</div>
-		<!-- <img class="arrow-right" src= "arrow.png" style="width:50px;height:70px;"/> -->
-	</div>		
-
 
 	<script>
-		function addPluginBox(i) {
-			var div = document.createElement("div");   // Create a <div> element
-			div.className = "empty";
-			div.id = "file";         
-			var plugin = document.getElementById("last-plugin").appendChild(div);
-			var deleteButton = document.getElementById("deleteButton");
-			deleteButton.value = "D";
-			deleteButton.appendChild(plugin);
+		function addHorizontalPlugin(i) {
+			var outerDiv = document.createElement("div");
+			outerDiv.id = "plugin";
+			var innerDiv = document.createElement("div");
+			innerDiv.className = "empty";
+			innerDiv.id = "file";
+			var deleteImg = document.createElement("img");
+			deleteImg.src = "trash.png";
+			deleteImg.id = "deleteButton"
+			deleteImg.onclick = function(){deletePlugin(this)};
+			innerDiv.appendChild(deleteImg);
+			outerDiv.appendChild(innerDiv);
+			var arrowImg = document.createElement("img");
+			arrowImg.src = "down_arrow.png";
+			arrowImg.id = "downArrow"
+			outerDiv.appendChild(arrowImg);
+			(i.parentNode).appendChild(outerDiv);
 		}
 	</script>
 
-	<div id="add-plugin-btn" style="display: block;">
-		<div class="spacingContainer"></div>
-		<button type="button" id="add-plugin-inner" onclick="addPluginBox('empty')">ADD PLUGIN</button>
-	</div>
+	<script>
+		function deletePlugin(i) {
+			((((i.parentNode).parentNode)).parentNode).removeChild(i.parentNode.parentNode)
+		}
+	</script>
+
+	<script>
+		function addPluginBox(i) {
+			var outerDiv = document.createElement("div");
+			outerDiv.id = "pluginVertical";
+			var innerDiv = document.createElement("div");
+			innerDiv.className = "empty";
+			innerDiv.id = "file";
+			var deleteImg = document.createElement("img");
+			deleteImg.src = "trash.png";
+			deleteImg.id = "deleteButton"
+			deleteImg.onclick = function() {deletePlugin(this)};
+			innerDiv.appendChild(deleteImg);
+			outerDiv.appendChild(innerDiv);
+			var arrowImg = document.createElement("img");
+			arrowImg.src = "down_arrow.png";
+			arrowImg.id = "downArrow"
+			outerDiv.appendChild(arrowImg);
+			var plusImg = document.createElement("img");
+			plusImg.src = "plus_sign.png";
+			plusImg.id = "plus-sign"
+			plusImg.onclick = function() {addHorizontalPlugin(this)};
+			outerDiv.appendChild(plusImg);
+			document.getElementById("top-column").appendChild(outerDiv);
+		}
+	</script>
 
 	<div id="upload-output-file">
-		<!-- // output file button (OFB)  -->
 		<input type="file" id="output-file" hidden="hidden" />
 		<button type="button" id="custom-OFB">OUTPUT FILE</button> <br/>
 		<span id="custom-OFB-text">No file chosen</span>
@@ -783,7 +800,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			ev.target.style.opacity = "1";
 		}
 
-	</script> -->
+	</script> 
 
 	<!-- <div  id="trash" ondrop="drop(event)" ondragenter="dragenter(event)" ondragleave="dragleave(event)" ondragend="dragend(event)">
 		<img class = "trashcan" src= "trash.png" >
