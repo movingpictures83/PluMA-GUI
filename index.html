@@ -20,11 +20,20 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
+		
+
+
 	</head>
 
 	<body>
 		<div class="navbar">
-			<img src= "biorg.png" width = "100" height = "40" >
+
+			<div style="margin:5px;">
+				<img src= "biorg.png" width = "100" height = "40" >
+			</div>
+			
+
+
 			<span><a href ="#home">PluMA: Plugin-based Microboime analysis</a></span>
 			<div class="dropdown">	
 				<!-- <button class="dropbtn" style="padding-top: 25%;">Search
@@ -42,7 +51,7 @@
 							<!-- <span class="material-icons">search</span> -->
 
 
-							<input style="width: 250px; height: 20px"type="text" id="myInput" onkeyup="startFiltering()" placeholder="Type to search">
+							<input style="width: 450px; height: 30px"type="text" id="myInput" onkeyup="startFiltering()" placeholder="Type to search">
 							<hr>
 							<div style="padding-left: 10px">
 								Last Modified: 
@@ -92,7 +101,7 @@
 
 					
 						
-					
+				
 					<form>
 						<div class="spacingTitle"></div>
 						<div class="spacingTitle"></div>
@@ -111,37 +120,69 @@
 		</div> <!-- Close navbar-->
 		<div class="spacingContainer"></div>
 			
-
-
-
-
 		<!-- Recently Used -->
 		
-		
-		<div class="w3-container" style="width:auto; height:200px;">
-			<button onclick="iPushContent('Demo1')" class="w3-button w3-light-grey">Recently used</button>
-				
-			<!-- <i class="fa fa-caret-down"></i> -->
-			<div id="Demo1" class="w3-hide w3-container w3-light-grey">
-				<table>
-					<tr>
-						<td>This will be a plugin using C++ for synthesizers.</td>
-					</tr>
-					<tr>
-						<td>This will be a plugin using C++ for synthesizers.</td>
-					</tr>
-					<tr>
-						<td>This will be a plugin using C++ for synthesizers.</td>
-					</tr>
-				</table>		
+		<div style="margin: 50px">
+			<div style="width:auto; height:60px;">
+				<button onclick="iPushContent('Demo1')" id="custom-IFB">RECENT USED</button>
+				<!-- <i class="fa fa-caret-down"></i> -->
+				<div id="Demo1" class="w3-hide w3-container">
+					<table>
+						<tr>
+							<td>This will be a plugin using C++ for synthesizers.</td>
+						</tr>
+						<tr>
+							<td>This will be a plugin using C++ for synthesizers.</td>
+						</tr>
+						<tr>
+							<td>This will be a plugin using C++ for synthesizers.</td>
+						</tr>
+					</table>		
+				</div>
 			</div>
+		</div>			
+		<!-- <div id="wrapper"></div> -->
+		
+		<div style="margin-top:100px; margin-left:50px;">	
+			<input type="file" id="input-file" hidden="hidden" /> 
+			<button type="button" id="custom-IFB">INPUT FILE</button><br> 
+			<span id="custom-IFB-text">No file chosen</span>
 		</div>
 
 
 
+			<div id = "top-column" style="margin:50px;">
+				<!-- Drag and Drop Feature  *Rishabh-->
+				<div id="pluginVertical">
+					<div class= "empty" id="file">
+						<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
+					</div>
+					<img id= "downArrow" src="down_arrow.png"/>
+					<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
+				</div>
+			</div>
 
-		<div class="spacingContainer"></div>				
-		<div id="wrapper"></div>
+			<div id="add-plugin-btn" style="display: block; margin-left: 50px;">
+				<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">ADD STAGE</button>
+			</div>
+
+
+
+			<div id="upload-output-file" style="margin-left:50px; margin-top: 100px;">
+				<input type="file" id="output-file" hidden="hidden"/>
+				<button type="button" id="custom-OFB">OUTPUT FILE</button><br>
+				<span id="custom-OFB-text">No file chosen</span>
+				
+			</div>
+		
+		
+
+		
+
+		<script>
+			// create output file browser button
+			createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
+		</script>
 			
 
 
@@ -156,13 +197,13 @@
 
 		<!-- Scripts -->
       <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
-			<script>window.i18n = new(require('./translations/i18n'));</script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/PlugInPool.js"></script>
+		<script>window.i18n = new(require('./translations/i18n'));</script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/PlugInPool.js"></script>
       <script>
         require('./assets/js/menu')
 				require('./assets/js/translations')
@@ -170,13 +211,6 @@
 				require('./assets/js/dialog')
 	  </script>
 	  
-
-
-
-
-
-
-
 		<!-- Choosing plugin from the pluma feature *cesia*-->
 		<!-- <div class="container">
 			<div class="box">
@@ -186,13 +220,8 @@
 <div> </div>
 
 
-
-
-
-
-
 	<script>
-		const testFolder = '/Users/Rebecca_Dupuis/Desktop/seniorProject/PluMA/plugins';
+		const testFolder = '/Users/edwardpalermo/Desktop/seniorProject2/PluMA/plugins';
 		const fs = require('fs');
 
 		const plugin_folders_fullpath = fs.readdirSync(testFolder)
@@ -266,7 +295,6 @@
 
 
 <!-- <h2 class= "text">Add and Install more Plugins</h2> -->
-
 <!-- Trigger/Open The Modal -->
 <!-- <button id="myBtn">Search Plugin Pool</button> -->
 
@@ -343,7 +371,7 @@ function openModal() {
 						e.preventDefault();
 						e.stopPropagation();
 						child_process.exec(`git status`, {
-							cwd: "/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins"
+							cwd: "/Users/edwardpalermo/Desktop/seniorProject2/PluMA/plugins"
 						}, (error, stdout, stderr) => {
 							if (error) {
 								dialog.showMessageBox({
@@ -362,9 +390,6 @@ function openModal() {
 						});
 					});
 				});
-
-
-
 
 		[].slice.call(
 			document
@@ -387,7 +412,7 @@ function openModal() {
 						e.preventDefault();
 						e.stopPropagation();
 						child_process.exec(`git clone ${aElem.href}`, {
-							cwd: "/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins"
+							cwd: "/Users/edwardpalermo/Desktop/seniorProject2/PluMA/plugins"
 						}, (error, stdout, stderr) => {
 							
 							if (error) {
@@ -446,10 +471,11 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 
 <br/>
 <!-- Feature: input/output file uploading for each plugin *Bhavyta -->
-    <div id="upload-input-file">	
+
+    <!-- <div id="upload-input-file">	
 	<input type="file" id="input-file" hidden="hidden" /> 
 	<button type="button" id="custom-IFB">INPUT FILE</button>	<br/> 
-	<span id="custom-IFB-text">No file chosen</span>
+	<span id="custom-IFB-text">No file chosen</span> -->
 
 	<!--// CHECK TEST PATH HERE IF ERROR
 	<script src = "assets/js/readmeparser.js"></script>
@@ -547,20 +573,6 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	</div> -->
 
 
-	<div id = "top-column">
-		<!-- Drag and Drop Feature  *Rishabh-->
-		<div id="pluginVertical">
-			<div class= "empty" id="file">
-				<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
-			</div>
-			<img id= "downArrow" src="down_arrow.png"/>
-			<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
-		</div>
-	</div>
-
-	<div id="add-plugin-btn" style="display: block;">
-		<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">ADD STAGE</button>
-	</div>
 
 	<script>
 		function addHorizontalPlugin(i) {
@@ -615,16 +627,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 		}
 	</script>
 
-	<div id="upload-output-file">
-		<input type="file" id="output-file" hidden="hidden" />
-		<button type="button" id="custom-OFB">OUTPUT FILE</button> <br/>
-		<span id="custom-OFB-text">No file chosen</span>
-		<br>
-		<script>
-			// create output file browser button
-			createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
-		</script>
-	</div>
+	
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
@@ -853,6 +856,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
       for (var count = 0; count < pluginDetails.length; count++) {
         if (count == pluginDetails.length - 1) {
           date = pluginDetails[count]
+
           break;
         }
         var cell_data = pluginDetails[count].split(/[,]+/)

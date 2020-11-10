@@ -105,10 +105,12 @@ function iPushContent(id) {
   }
 }
 
+
+
+
+
+
 // Alternates color inside the table 
-
-
-
 // var NodeGit = require("nodegit");
 // var cloneURL = "https://github.com/movingpictures83/";
 
