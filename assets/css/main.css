@@ -5,9 +5,11 @@
 .navbar {
   overflow: hidden;
   background-color:#221D5C;
-  height: 50px;
-  /* font-family: Arial; */
+  /* height: 50px; */
+  font-family: Arial;
   /* padding-top:15px; */
+  margin:25px;
+  
 }
 
 /* Links inside the navbar */
@@ -25,8 +27,8 @@
 .dropdown {   
   /* width: 50%; */
   float: right;
-  /* position: inherit; */
-  /* padding: 1px; */
+  position: inherit;
+  padding: 1px;
   overflow: hidden;
   z-index: 1;
 }
@@ -51,7 +53,7 @@
   /* float: right;   */
   /* padding-top: 15px; */
   /* padding-bottom: 15px; */
-  /* padding-right: 50px; */
+  padding-right: 50px;
   /* width: 5%; */
   font-size: 15px;
   border: none; 
