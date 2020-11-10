@@ -730,16 +730,15 @@ display: table;
   display: inline-block;
 }
 
-.site-footer
-{
+.site-footer{
 background-color:#221D5C;;
-padding:45px 0 20px;
+/* padding:45px 0 20px; */
 font-size:15px;
 line-height:24px;
 color:#FFFDEE;
-font-family: Roboto;
+/* font-family: Roboto;
 font-style: normal;
-font-weight: normal;
+font-weight: normal; */
 }
 .site-footer h6
 {

@@ -33,16 +33,13 @@
 					
 					<div class="AdvSearch_Background ">
 						<div>
-
 							<!-- <span class="material-icons">search</span> -->
-
-
 							<input style="width: 450px; height: 30px"type="text" id="myInput" onkeyup="startFiltering()" placeholder="Type to search">
 							<hr>
 							<div style="padding-left: 10px">
 								Last Modified: 
 								<div id="getMeTime"></div> 
-							
+			
 							</div>
 						</div>
 						
@@ -83,12 +80,9 @@
 						</div>
 					</form>
 					<div class="spacingContainer"></div>
-
-
-					
 					<form>
 						<div class="spacingTitle"></div>
-						<div class="spacingTitle"></div>
+						<!-- <div class="spacingTitle"></div> -->
 						<table>
 							<tr> 
 								<th>Plugins</th>
@@ -106,7 +100,7 @@
 			
 		<!-- Recently Used -->
 		
-		<div style="margin-left: 50px; margin-top: 25px;">
+		<div style="margin-left: 50px; ">
 			<div style="width:auto; height:60px;">
 				<button onclick="iPushContent('Demo1')" id="custom-IFB">RECENT USED</button>
 				<!-- <i class="fa fa-caret-down"></i> -->
@@ -133,46 +127,33 @@
 			<span id="custom-IFB-text">No file chosen</span>
 		</div>
 
-
-
-			<div id = "top-column" style="margin:50px;">
-				<!-- Drag and Drop Feature  *Rishabh-->
-				<div id="pluginVertical">
-					<div class= "empty" id="file">
-						<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
-					</div>
-					<img id= "downArrow" src="down_arrow.png"/>
-					<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
+		<div id = "top-column" style="margin:50px;">
+			<!-- Drag and Drop Feature  *Rishabh-->
+			<div id="pluginVertical">
+				<div class= "empty" id="file">
+					<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
 				</div>
+				<img id= "downArrow" src="down_arrow.png"/>
+				<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
 			</div>
+		</div>
 
-			<div id="add-plugin-btn" style="display: block; margin-left: 50px;">
-				<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">ADD STAGE</button>
-			</div>
+		<div id="add-plugin-btn" style="display: block; margin-left: 50px;">
+			<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">ADD STAGE</button>
+		</div>
 
-
-
-			<div id="upload-output-file" style="margin-left:50px; margin-top: 100px;">
-				<input type="file" id="output-file" hidden="hidden"/>
-				<button type="button" id="custom-OFB">OUTPUT FILE</button><br>
-				<span id="custom-OFB-text">No file chosen</span>
-				
-			</div>
+		<div id="upload-output-file" style="margin-left:50px; margin-top: 100px;">
+			<input type="file" id="output-file" hidden="hidden"/>
+			<button type="button" id="custom-OFB">OUTPUT FILE</button><br>
+			<span id="custom-OFB-text">No file chosen</span>
+			
+		</div>
 		
-		
-
-		
-
 		<script>
 			// create output file browser button
 			createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
 		</script>
 			
-
-
-
-
-
 
 		<!-- Footer -->
 		<footer id="footer" class="wrapper style1-alt">
@@ -904,22 +885,3 @@ const child_process = require("child_process");
   });
 }//we don't need this
 </script>
-
-<!-- Trigger update button -->
-<!-- <script>
-	$(document).ready(function(){
-		$("#load_data").click(function(){
-			$.ajax({
-				method: "GET",
-				url: "PluMA/PluMA-GUI/Web_Scraping/PluMA/fileCleaning.py ", 
-				data: {"place" : value},
-				dataType: "text",
-				success: function(result){
-					var data=CSV.parse(result);
-					console.log(result);
-					console.log("Button pressed")
-				}
-			});
-		});
-	})
-</script> -->
