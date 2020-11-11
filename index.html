@@ -57,7 +57,7 @@
 <div> </div>
 
 	<script>
-		const testFolder = '/Users/cesiabulnes/Desktop/PluMA/plugins';
+		const testFolder = '/Users/Ivonne/Desktop/PluMA/plugins';
 		const fs = require('fs');
 
 		const plugin_folders_fullpath = fs.readdirSync(testFolder)
@@ -208,7 +208,7 @@ function openModal() {
 						e.preventDefault();
 						e.stopPropagation();
 						child_process.exec(`git status`, {
-							cwd: "/Users/cesiabulnes/Desktop/PluMA/plugins"
+							cwd: "/Users/Ivonne/Desktop/PluMA/plugins"
 						}, (error, stdout, stderr) => {
 							if (error) {
 								dialog.showMessageBox({
@@ -252,7 +252,7 @@ function openModal() {
 						e.preventDefault();
 						e.stopPropagation();
 						child_process.exec(`git clone ${aElem.href}`, {
-							cwd: "/Users/cesiabulnes/Desktop/PluMA/plugins"
+							cwd: "/Users/Ivonne/Desktop/PluMA/plugins"
 						}, (error, stdout, stderr) => {
 							
 							if (error) {
