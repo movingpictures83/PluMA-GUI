@@ -548,20 +548,23 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	<div id = "top-column">
 		<!-- Drag and Drop Feature  *Rishabh-->
 		<div id="pluginVertical">
-			<input type="file" id="input-file" hidden="hidden" /> 
-			<button type="button" id="custom-IFB-blue">INPUT FILE</button>	
-			<div class= "empty" id="file">
-				<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
-				<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
-			</div>
-			<div id="upload-output-file">
-				<input type="file" id="output-file" hidden="hidden" />
-				<button type="button" id="custom-OFB-blue">OUTPUT FILE</button> 
-				<br/>
-				<script>
-					// create output file browser button
-					createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
-				</script>
+			<div id = "plugin">
+				<input type="file" id="input-file" hidden="hidden" /> 
+				<button type="button" id="custom-IFB-blue">INPUT FILE</button>	
+				<div class= "empty" id="file">
+					<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
+				</div>
+				<div id="upload-output-file">
+					<input type="file" id="output-file" hidden="hidden" />
+					<button type="button" id="custom-OFB-blue">OUTPUT FILE</button> 
+					<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
+					<img id="deleteButton" src= "trash.png" onclick="deletePluginHorizontal(this)"/>	
+					<br/>
+					<script>
+						// create output file browser button
+						createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
+					</script>
+				</div>
 			</div>
 			<hr>
 		</div>
@@ -613,7 +616,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			outerDiv.appendChild(outputDiv);
 			var hrTag = document.createElement("hr");
 			outerDiv.appendChild(hrTag);
-			(i.parentNode.parentNode).appendChild(outerDiv);
+			(i.parentNode).appendChild(outerDiv);
 			//Change the color grey back to blue now that there is a horizontal plugin
 			if(document.contains(document.getElementById("custom-IFB-gray")))
 			{
