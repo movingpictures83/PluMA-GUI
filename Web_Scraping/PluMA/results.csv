@@ -1,316 +1,320 @@
-AbundCSV2NOA,Convert CSV file of abundances to NOA for Cytoscape,Python
-BIOM2CSV,Convert BIOM file to CSVA,Python
-ClusterCSV2NOA,Convert CSV File Of Clusters to NOA,Python
-CountTableProcessing,Converts Mothur Counts To Abundance CSV,R
-CSVAppend,Append a new row or column to a CSV file,Python
-CSV2EDA,Converter from CSV to Cytoscape EDA file format,Python
-CSV2GML,CSV To GML Converter,Python
-CSV2PathwayTools,"Take a CSV file and perform lookups in PathwayTools (Karp et al, 2015)",Python
-CSV2Tab,Converter from comma-separated to tab-delimited format,Python
-CSVExtract,Extract rows from a CSV file with a specific value in a column,R
-CSVFilter,Remove Columns from a CSV file with All Zero Values,Python
-CSVIndex,Index a CSV file over a range of columns,Python
-CSVLabel,Label rows of a CSV file,Python
-CSVLast2First,Move the last column of a CSV file to the first,Python
-CSVMerge,Merge Multiple CSV Files,Python
-CSVPad,CSV Padding,Python
-CSVRemove,Remove a column from a CSV file,Python
-CSVScreen,Remove all rows with a zero or non-zero value in a specific column,Python
-CSVScreenTax,Remove all rows with a zero or non-zero abundance for a specific taxon (any phylogenetic tree level),Python
-CSVTrim,Trim a CSV file to a specific set of columns,R
-FASTA2FASTQ,Convert from FASTA to FASTQ format,Python
-FASTQ2FASTA,Convert from FASTQ to FASTA format,Python
-FilterPathway,"Take a CSV and find all pathways present in PathwayTools (Karp et al, 2015)",Python
-GML2CSV,GML To CSV Converter,Python
-LabelDups,Take a CSV file and label duplicate entries,Python
-PathwayFilter,"Take a CSV and remove all connections with no corresponding pathway in PathwayTools (Karp et al, 2015)",Python
-PathwayTools2HMDB,"Map PathwayTools (Karp et al, 2015) identifiers to HMDB",Python
-PCL2CSV,PCL To CSV (File Conversion),Python
-SIF2CSV,SIF To CSV (Interactions to Correlations),Python
-SplitBIOM,Take a BIOM File and split it into each taxonomic tree level,Python
-Tab2CSV,Converter from tab-delimited to comma-separated format,Python
-Tab2GML,Converter from tab-delimited to GML format,Python
-,,
-Abundance,Average abundance of an entity in a sample set.,Python
-AlphaDiversity,"Alpha-diversity using Qiime (Caporaso et al, 2010)",C++
-Atlas,"Plot the abundance of a taxon over samples, colored by category",R
-ANOSIM,"Analysis of Similarities (ANOSIM) (Clarke, 1993)",Python
-Bar,Bar graph of OTU abundances,R
-BetaDiversity,"Beta-diversity using Qiime (Caporaso et al, 2010)",C++
-BoxPlot,Produce a boxplot,R
-CalcMeanStd,Calculates Mean and Standard Deviation,Python
-Core,Core taxa community statistics,R
-CSV2Dot,"Take a Network in CSV Format and Visualize in Dot (Gansner et al, 2015)",Python
-CSVAvgDeg,Compute the average node degree of a network.,Python
-CSVAvgEdgeWeight,Compute the average edge weight of a network.,Python
-CSVDup,List duplicate row and column entries in a CSV file.,Python
-CSVMax,Determines Maximum Count Within Samples,Python
-CSVNegOnly,Output negative edges.,Python
-CSVOverlap,Vector overlap,Python
-CytoViz,Cytoscape Visualizer,Perl
-Delta,"Calculate differences in abundance (mean, std dev, etc.) between two samples",Python
-Density,Density plot (normalized abundance vs frequency) of a target taxon,R
-DIABLO,"Generate DIABLO (Singh et al, 2019) plot",R
-Diversity,Various diversity measurements,R
-Dominance,"Dominance index (Locey and Lennon, 2016)",R
-Evenness,Evenness indices,R
-Extract,Extract sequences that include a target sequence,Perl
-Gini,"Gini index (Gini, 1912)",R
-GraPhlAn,"Visualize phylogenetic tree with GraPhlAn (Asnicar et al, 2013)",C++
-Gnuplot,"Plot data using Gnuplot (Williams and Kelley, 2011)",C++
-Heatmap,Render a heatmap,R
-HIVE,"HIVE (Hanson, 2011) plots",R
-InverseSimpson,Inverse Simpson Diversity Index,Python
-Krona,Krona plot,R
-Landscape,Landscape plot of sample sets vs. first two principal components,R
-LogModulo,"Log-modulo skew (Magurran and McGill, 2011)",R
-MM,Partitions multi-omics data,Python
-MV,Plot mean vs. variance,R
-NetworkViz,Network Visualizer (Generates Multiple Cytoscape Input Files),Python
-NMDS,"Produce an OTU heatmap using Non-Multi-Dimensional Scaling (NMDS) (Kruskal, 1964)",R
-OTUHeatmap,Plot OTU abundances using a heatmap,C++
-OTUPlot,Plot OTU abundances at multiple levels of the phylogenetic tree,C++
-Pie,Phylum/class pie plot,R
-ProcessDesc,Extract phylogenetic information from FASTA file,Perl
-QGraph,QGraph Visualizer,R
-Rank,Converts a set of counts to ranks in a sample,Python
-Rare,Rare taxa community statistics,R
-ReactionPathway,ReactionPathway (Statistical Analysis of Metabolite Network and Reaction Pathway Data),Python
-Richness,Sample set richness,R
-Sparsity,Plot sparsity of a dataset,R
-Spread,Plot spread of taxa abundances over all samples,R
-Statistics,"Take a set of samples and output statistics (mean, standard deviation, etc.) on the most abundant taxa",Python
-Summarize,Output a summary of a sample set to the screen,R
-Tree,"PluMA plugin to produce a phylogenetic tree for taxa, decorated by sample set",R
-TriadCounter,"Counts the number of stable and unstable triads (Easley and Kleinberg, 2010) in a social network",Python
-TTestDependent,Run the T-Test on dependent samples,Python
-TTestIndependent,Run the T-Test on independent data,Python
-Variance,Variance Calculator,Python
-Violin,Violin plot,R
-,,
-ASV2Taxon,"Assign unique taxa to Amplicon Sequence Variants (ASVs) (Callahan, 2017)",Python
-CLR,Center Log Ratio (CLR) transformation,R
-Clusterize,Remove Edges Between Nodes in Different Clusters,Python
-CSVJoinSplit,"Generate taxonomically classified taxa counts from original counts, metadata and taxonomic tree",R
-CSVMapRange,Map Range of One CSV File To Another (Useful in Multi-Omics),Python
-CSVMult,Multiply a CSV file by a constant,Python
-CSVNeg2Pos,"Map [-1, 1] edge weight range to [0, 2]",Python
-CSVNeg2Zero,Change Negative Edges To Zero,Python
-CSVNormalize,CSV Normalization,Python
-CSVPathways,Take a CSV and lookup all metabolic pathways involving internal taxa or metabolites,Python
-CSVPool,Take a CSV and pool together duplicate rows/columns,Python
-CSVRename,Rename rows and/or columns of a CSV,Python
-CSVScale,Scale CSV Values to Have a Median of One,Python
-CSVSort,Sort a CSV file by row,Python
-CSVTranspose,Transpose a Matrix in a CSV File,Python
-CSVUnNormalize,CSV Reverse Normalization,Python
-CSVZero2Min,Change All Zeroes in a CSV to the Minimum Value,Python
-DeMUX,"Demultiplex (DeMUX) a set of sequences into groups given their barcodes (Caporaso et al, 2010)",C++
-DeReplicate,Remove replicate sequences,C++
-FilterMicrobes,Filter out connections between metagenomic data based on underlying metabolic networks,Python
-Hellinger,"Hellinger transform (Hellinger et al, 1914)",R
-Log10,Transform data by log base 10,R
-Log10P,Transform data by log(1+x),R
-LogTransform,Log-transform data,Python
-Map2Positive,Map All Edges To Positive Range,Python
-MetabNorm,"Mixed-Mode (Cohort and Batch) Metabolite Normalization (Jauhiainen et al, 2014)",R
-NetworkDeconvolution,"Network deconvolution algorithm (Feizi et al, 2013) to determine direct network dependencies.",Python
-NetworkNoise,Add random noise to a signed and weighted network.,Python
-NormScoreTransform,Normal Probability Values,R
-Oksanen,"Oksanen transformation (Oksanen, 1983)",R
-OTUSummary,Summarize OTUs at multiple levels of the phylogenetic tree,C++
-QuantumDenoiser,Remove noisy fluctations from CKMeans quanta,Python
-Rarefy,"Rarefying, ad hoc (McMurdie and Holmes, 2014)",R
-RemoveNegative,Remove Negative Edges,Python
-RemoveZero,Remove zero-abundant entities,Python
-SplitTableProcessing,Take a table of counts from Mothur and split into multiple counts classified by taxonomy,Python
-Standardize,Transform to standard distribution,R
-TaxonomySplit,"Take a table of abundances and make multiple, one for each level of the taxonomic tree",Python
-Threshold,Remove all observables from a dataset with a low frequency of occurrence,R
-Transform,"Shift composition (Egozcue and Pawlowski-Glahn, 2016)",Python
-UNOISE,"Denoise sequences (Edgar et al, 2016)",C++
-ValidateMapping,"Validate mapping file with Qiime (Caporaso et al, 2010)",C++
-Z,Z-transformation,R
-,,
-ANOVA,"ANalysis Of VAriance (ANOVA), estimates differences between sample groups (Kaufman and Scheren, 2014).",Python
-BHTSNE,"Barnes-Hut version of tSNE (Laczny et al, 2014)",Python
-BinomialDeviance,"Binomial Deviance (McArdle and Anderson, 2001)",R
-Bray,"Bray-Curtis (Bray and Curtis, 1957)",R
-Canberra,"Canberra Distance (Lance and Williams, 1966)",R
-Chao,"Chao's Method (Chao, 2005)",R
-DESeq,"Differential Gene Expression Analysis Based on the Negative Binomial Distribution (Love et al, 2014)",R
-DPCoA,"Double Principal Component Analysis (Pavoine et al, 2004)",R
-EuclideanDistance,Euclidean Distance,R
-FeatureSelection,Determine the most distinguishing features for case vs control,R
-Gower,"Gower Index (Gower, 1971)",R
-Horn,"Horn's Overlap Index (Horn, 1966)",R
-IPCA,"Independent Principle Component Analysis (Yao et al, 2012)",R
-Jaccard,"Jaccard Index (Jaccard, 1912)",R
-JSD,"Jensen-Shannon Divergence (Fuglede et al, 2004)",R
-Kulczynski,"Kulczynski Similarity (Kulczynski, 1927)",R
-LEfSe,"Linear discriminant analysis Effect Size (LEfSe) (Segata et al, 2011)",Python
-LMS,"Least Mean Squares method for regression analysis (Widrow and Hoff, 1960)",R
-Manhattan,Manhattan Distance,R
-Morisita,"Morisita Overlap (Morisita, 1959)",R
-Mountford,"Mountford Dissimilariy Index (Mountford, 1962)",R
-MT,"Multiple Testing of Taxa Abundances According to Sample Category (McMurdie, 2020) (",R
-,,
-NetRep,"NetRep algorithm (Ritchie et al, 2016) for detecting amount of preservation between two datasets",R
-PCA,"Principle Component Analysis (Pearson, 1901)",R
-PCoA,"Principle Coordinate Analysis (Gower, 1966)",R
-PERMANOVA,"PERmanent Multivariate ANalysis Of VAriance (PERMANOVA) (Anderson, 2001)",Python
-PLSDA,"Partial Least Squares Discriminant Analysis (PLS-DA, Stahle and Wold 1987)",R
-PLSDA-Multiple,"Partial Least Squares Discriminant Analysis (PLS-DA, Stahle and Wold 1987) for multiple datasets",R
-Raup,"Raup-Crick (Raup and Crick, 1979)",R
-SpNMF,"Supervised Non-Negative Matrix Factorization (Cai et al, 2017)",R
-tSNE,"t-Distributed Stochastic Neighbor Embedding (Van der Maaten et al, 2008)",R
-UniFrac,"UniFrac distance (Lozupone and Knight, 2005)",R
-WeightedUniFrac,"Weighted UniFrac distance (Lozupone et al, 2007)",R
-,,
-CCA,"Canonical Correlation Analysis (Gonzalez et al, 2008)",R
-CoNet,"Infer abundance matrix from interactions using CoNet (Faust et al, 2012)",R
-DistanceCorrelation,"Distance Correlation (Szekely, 2005)",R
-Ensemble,"Ensemble Correlation Computation (Weiss, 2016)",Python
-FunChiSq,"Functional Chi-Squared Dependency Computation (Zhang and Song, 2013)",R
-Kendall,"Kendall Correlation (Kendall, 1970)",R
-KS,"Kolmogorov-Smirnov Test Statistic (Kolmogorov, 1933)",R
-LSA,"Local Similarity Analysis (Ruan, 2006)",Python
-MIC,"Maximal Information Coefficient (Reshef, 2011)",R
-MPLasso,"MPLasso (Lo and Marculescu, 2017)",R
-Pearson,"Pearson Correlation (Pearson, 1896)",R
-Phi,"Proportionatlity metric (Lovell et al, 2015) for relative data",Python
-PhiLR,"Phylogenetic Isometric Log-Ratio Transform (Silverman et al, 2017)",R
-RevEcoR,"Predict ecological relationships between two organisms based on metabolic networks using RevEcoR (Cao et al, 2016)",R
-SparCC,"SparCC Correlation (Friedman and Alm, 2012)",Python
-SparCCGPU,"SparCC on the GPU (Alonso, Escobar, Panoff and Suarez, 2017)",CUDA
-Spearman,"Spearman Correlation (Spearman, 1904)",R
-SpearmanMulti,Spearman Correlations Over Multiple Data Sets and a Single Sample Set (Useful for Multi-Omics),R
-SpearmanTies,"Spearman, and Can Handle Rank Ties",Python
-SpearmanTiesMulti,Hybrid Functionality of SpearmanTies and SpearmanMulti,Python
-SPIECEASI,"SPIEC-EASI (Kurtz et al, 2015)",R
-,,
-ATria,"Ablatio Triadum (ATria) Centrality (Cickovski et al, 2017)",C++
-BiasedPageRank,"Edge-Weighted Personalized Page Rank (Xie et al, 2015)",Python
-Centroid,"Centroid algorithm (Wuchty and Stadler, 2003)",Python
-ClusterLeaders,Compute leader nodes of network clusters,R
-Conquests,"Conquests algorithm (Laniau et al, 2017) for Phenotypically Essential Metabolites",Python
-Degree,"Degree Centrality (Freeman, 1979)",C++
-Exponential,"Exponential Centality (Benzi and Klymko, 2013)",Python
-GPUATria,"GPUATria (ATria, on the GPU)",CUDA
-IndVal,"Indicator species for each cluster (Roberts, 2007)",R
-Katz,"Katz Prestige Centrality (Katz, 1953)",C++
-MATria,"Multiple Ablatio Triadium (Cickovski et al, 2017)",Python
-MWM,"Computes edge centralities, with the help of Maximum Weighted Matching (Galil, 1986)",Python
-NetCooperate,"NetCooperate Algorithm for Key Metabolites (Levy et al, 2015)",Python
-PageRank,"Page Rank Centrality (Page, 1999)",Python
-PyATria,"ATria, in Python",Python
-RWRMH,"Random Walk with Restart on Multiplex and Heterogeneous biological networks (Valdeolivas et al, 2018)",R
-,,
-AffinityPropagation,"Affinity Propagation (Frey and Dueck, 2007)",Python
-CDHit,"CD-Hit (Li and Godzik, 2006)",C++
-ClusterCount,Number of clusters in a network above a threshold in size,Python
-ClusterMeans,Mean edge weight between all clusters of a network,R
-ClusterPathways,"Given a set of clusters of taxa, find all metabolic pathways shared by node pairs within the cluster",Python
-ClusterStd,Edge standard deviation between all clusters of a network,R
-Community,Information on the local community of a target.,Python
-CommunityDetection,"Girvan-Newman algorithm for community detection in a network (Girvan and Newman, 2002)",Python
-CKMeans,"CKMeans (Wang and Song, 2011)",R
-DeNovoOTU,"De Novo OTU Selection (Caporaso et al, 2010)",C++
-Enterotypes,"Find enterotypes within a set of samples (Arumugam et al, 2011)",R
-KMeans,"KMeans clustering (MacQueen, 1967)",R
-LinClust,"Linear-Time Clustering (Steinegger and Soding, 2018)",C++
-Louvain,"Louvain Clustering (Blondel et al, 2008)",Python
-MCL,"Markov Clustering (van Dongen, 2000)",R
-MClust,"MClust (Scrucca et al, 2016)",R
-ModularityMaximization,Modularity Maximization Algorithm For Clustering Level,Python
-PAM,"Partition Around Medoids (PAM) clustering (Kaufman and Rousseeuw, 1987)",R
-PrefixSuffix,"Prefix-Suffix algorithm of Qiime (Edgar et al, 2010)",C++
-PyNAST,"PyNAST clustering (Caporaso et al, 2010)",C++
-RivalClub,"Find rival clubs in a network (Fernandez et al, 2015)",Python
-SCIMM,"Sequence Clustering with Interpolated Markov Models (Kelley and Salzberg, 2010)",C++
-SIMLR,"SIMLR (Wang et al, 2017)",R
-SortMerna,"SortMerna (Kopylova et al, 2014)",C++
-Spectral,"Spectral Clustering (Meila and Shi, 2001)",Python
-SumaClust,"SumaClust (Mercier et al, 2014)",C++
-SWARM,"SWARM (Mahe et al, 2014)",C++
-Tightness,Various tightness measurements for a set of network clusters,R
-TightnessStatistics,Mean and standard deviation of cluster tightness,Python
-Trie,"Trie algorithm of Qiime (Edgar et al, 2010)",C++
-UClust,"UClust (Edgar et al, 2010)",C++
-UPARSE,"UPARSE (Edgar, 2013) algorithm",C++
-USearch,"USearch (Edgar et al, 2010), adds filtering steps to UClust",C++
-,,
-AutoCorrelation,Autocorrelation Function Estimate,R
-CCM,"Convergent Cross Mapping (Sugihara et al, 2012)",R
-CrossCorrelation,Time-Series Cross-Correlation Values,R
-CubicSpline,Cubic Spline Interpolation,R
-CumulativeClassifier,"Classify a set of samples by a set of features, at multiple timepoints",R
-CumulativeTime,"Choose the best features to use to classify a set of samples, at multiple timepoints.",R
-Detrend,"Detrend (Least-Squares Fit, Time Series Data)",R
-DickeyFuller,"Dickey-Fuller Test, Time Series Data (Said and Dickey, 1984)",R
-Granger,"Granger Causality (Granger, 1969)",R
-LIMITS,"LIMITS algorithm for inferring correlations across time-series (Fisher and Mehta, 2014)",R
-NeuralNet,Neural network for virus classification,R
-RandomForest,"Random Forest classifier (Liaw and Wiener, 2002)",R
-ReplicationRates,"Bacterial Replication Rates (Brown et al, 2016)",Python
-TimeSeries,Form a time-series dataset by merging static and dynamic properties,Python
-TimeWarp,Perform time warping to align biological data sets to same internal clock,R
-,,
-AbundanceBin,"AbundanceBin binning tool (Wu et al, 2011) (Generated by PluGen)",C++
-Atima,"Atima (Weick et al, 2000) (Generated by PluGen)",C++
-BLSOM,"BLSOM unsupervised neural net (Nakao et al, 2013) (Generated by PluGen)",C++
-Bowtie,"Bowtie sequence alignment and analysis (Langmead et al, 2009) (Generated by PluGen)",C++
-Cytoscape,"Cytoscape Visualizer (Shannon et al, 2003) (Generated by PluGen)",C++
-DIAMOND,"DIAMOND (Buchfink et al, 2014) (Generated by PluGen)",C++
-FastMRMR,"Fast Minimum Redundancy Maximum algorithm (Ramirez-Gallegos et al, 2016) for feature selection (Generated by PluGen)",C++
-FastQJoin,"FastQJoin (Blankenfeld et al, 2010) for joining paired-end reads (Generated by PluGen)",C++
-FragGeneScan,"FragGeneScan (Rho et al, 2010) (Generated by PluGen)",C++
-HMMER,"HMMER (Finn et al, 2011) (Generated by PluGen)",C++
-HUMAnN,"HUMAnN (Franzosa et al, 2018) (Generated by PluGen)",C++
-Infomap,"Infomap (Edler et al., 2017) algorithm for community detection (Generated by PluGen)",C++
-IRep,"Calculate index of replication (Brown et al, 2016) (Generated by PluGen)",C++
-KEGG,"Obtain all pathways for an organism in KEGG (Kanehisa and Goto, 2000) (Generated by PluGen)",C++
-MaxBin,"MaxBin (Wu et al, 2014) software for binning reads (Generated by PluGen)",C++
-MEGAN,"MEGAN (Huson et al, 2007) (Generated by PluGen)",C++
-MelitaSuite,"Melita (Jaric et al, 2013) suite of analysis pipelines for degenerate primers",Python
-MetaBAT,"MetaBAT (Kang et al, 2015) (Generated by PluGen)",C++
-MetaCluster,"MetaCluster (Yang et al, 2010) (Generated by PluGen)",C++
-MetaPhlAn,"MetaPhlAn (Truong et al, 2015) (Generated by PluGen)",C++
-,"Mothur (Schloss, 2009) (Generated by PluGen)",C++
-,"MUltiple Sequence Comparison by Log-Expectation (MUSCLE) (Edgar et al, 2004) alignment tool",C++
-,"Represent samples as a network, with dissimilarity as edge weights",R
-,"Get data from the PathwayTools (Karp et al, 2015) database",Python
-,"Phylogenetic Investigation of Communities by Reconstruction of Unobserved States (PICRUSt) (Lamille et al, 2013)",C++
-,"Classify sequences using the RDP (Wang et al, 2007) (Generated by PluGen)",C++
-,"Query the Earth Microbiome Project (EMP, Thompson et al 2017) with Redbiom (McDonald et al, 2019) (Generated by PluGen)",C++
-,"SynerClust (Georgescu et al, 2018) orthologue clustering tool",C++
-,"Tax2Tree (McDonald et al, 2011) (Generated by PluGen)",C++
-,"Tetramer frequencies, input to ESOM (Dick, 2009) (Generated by PluGen).",C++
-,,
-Amplicon,Find organisms that produce a product when PCR is executed on a given primer pair,Perl
-BarabasiAlbert,"Generate synthetic network (Barabasi and Albert, 1999)",Python
-Caffe,"Deep learning through Convolutional Architecture for Fast Feature Embedding (Jia et al, 2014))",Python
-Classify,Phylogenetic OTU Classifier,Python
-ErdosRenyi,"Generate synthetic network (Erdos and Renyi, 1959)",Python
-FCI,"Fast Causal Inference (Spirtes et al, 1993)",R
-GeneUnify,Unify gene expression values across multiple files,R
-GPUKMM,"KMM, on the GPU",CUDA
-KMM,k-Markov Model for Metagenomics,C++
-LINGAM,"Linear Non-Gaussian Acyclic Model (LINGAM) for Causal Discovery (Shimizu et al, 2006)",R
-MakeCliques,Make a Network of Cliques (Python),Python
-MakeScaleFree,"Make a Scale-Free Network (Albert and Barabasi, 2002)",Python
-MakeSynthetic,Make a Synthetic Network,Python
-MakeSynthetic2,Make a Synthetic Network (more complex),Python
-Microarray,"Process microarray data, generate gene expression levels",R
-MIMOSA,"Data fitting through MIMOSA (Finak et al, 2013)",R
-MINT,"Multivariate INTegration (Rohart et al, 2017)",R
-NorTA,Normal-To-Anything algorithm,R
-PC,"PC algorithm for causal structure (Spirtes et al, 2000)",Python
-PCMCI,"PCMCI algorithm for time-series data (Runge et al, 2019)",Python
-PCStable,"PC-Stable algorithm for causal structure (Colombo and Matthuis, 2014)",R
-QueryPathways,Obtain all metabolic pathways involving a single or pair of taxa/metabolites.,Python
-Reactome,"Query the Reactome database (Fabregat et al, 2017)",Python
-STRING,"Query the STRING database (Szklarczyk et al, 2011)",Python
-SVARS,"Calculate counterfactuals using SVARS (Kilian et al, 1998)",R
-WattsStrogatz,"Generate synthetic network (Watts and Strogatz, 1998)",Python
-WikiPathway,"Query the WikiPathway database (Pico et al, 2008)",Python
+AbundCSV2NOA,Convert CSV file of abundances to NOA for Cytoscape,Python,https://github.com/movingpictures83/AbundCSV2NOA,File Converters
+BIOM2CSV,Convert BIOM file to CSVA,Python,https://github.com/verociraptor/BIOM2CSV,File Converters
+ClusterCSV2NOA,Convert CSV File Of Clusters to NOA,Python,https://github.com/movingpictures83/ClusterCSV2NOA,File Converters
+CountTableProcessing,Converts Mothur Counts To Abundance CSV,R,https://github.com/movingpictures83/CountTableProcessing,File Converters
+CSVAppend,Append a new row or column to a CSV file,Python,https://github.com/movingpictures83/CSVAppend,File Converters
+CSV2EDA,Converter from CSV to Cytoscape EDA file format,Python,https://github.com/movingpictures83/CSV2EDA,File Converters
+CSV2GML,CSV To GML Converter,Python,https://github.com/movingpictures83/CSV2GML,File Converters
+CSV2PathwayTools,"Take a CSV file and perform lookups in PathwayTools (Karp et al, 2015)",https://github.com/movingpictures83/CSV2PathwayTools,File Converters
+CSV2Tab,Converter from comma-separated to tab-delimited format,Python,https://github.com/verociraptor/CSV2Tab,File Converters
+CSVExtract,Extract rows from a CSV file with a specific value in a column,R,https://github.com/movingpictures83/CSVExtract,File Converters
+CSVFilter,Remove Columns from a CSV file with All Zero Values,Python,https://github.com/movingpictures83/CSVFilter,File Converters
+CSVIndex,Index a CSV file over a range of columns,Python,https://github.com/movingpictures83/CSVIndex,File Converters
+CSVLabel,Label rows of a CSV file,Python,https://github.com/movingpictures83/CSVLabel,File Converters
+CSVLast2First,Move the last column of a CSV file to the first,Python,https://github.com/movingpictures83/CSVLast2First,File Converters
+CSVMerge,Merge Multiple CSV Files,Python,https://github.com/movingpictures83/CSVMerge,File Converters
+CSVPad,CSV Padding,Python,https://github.com/movingpictures83/CSVPad,File Converters
+CSVRemove,Remove a column from a CSV file,Python,https://github.com/movingpictures83/CSVRemove,File Converters
+CSVScreen,Remove all rows with a zero or non-zero value in a specific column,Python,https://github.com/movingpictures83/CSVScreen,File Converters
+CSVScreenTax,Remove all rows with a zero or non-zero abundance for a specific taxon (any phylogenetic tree level),Python,https://github.com/movingpictures83/CSVScreenTax,File Converters
+CSVTrim,Trim a CSV file to a specific set of columns,R,https://github.com/movingpictures83/CSVTrim,File Converters
+FASTA2FASTQ,Convert from FASTA to FASTQ format,Python,https://github.com/movingpictures83/FASTA2FASTQ,File Converters
+FASTQ2FASTA,Convert from FASTQ to FASTA format,Python,https://github.com/movingpictures83/FASTQ2FASTA,File Converters
+FilterPathway,"Take a CSV and find all pathways present in PathwayTools (Karp et al, 2015)",https://github.com/movingpictures83/FilterPathway,File Converters
+GML2CSV,GML To CSV Converter,Python,https://github.com/verociraptor/GML2CSV,File Converters
+LabelDups,Take a CSV file and label duplicate entries,Python,https://github.com/movingpictures83/LabelDups,File Converters
+PathwayFilter,"Take a CSV and remove all connections with no corresponding pathway in PathwayTools (Karp et al, 2015)",https://github.com/movingpictures83/PathwayFilter,File Converters
+PathwayTools2HMDB,"Map PathwayTools (Karp et al, 2015) identifiers to HMDB",https://github.com/movingpictures83/PathwayTools2HMDB,File Converters
+PCL2CSV,PCL To CSV (File Conversion),Python,https://github.com/movingpictures83/PCL2CSV,File Converters
+SIF2CSV,SIF To CSV (Interactions to Correlations),Python,https://github.com/movingpictures83/SIF2CSV,File Converters
+SplitBIOM,Take a BIOM File and split it into each taxonomic tree level,Python,https://github.com/movingpictures83/SplitBIOM,File Converters
+Tab2CSV,Converter from tab-delimited to comma-separated format,Python,https://github.com/verociraptor/Tab2CSV,File Converters
+Tab2GML,Converter from tab-delimited to GML format,Python,https://github.com/movingpictures83/Tab2GML,File Converters
+,,,,
+Abundance,Average abundance of an entity in a sample set.,Python,https://github.com/movingpictures83/Abundance,Stats/Visualization
+AlphaDiversity,"Alpha-diversity using Qiime (Caporaso et al, 2010)",https://github.com/movingpictures83/AlphaDiversity,Stats/Visualization
+Atlas,"Plot the abundance of a taxon over samples, colored by category",https://github.com/movingpictures83/Atlas,Stats/Visualization
+ANOSIM,"Analysis of Similarities (ANOSIM) (Clarke, 1993)",https://github.com/verociraptor/ANOSIM,Stats/Visualization
+Bar,Bar graph of OTU abundances,R,https://github.com/movingpictures83/Bar,Stats/Visualization
+BetaDiversity,"Beta-diversity using Qiime (Caporaso et al, 2010)",https://github.com/movingpictures83/BetaDiversity,Stats/Visualization
+BoxPlot,Produce a boxplot,R,https://github.com/movingpictures83/BoxPlot,Stats/Visualization
+CalcMeanStd,Calculates Mean and Standard Deviation,Python,https://github.com/movingpictures83/CalcMeanStd,Stats/Visualization
+Core,Core taxa community statistics,R,https://github.com/movingpictures83/Core,Stats/Visualization
+CSV2Dot,"Take a Network in CSV Format and Visualize in Dot (Gansner et al, 2015)",https://github.com/movingpictures83/CSV2Dot,Stats/Visualization
+CSVAvgDeg,Compute the average node degree of a network.,Python,https://github.com/verociraptor/CSVAvgDeg,Stats/Visualization
+CSVAvgEdgeWeight,Compute the average edge weight of a network.,Python,https://github.com/verociraptor/CSVAvgEdgeWeight,Stats/Visualization
+CSVDup,List duplicate row and column entries in a CSV file.,Python,https://github.com/movingpictures83/CSVDup,Stats/Visualization
+CSVMax,Determines Maximum Count Within Samples,Python,https://github.com/movingpictures83/CSVMax,Stats/Visualization
+CSVNegOnly,Output negative edges.,Python,https://github.com/movingpictures83/CSVNegOnly,Stats/Visualization
+CSVOverlap,Vector overlap,Python,https://github.com/movingpictures83/CSVOverlap,Stats/Visualization
+CytoViz,Cytoscape Visualizer,Perl,https://github.com/movingpictures83/CytoViz,Stats/Visualization
+Delta,"Calculate differences in abundance (mean, std dev,https://github.com/movingpictures83/Delta,Stats/Visualization
+Density,Density plot (normalized abundance vs frequency) of a target taxon,R,https://github.com/movingpictures83/Density,Stats/Visualization
+DIABLO,"Generate DIABLO (Singh et al, 2019) plot",https://github.com/movingpictures83/DIABLO,Stats/Visualization
+Diversity,Various diversity measurements,R,https://github.com/movingpictures83/Diversity,Stats/Visualization
+Dominance,"Dominance index (Locey and Lennon, 2016)",https://github.com/movingpictures83/Dominance,Stats/Visualization
+Evenness,Evenness indices,R,https://github.com/movingpictures83/Evenness,Stats/Visualization
+Extract,Extract sequences that include a target sequence,Perl,https://github.com/movingpictures83/Extract,Stats/Visualization
+Gini,"Gini index (Gini, 1912)",https://github.com/movingpictures83/Gini,Stats/Visualization
+GraPhlAn,"Visualize phylogenetic tree with GraPhlAn (Asnicar et al, 2013)",https://github.com/movingpictures83/GraPhlAn,Stats/Visualization
+Gnuplot,"Plot data using Gnuplot (Williams and Kelley, 2011)",https://github.com/movingpictures83/Gnuplot,Stats/Visualization
+Heatmap,Render a heatmap,R,https://github.com/movingpictures83/Heatmap,Stats/Visualization
+HIVE,"HIVE (Hanson, 2011) plots",https://github.com/movingpictures83/HIVE,Stats/Visualization
+InverseSimpson,Inverse Simpson Diversity Index,Python,https://github.com/movingpictures83/InverseSimpson,Stats/Visualization
+Krona,Krona plot,R,https://github.com/movingpictures83/Krona,Stats/Visualization
+Landscape,Landscape plot of sample sets vs. first two principal components,R,https://github.com/movingpictures83/Landscape,Stats/Visualization
+LogModulo,"Log-modulo skew (Magurran and McGill, 2011)",https://github.com/movingpictures83/LogModulo,Stats/Visualization
+MM,Partitions multi-omics data,Python,https://github.com/movingpictures83/MM,Stats/Visualization
+MV,Plot mean vs. variance,R,https://github.com/movingpictures83/MV,Stats/Visualization
+NetworkViz,Network Visualizer (Generates Multiple Cytoscape Input Files),Python,https://github.com/movingpictures83/NetworkViz,Stats/Visualization
+NMDS,"Produce an OTU heatmap using Non-Multi-Dimensional Scaling (NMDS) (Kruskal, 1964)",https://github.com/movingpictures83/NMDS,Stats/Visualization
+OTUHeatmap,Plot OTU abundances using a heatmap,C++,https://github.com/movingpictures83/OTUHeatmap,Stats/Visualization
+OTUPlot,Plot OTU abundances at multiple levels of the phylogenetic tree,C++,https://github.com/movingpictures83/OTUPlot,Stats/Visualization
+Pie,Phylum/class pie plot,R,https://github.com/movingpictures83/Pie,Stats/Visualization
+ProcessDesc,Extract phylogenetic information from FASTA file,Perl,https://github.com/movingpictures83/ProcessDesc,Stats/Visualization
+QGraph,QGraph Visualizer,R,https://github.com/movingpictures83/QGraph,Stats/Visualization
+Rank,Converts a set of counts to ranks in a sample,Python,https://github.com/movingpictures83/Rank,Stats/Visualization
+Rare,Rare taxa community statistics,R,https://github.com/movingpictures83/Rare,Stats/Visualization
+ReactionPathway,ReactionPathway (Statistical Analysis of Metabolite Network and Reaction Pathway Data),Python,https://github.com/movingpictures83/ReactionPathway,Stats/Visualization
+Richness,Sample set richness,R,https://github.com/movingpictures83/Richness,Stats/Visualization
+Sparsity,Plot sparsity of a dataset,R,https://github.com/movingpictures83/Sparsity,Stats/Visualization
+Spread,Plot spread of taxa abundances over all samples,R,https://github.com/movingpictures83/Spread,Stats/Visualization
+Statistics,"Take a set of samples and output statistics (mean, standard deviation,https://github.com/movingpictures83/Statistics,Stats/Visualization
+Summarize,Output a summary of a sample set to the screen,R,https://github.com/movingpictures83/Summarize,Stats/Visualization
+Tree,"PluMA plugin to produce a phylogenetic tree for taxa, decorated by sample set",https://github.com/movingpictures83/Tree,Stats/Visualization
+TriadCounter,"Counts the number of stable and unstable triads (Easley and Kleinberg, 2010) in a social network",https://github.com/movingpictures83/TriadCounter,Stats/Visualization
+TTestDependent,Run the T-Test on dependent samples,Python,https://github.com/verociraptor/TTestDependent,Stats/Visualization
+TTestIndependent,Run the T-Test on independent data,Python,https://github.com/verociraptor/TTestIndependent,Stats/Visualization
+Variance,Variance Calculator,Python,https://github.com/movingpictures83/Variance,Stats/Visualization
+Violin,Violin plot,R,https://github.com/movingpictures83/Violin,Stats/Visualization
+ASV2Taxon,Short Description,Language,https://github.com/movingpictures83/ASV2Taxon,Stats/Visualization
+,,,,
+ASV2Taxon,"Assign unique taxa to Amplicon Sequence Variants (ASVs) (Callahan, 2017)",https://github.com/movingpictures83/ASV2Taxon,Transformations
+CLR,Center Log Ratio (CLR) transformation,R,https://github.com/movingpictures83/CLR,Transformations
+Clusterize,Remove Edges Between Nodes in Different Clusters,Python,https://github.com/movingpictures83/Clusterize,Transformations
+CSVJoinSplit,"Generate taxonomically classified taxa counts from original counts, metadata and taxonomic tree",https://github.com/movingpictures83/CSVJoinSplit,Transformations
+CSVMapRange,Map Range of One CSV File To Another (Useful in Multi-Omics),Python,https://github.com/movingpictures83/CSVMapRange,Transformations
+CSVMult,Multiply a CSV file by a constant,Python,https://github.com/movingpictures83/CSVMult,Transformations
+CSVNeg2Pos,"Map [-1, 1] edge weight range to [0,https://github.com/movingpictures83/CSVNeg2Pos,Transformations
+CSVNeg2Zero,Change Negative Edges To Zero,Python,https://github.com/movingpictures83/CSVNeg2Zero,Transformations
+CSVNormalize,CSV Normalization,Python,https://github.com/movingpictures83/CSVNormalize,Transformations
+CSVPathways,Take a CSV and lookup all metabolic pathways involving internal taxa or metabolites,Python,https://github.com/movingpictures83/CSVPathways,Transformations
+CSVPool,Take a CSV and pool together duplicate rows/columns,Python,https://github.com/movingpictures83/CSVPool,Transformations
+CSVRename,Rename rows and/or columns of a CSV,Python,https://github.com/movingpictures83/CSVRename,Transformations
+CSVScale,Scale CSV Values to Have a Median of One,Python,https://github.com/movingpictures83/CSVScale,Transformations
+CSVSort,Sort a CSV file by row,Python,https://github.com/movingpictures83/CSVSort,Transformations
+CSVTranspose,Transpose a Matrix in a CSV File,Python,https://github.com/movingpictures83/CSVTranspose,Transformations
+CSVUnNormalize,CSV Reverse Normalization,Python,https://github.com/movingpictures83/CSVUnNormalize,Transformations
+CSVZero2Min,Change All Zeroes in a CSV to the Minimum Value,Python,https://github.com/movingpictures83/CSVZero2Min,Transformations
+DeMUX,"Demultiplex (DeMUX) a set of sequences into groups given their barcodes (Caporaso et al, 2010)",https://github.com/movingpictures83/DeMUX,Transformations
+DeReplicate,Remove replicate sequences,C++,https://github.com/movingpictures83/DeReplicate,Transformations
+FilterMicrobes,Filter out connections between metagenomic data based on underlying metabolic networks,Python,https://github.com/movingpictures83/FilterMicrobes,Transformations
+Hellinger,"Hellinger transform (Hellinger et al, 1914)",https://github.com/movingpictures83/Hellinger,Transformations
+Log10,Transform data by log base 10,R,https://github.com/movingpictures83/Log10,Transformations
+Log10P,Transform data by log(1+x),R,https://github.com/movingpictures83/Log10P,Transformations
+LogTransform,Log-transform data,Python,https://github.com/movingpictures83/LogTransform,Transformations
+Map2Positive,Map All Edges To Positive Range,Python,https://github.com/movingpictures83/Map2Positive,Transformations
+MetabNorm,"Mixed-Mode (Cohort and Batch) Metabolite Normalization (Jauhiainen et al, 2014)",https://github.com/movingpictures83/MetabNorm,Transformations
+NetworkDeconvolution,"Network deconvolution algorithm (Feizi et al, 2013) to determine direct network dependencies.",https://github.com/movingpictures83/NetworkDeconvolution,Transformations
+NetworkNoise,Add random noise to a signed and weighted network.,Python,https://github.com/movingpictures83/NetworkNoise,Transformations
+NormScoreTransform,Normal Probability Values,R,https://github.com/movingpictures83/NormScoreTransform,Transformations
+Oksanen,"Oksanen transformation (Oksanen, 1983)",https://github.com/movingpictures83/Oksanen,Transformations
+OTUSummary,Summarize OTUs at multiple levels of the phylogenetic tree,C++,https://github.com/movingpictures83/OTUSummary,Transformations
+QuantumDenoiser,Remove noisy fluctations from CKMeans quanta,Python,https://github.com/movingpictures83/QuantumDenoiser,Transformations
+Rarefy,"Rarefying, ad hoc (McMurdie and Holmes,https://github.com/movingpictures83/Rarefy,Transformations
+RemoveNegative,Remove Negative Edges,Python,https://github.com/movingpictures83/RemoveNegative,Transformations
+RemoveZero,Remove zero-abundant entities,Python,https://github.com/movingpictures83/RemoveZero,Transformations
+SplitTableProcessing,Take a table of counts from Mothur and split into multiple counts classified by taxonomy,Python,https://github.com/movingpictures83/SplitTableProcessing,Transformations
+Standardize,Transform to standard distribution,R,https://github.com/movingpictures83/Standardize,Transformations
+TaxonomySplit,"Take a table of abundances and make multiple, one for each level of the taxonomic tree",https://github.com/movingpictures83/TaxonomySplit,Transformations
+Threshold,Remove all observables from a dataset with a low frequency of occurrence,R,https://github.com/movingpictures83/Threshold,Transformations
+Transform,"Shift composition (Egozcue and Pawlowski-Glahn, 2016)",https://github.com/movingpictures83/Transform,Transformations
+UNOISE,"Denoise sequences (Edgar et al, 2016)",https://github.com/movingpictures83/UNOISE,Transformations
+ValidateMapping,"Validate mapping file with Qiime (Caporaso et al, 2010)",https://github.com/movingpictures83/ValidateMapping,Transformations
+Z,Z-transformation,R,https://github.com/movingpictures83/Z,Transformations
+,,,,
+ANOVA,"ANalysis Of VAriance (ANOVA), estimates differences between sample groups (Kaufman and Scheren,https://github.com/verociraptor/ANOVA,Dissimilarity
+BHTSNE,"Barnes-Hut version of tSNE (Laczny et al, 2014)",https://github.com/movingpictures83/BHTSNE,Dissimilarity
+BinomialDeviance,"Binomial Deviance (McArdle and Anderson, 2001)",https://github.com/movingpictures83/BinomialDeviance,Dissimilarity
+Bray,"Bray-Curtis (Bray and Curtis, 1957)",https://github.com/movingpictures83/Bray,Dissimilarity
+Canberra,"Canberra Distance (Lance and Williams, 1966)",https://github.com/movingpictures83/Canberra,Dissimilarity
+Chao,"Chao's Method (Chao, 2005)",https://github.com/movingpictures83/Chao,Dissimilarity
+DESeq,"Differential Gene Expression Analysis Based on the Negative Binomial Distribution (Love et al, 2014)",https://github.com/movingpictures83/DESeq,Dissimilarity
+DPCoA,"Double Principal Component Analysis (Pavoine et al, 2004)",https://github.com/movingpictures83/DPCoA,Dissimilarity
+EuclideanDistance,Euclidean Distance,R,https://github.com/movingpictures83/EuclideanDistance,Dissimilarity
+FeatureSelection,Determine the most distinguishing features for case vs control,R,https://github.com/movingpictures83/FeatureSelection,Dissimilarity
+Gower,"Gower Index (Gower, 1971)",https://github.com/movingpictures83/Gower,Dissimilarity
+Horn,"Horn's Overlap Index (Horn, 1966)",https://github.com/movingpictures83/Horn,Dissimilarity
+IPCA,"Independent Principle Component Analysis (Yao et al, 2012)",https://github.com/movingpictures83/IPCA,Dissimilarity
+Jaccard,"Jaccard Index (Jaccard, 1912)",https://github.com/movingpictures83/Jaccard,Dissimilarity
+JSD,"Jensen-Shannon Divergence (Fuglede et al, 2004)",https://github.com/movingpictures83/JSD,Dissimilarity
+Kulczynski,"Kulczynski Similarity (Kulczynski, 1927)",https://github.com/movingpictures83/Kulczynski,Dissimilarity
+LEfSe,"Linear discriminant analysis Effect Size (LEfSe) (Segata et al, 2011)",https://github.com/movingpictures83/LEfSe,Dissimilarity
+LMS,"Least Mean Squares method for regression analysis (Widrow and Hoff, 1960)",https://github.com/movingpictures83/LMS,Dissimilarity
+Manhattan,Manhattan Distance,R,https://github.com/movingpictures83/Manhattan,Dissimilarity
+Morisita,"Morisita Overlap (Morisita, 1959)",https://github.com/movingpictures83/Morisita,Dissimilarity
+Mountford,"Mountford Dissimilariy Index (Mountford, 1962)",https://github.com/movingpictures83/Mountford,Dissimilarity
+MT,"Multiple Testing of Taxa Abundances According to Sample Category (McMurdie, 2020)",https://github.com/movingpictures83/MT,Dissimilarity
+NetRep,"NetRep algorithm (Ritchie et al, 2016) for detecting amount of preservation between two datasets",https://github.com/movingpictures83/NetRep,Dissimilarity
+PCA,"Principle Component Analysis (Pearson, 1901)",https://github.com/movingpictures83/PCA,Dissimilarity
+PCoA,"Principle Coordinate Analysis (Gower, 1966)",https://github.com/movingpictures83/PCoA,Dissimilarity
+PERMANOVA,"PERmanent Multivariate ANalysis Of VAriance (PERMANOVA) (Anderson, 2001)",https://github.com/verociraptor/PERMANOVA,Dissimilarity
+PLSDA,"Partial Least Squares Discriminant Analysis (PLS-DA, Stahle and Wold 1987)",https://github.com/movingpictures83/PLSDA,Dissimilarity
+PLSDA-Multiple,"Partial Least Squares Discriminant Analysis (PLS-DA, Stahle and Wold 1987) for multiple datasets",https://github.com/movingpictures83/PLSDA-Multiple,Dissimilarity
+Raup,"Raup-Crick (Raup and Crick, 1979)",https://github.com/movingpictures83/Raup,Dissimilarity
+SpNMF,"Supervised Non-Negative Matrix Factorization (Cai et al, 2017)",https://github.com/movingpictures83/SpNMF,Dissimilarity
+tSNE,"t-Distributed Stochastic Neighbor Embedding (Van der Maaten et al, 2008)",https://github.com/movingpictures83/tSNE,Dissimilarity
+UniFrac,"UniFrac distance (Lozupone and Knight, 2005)",https://github.com/movingpictures83/UniFrac,Dissimilarity
+WeightedUniFrac,"Weighted UniFrac distance (Lozupone et al, 2007)",https://github.com/movingpictures83/WeightedUniFrac,Dissimilarity
+CCA,Short Description,Language,https://github.com/movingpictures83/CCA,Dissimilarity
+,,,,
+CCA,"Canonical Correlation Analysis (Gonzalez et al, 2008)",https://github.com/movingpictures83/CCA,Correlation
+CoNet,"Infer abundance matrix from interactions using CoNet (Faust et al, 2012)",https://github.com/movingpictures83/CoNet,Correlation
+DistanceCorrelation,"Distance Correlation (Szekely, 2005)",https://github.com/movingpictures83/DistanceCorrelation,Correlation
+Ensemble,"Ensemble Correlation Computation (Weiss, 2016)",https://github.com/movingpictures83/Ensemble,Correlation
+FunChiSq,"Functional Chi-Squared Dependency Computation (Zhang and Song, 2013)",https://github.com/movingpictures83/FunChiSq,Correlation
+Kendall,"Kendall Correlation (Kendall, 1970)",https://github.com/movingpictures83/Kendall,Correlation
+KS,"Kolmogorov-Smirnov Test Statistic (Kolmogorov, 1933)",https://github.com/movingpictures83/KS,Correlation
+LSA,"Local Similarity Analysis (Ruan, 2006)",https://github.com/movingpictures83/LSA,Correlation
+MIC,"Maximal Information Coefficient (Reshef, 2011)",https://github.com/movingpictures83/MIC,Correlation
+MPLasso,"MPLasso (Lo and Marculescu, 2017)",https://github.com/movingpictures83/MPLasso,Correlation
+Pearson,"Pearson Correlation (Pearson, 1896)",https://github.com/movingpictures83/Pearson,Correlation
+Phi,"Proportionatlity metric (Lovell et al, 2015) for relative data",https://github.com/movingpictures83/Phi,Correlation
+PhiLR,"Phylogenetic Isometric Log-Ratio Transform (Silverman et al, 2017)",https://github.com/movingpictures83/PhiLR,Correlation
+RevEcoR,"Predict ecological relationships between two organisms based on metabolic networks using RevEcoR (Cao et al, 2016)",https://github.com/movingpictures83/RevEcoR,Correlation
+SparCC,"SparCC Correlation (Friedman and Alm, 2012)",https://github.com/movingpictures83/SparCC,Correlation
+SparCCGPU,"SparCC on the GPU (Alonso, Escobar,https://github.com/movingpictures83/SparCCGPU,Correlation
+Spearman,"Spearman Correlation (Spearman, 1904)",https://github.com/movingpictures83/Spearman,Correlation
+SpearmanMulti,Spearman Correlations Over Multiple Data Sets and a Single Sample Set (Useful for Multi-Omics),R,https://github.com/movingpictures83/SpearmanMulti,Correlation
+SpearmanTies,"Spearman, and Can Handle Rank Ties",https://github.com/movingpictures83/SpearmanTies,Correlation
+SpearmanTiesMulti,Hybrid Functionality of SpearmanTies and SpearmanMulti,Python,https://github.com/movingpictures83/SpearmanTiesMulti,Correlation
+SPIECEASI,"SPIEC-EASI (Kurtz et al, 2015)",https://github.com/movingpictures83/SPIECEASI,Correlation
+,,,,
+ATria,"Ablatio Triadum (ATria) Centrality (Cickovski et al, 2017)",https://github.com/movingpictures83/ATria,Centrality
+BiasedPageRank,"Edge-Weighted Personalized Page Rank (Xie et al, 2015)",https://github.com/movingpictures83/BiasedPageRank,Centrality
+Centroid,"Centroid algorithm (Wuchty and Stadler, 2003)",https://github.com/movingpictures83/Centroid,Centrality
+ClusterLeaders,Compute leader nodes of network clusters,R,https://github.com/movingpictures83/ClusterLeaders,Centrality
+Conquests,"Conquests algorithm (Laniau et al, 2017) for Phenotypically Essential Metabolites",https://github.com/movingpictures83/Conquests,Centrality
+Degree,"Degree Centrality (Freeman, 1979)",https://github.com/movingpictures83/Degree,Centrality
+Exponential,"Exponential Centality (Benzi and Klymko, 2013)",https://github.com/movingpictures83/Exponential,Centrality
+GPUATria,"GPUATria (ATria, on the GPU)",https://github.com/movingpictures83/GPUATria,Centrality
+IndVal,"Indicator species for each cluster (Roberts, 2007)",https://github.com/movingpictures83/IndVal,Centrality
+Katz,"Katz Prestige Centrality (Katz, 1953)",https://github.com/movingpictures83/Katz,Centrality
+MATria,"Multiple Ablatio Triadium (Cickovski et al, 2017)",https://github.com/movingpictures83/MATria,Centrality
+MWM,"Computes edge centralities, with the help of Maximum Weighted Matching (Galil,https://github.com/movingpictures83/MWM,Centrality
+NetCooperate,"NetCooperate Algorithm for Key Metabolites (Levy et al, 2015)",https://github.com/movingpictures83/NetCooperate,Centrality
+PageRank,"Page Rank Centrality (Page, 1999)",https://github.com/movingpictures83/PageRank,Centrality
+PyATria,"ATria, in Python",https://github.com/movingpictures83/PyATria,Centrality
+RWRMH,"Random Walk with Restart on Multiplex and Heterogeneous biological networks (Valdeolivas et al, 2018)",https://github.com/movingpictures83/RWRMH,Centrality
+AffinityPropagation,Short Description,Language,https://github.com/movingpictures83/AffinityPropagation,Centrality
+,,,,
+AffinityPropagation,"Affinity Propagation (Frey and Dueck, 2007)",https://github.com/movingpictures83/AffinityPropagation,Clustering
+CDHit,"CD-Hit (Li and Godzik, 2006)",https://github.com/movingpictures83/CDHit,Clustering
+ClusterCount,Number of clusters in a network above a threshold in size,Python,https://github.com/movingpictures83/ClusterCount,Clustering
+ClusterMeans,Mean edge weight between all clusters of a network,R,https://github.com/movingpictures83/ClusterMeans,Clustering
+ClusterPathways,"Given a set of clusters of taxa, find all metabolic pathways shared by node pairs within the cluster",https://github.com/movingpictures83/ClusterPathways,Clustering
+ClusterStd,Edge standard deviation between all clusters of a network,R,https://github.com/movingpictures83/ClusterStd,Clustering
+Community,Information on the local community of a target.,Python,https://github.com/movingpictures83/Community,Clustering
+CommunityDetection,"Girvan-Newman algorithm for community detection in a network (Girvan and Newman, 2002)",https://github.com/movingpictures83/CommunityDetection,Clustering
+CKMeans,"CKMeans (Wang and Song, 2011)",https://github.com/movingpictures83/CKMeans,Clustering
+DeNovoOTU,"De Novo OTU Selection (Caporaso et al, 2010)",https://github.com/movingpictures83/DeNovoOTU,Clustering
+Enterotypes,"Find enterotypes within a set of samples (Arumugam et al, 2011)",https://github.com/movingpictures83/Enterotypes,Clustering
+KMeans,"KMeans clustering (MacQueen, 1967)",https://github.com/movingpictures83/KMeans,Clustering
+LinClust,"Linear-Time Clustering (Steinegger and Soding, 2018)",https://github.com/movingpictures83/LinClust,Clustering
+Louvain,"Louvain Clustering (Blondel et al, 2008)",https://github.com/movingpictures83/Louvain,Clustering
+MCL,"Markov Clustering (van Dongen, 2000)",https://github.com/movingpictures83/MCL,Clustering
+MClust,"MClust (Scrucca et al, 2016)",https://github.com/movingpictures83/MClust,Clustering
+ModularityMaximization,Modularity Maximization Algorithm For Clustering Level,Python,https://github.com/movingpictures83/ModularityMaximization,Clustering
+PAM,"Partition Around Medoids (PAM) clustering (Kaufman and Rousseeuw, 1987)",https://github.com/movingpictures83/PAM,Clustering
+PrefixSuffix,"Prefix-Suffix algorithm of Qiime (Edgar et al, 2010)",https://github.com/movingpictures83/PrefixSuffix,Clustering
+PyNAST,"PyNAST clustering (Caporaso et al, 2010)",https://github.com/movingpictures83/PyNAST,Clustering
+RivalClub,"Find rival clubs in a network (Fernandez et al, 2015)",https://github.com/movingpictures83/RivalClub,Clustering
+SCIMM,"Sequence Clustering with Interpolated Markov Models (Kelley and Salzberg, 2010)",https://github.com/movingpictures83/SCIMM,Clustering
+SIMLR,"SIMLR (Wang et al, 2017)",https://github.com/movingpictures83/SIMLR,Clustering
+SortMerna,"SortMerna (Kopylova et al, 2014)",https://github.com/movingpictures83/SortMerna,Clustering
+Spectral,"Spectral Clustering (Meila and Shi, 2001)",https://github.com/movingpictures83/Spectral,Clustering
+SumaClust,"SumaClust (Mercier et al, 2014)",https://github.com/movingpictures83/SumaClust,Clustering
+SWARM,"SWARM (Mahe et al, 2014)",https://github.com/movingpictures83/SWARM,Clustering
+Tightness,Various tightness measurements for a set of network clusters,R,https://github.com/movingpictures83/Tightness,Clustering
+TightnessStatistics,Mean and standard deviation of cluster tightness,Python,https://github.com/movingpictures83/TightnessStatistics,Clustering
+Trie,"Trie algorithm of Qiime (Edgar et al, 2010)",https://github.com/movingpictures83/Trie,Clustering
+UClust,"UClust (Edgar et al, 2010)",https://github.com/movingpictures83/UClust,Clustering
+UPARSE,"UPARSE (Edgar, 2013) algorithm",https://github.com/movingpictures83/UPARSE,Clustering
+USearch,"USearch (Edgar et al, 2010),https://github.com/movingpictures83/USearch,Clustering
+,,,,
+AutoCorrelation,Autocorrelation Function Estimate,R,https://github.com/movingpictures83/AutoCorrelation,Time Series
+CCM,"Convergent Cross Mapping (Sugihara et al, 2012)",https://github.com/movingpictures83/CCM,Time Series
+CrossCorrelation,Time-Series Cross-Correlation Values,R,https://github.com/movingpictures83/CrossCorrelation,Time Series
+CubicSpline,Cubic Spline Interpolation,R,https://github.com/movingpictures83/CubicSpline,Time Series
+CumulativeClassifier,"Classify a set of samples by a set of features, at multiple timepoints",https://github.com/movingpictures83/CumulativeClassifier,Time Series
+CumulativeTime,"Choose the best features to use to classify a set of samples, at multiple timepoints.",https://github.com/movingpictures83/CumulativeTime,Time Series
+Detrend,"Detrend (Least-Squares Fit, Time Series Data)",https://github.com/movingpictures83/Detrend,Time Series
+DickeyFuller,"Dickey-Fuller Test, Time Series Data (Said and Dickey,https://github.com/movingpictures83/DickeyFuller,Time Series
+Granger,"Granger Causality (Granger, 1969)",https://github.com/movingpictures83/Granger,Time Series
+LIMITS,"LIMITS algorithm for inferring correlations across time-series (Fisher and Mehta, 2014)",https://github.com/movingpictures83/LIMITS,Time Series
+NeuralNet,Neural network for virus classification,R,https://github.com/movingpictures83/NeuralNet,Time Series
+RandomForest,"Random Forest classifier (Liaw and Wiener, 2002)",https://github.com/movingpictures83/RandomForest,Time Series
+ReplicationRates,"Bacterial Replication Rates (Brown et al, 2016)",https://github.com/movingpictures83/ReplicationRates,Time Series
+TimeSeries,Form a time-series dataset by merging static and dynamic properties,Python,https://github.com/movingpictures83/TimeSeries,Time Series
+TimeWarp,Perform time warping to align biological data sets to same internal clock,R,https://github.com/movingpictures83/TimeWarp,Time Series
+AbundanceBin,Short Description,Language,https://github.com/movingpictures83/AbundanceBin,Time Series
+,,,,
+AbundanceBin,"AbundanceBin binning tool (Wu et al, 2011) (Generated by PluGen)",https://github.com/movingpictures83/AbundanceBin,External Tools
+Atima,"Atima (Weick et al, 2000) (Generated by PluGen)",https://github.com/movingpictures83/Atima,External Tools
+BLSOM,"BLSOM unsupervised neural net (Nakao et al, 2013) (Generated by PluGen)",https://github.com/movingpictures83/BLSOM,External Tools
+Bowtie,"Bowtie sequence alignment and analysis (Langmead et al, 2009) (Generated by PluGen)",https://github.com/movingpictures83/Bowtie,External Tools
+Cytoscape,"Cytoscape Visualizer (Shannon et al, 2003) (Generated by PluGen)",https://github.com/movingpictures83/Cytoscape,External Tools
+DIAMOND,"DIAMOND (Buchfink et al, 2014) (Generated by PluGen)",https://github.com/movingpictures83/DIAMOND,External Tools
+FastMRMR,"Fast Minimum Redundancy Maximum algorithm (Ramirez-Gallegos et al, 2016) for feature selection (Generated by PluGen)",https://github.com/movingpictures83/FastMRMR,External Tools
+FastQJoin,"FastQJoin (Blankenfeld et al, 2010) for joining paired-end reads (Generated by PluGen)",https://github.com/movingpictures83/FastQJoin,External Tools
+FragGeneScan,"FragGeneScan (Rho et al, 2010) (Generated by PluGen)",https://github.com/movingpictures83/FragGeneScan,External Tools
+HMMER,"HMMER (Finn et al, 2011) (Generated by PluGen)",https://github.com/movingpictures83/HMMER,External Tools
+HUMAnN,"HUMAnN (Franzosa et al, 2018) (Generated by PluGen)",https://github.com/movingpictures83/HUMAnN,External Tools
+Infomap,"Infomap (Edler et al., 2017) algorithm for community detection (Generated by PluGen)",https://github.com/movingpictures83/Infomap,External Tools
+IRep,"Calculate index of replication (Brown et al, 2016) (Generated by PluGen)",https://github.com/movingpictures83/IRep,External Tools
+KEGG,"Obtain all pathways for an organism in KEGG (Kanehisa and Goto, 2000) (Generated by PluGen)",https://github.com/movingpictures83/KEGG,External Tools
+MaxBin,"MaxBin (Wu et al, 2014) software for binning reads (Generated by PluGen)",https://github.com/movingpictures83/MaxBin,External Tools
+MEGAN,"MEGAN (Huson et al, 2007) (Generated by PluGen)",https://github.com/movingpictures83/MEGAN,External Tools
+MelitaSuite,"Melita (Jaric et al, 2013) suite of analysis pipelines for degenerate primers",https://github.com/movingpictures83/MelitaSuite,External Tools
+MetaBAT,"MetaBAT (Kang et al, 2015) (Generated by PluGen)",https://github.com/movingpictures83/MetaBAT,External Tools
+MetaCluster,"MetaCluster (Yang et al, 2010) (Generated by PluGen)",https://github.com/movingpictures83/MetaCluster,External Tools
+MetaPhlAn,"MetaPhlAn (Truong et al, 2015) (Generated by PluGen)",https://github.com/movingpictures83/MetaPhlAn,External Tools
+,"Mothur (Schloss, 2009) (Generated by PluGen)",C++,,
+,"MUltiple Sequence Comparison by Log-Expectation (MUSCLE) (Edgar et al, 2004) alignment tool",C++,,
+,"Represent samples as a network, with dissimilarity as edge weights",R,,
+,"Get data from the PathwayTools (Karp et al, 2015) database",Python,,
+,"Phylogenetic Investigation of Communities by Reconstruction of Unobserved States (PICRUSt) (Lamille et al, 2013)",C++,,
+,"Classify sequences using the RDP (Wang et al, 2007) (Generated by PluGen)",C++,,
+,"Query the Earth Microbiome Project (EMP, Thompson et al 2017) with Redbiom (McDonald et al, 2019) (Generated by PluGen)",C++,,
+,"SynerClust (Georgescu et al, 2018) orthologue clustering tool",C++,,
+,"Tax2Tree (McDonald et al, 2011) (Generated by PluGen)",C++,,
+,"Tetramer frequencies, input to ESOM (Dick, 2009) (Generated by PluGen).",C++,,
+,,,,
+Amplicon,Find organisms that produce a product when PCR is executed on a given primer pair,Perl,https://github.com/movingpictures83/Amplicon,Miscellaneaous
+BarabasiAlbert,"Generate synthetic network (Barabasi and Albert, 1999)",https://github.com/movingpictures83/BarabasiAlbert,Miscellaneaous
+Caffe,"Deep learning through Convolutional Architecture for Fast Feature Embedding (Jia et al, 2014))",https://github.com/movingpictures83/Caffe,Miscellaneaous
+Classify,Phylogenetic OTU Classifier,Python,https://github.com/movingpictures83/Classify,Miscellaneaous
+ErdosRenyi,"Generate synthetic network (Erdos and Renyi, 1959)",https://github.com/movingpictures83/ErdosRenyi,Miscellaneaous
+FCI,"Fast Causal Inference (Spirtes et al, 1993)",https://github.com/movingpictures83/FCI,Miscellaneaous
+GeneUnify,Unify gene expression values across multiple files,R,https://github.com/movingpictures83/GeneUnify,Miscellaneaous
+GPUKMM,"KMM, on the GPU",https://github.com/movingpictures83/GPUKMM,Miscellaneaous
+KMM,k-Markov Model for Metagenomics,C++,https://github.com/movingpictures83/KMM,Miscellaneaous
+LINGAM,"Linear Non-Gaussian Acyclic Model (LINGAM) for Causal Discovery (Shimizu et al, 2006)",https://github.com/movingpictures83/LINGAM,Miscellaneaous
+MakeCliques,Make a Network of Cliques (Python),Python,https://github.com/movingpictures83/MakeCliques,Miscellaneaous
+MakeScaleFree,"Make a Scale-Free Network (Albert and Barabasi, 2002)",https://github.com/movingpictures83/MakeScaleFree,Miscellaneaous
+MakeSynthetic,Make a Synthetic Network,Python,https://github.com/movingpictures83/MakeSynthetic,Miscellaneaous
+MakeSynthetic2,Make a Synthetic Network (more complex),Python,https://github.com/movingpictures83/MakeSynthetic2,Miscellaneaous
+Microarray,"Process microarray data, generate gene expression levels",https://github.com/movingpictures83/Microarray,Miscellaneaous
+MIMOSA,"Data fitting through MIMOSA (Finak et al, 2013)",https://github.com/movingpictures83/MIMOSA,Miscellaneaous
+MINT,"Multivariate INTegration (Rohart et al, 2017)",https://github.com/movingpictures83/MINT,Miscellaneaous
+NorTA,Normal-To-Anything algorithm,R,https://github.com/movingpictures83/NorTA,Miscellaneaous
+PC,"PC algorithm for causal structure (Spirtes et al, 2000)",https://github.com/movingpictures83/PC,Miscellaneaous
+PCMCI,"PCMCI algorithm for time-series data (Runge et al, 2019)",https://github.com/movingpictures83/PCMCI,Miscellaneaous
+PCStable,"PC-Stable algorithm for causal structure (Colombo and Matthuis, 2014)",https://github.com/movingpictures83/PCStable,Miscellaneaous
+QueryPathways,Obtain all metabolic pathways involving a single or pair of taxa/metabolites.,Python,https://github.com/movingpictures83/QueryPathways,Miscellaneaous
+Reactome,"Query the Reactome database (Fabregat et al, 2017)",https://github.com/movingpictures83/Reactome,Miscellaneaous
+STRING,"Query the STRING database (Szklarczyk et al, 2011)",https://github.com/movingpictures83/STRING,Miscellaneaous
+SVARS,"Calculate counterfactuals using SVARS (Kilian et al, 1998)",https://github.com/movingpictures83/SVARS,Miscellaneaous
+WattsStrogatz,"Generate synthetic network (Watts and Strogatz, 1998)",https://github.com/movingpictures83/WattsStrogatz,Miscellaneaous
+WikiPathway,"Query the WikiPathway database (Pico et al, 2008)",https://github.com/movingpictures83/WikiPathway,Miscellaneaous
+November 04, 2020

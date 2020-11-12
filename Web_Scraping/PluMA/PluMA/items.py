@@ -11,4 +11,6 @@ class PlumaItem(scrapy.Item):
     Name = scrapy.Field()
     Description = scrapy.Field()
     Language = scrapy.Field()
+    Link = scrapy.Field()
+    Time = scrapy.Field()
     #pass
