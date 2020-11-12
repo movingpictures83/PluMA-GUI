@@ -105,23 +105,28 @@ function iPushContent(id) {
   }
 }
 
+
+
+
+
+
 // Alternates color inside the table 
-
-
-
 // var NodeGit = require("nodegit");
 // var cloneURL = "https://github.com/movingpictures83/";
 
-
-
-
-
 function updateTable(answer) {
   var table_data = 'No matches found';
+
+  var img = document.createElement('img'); 
+  img.src = 'starFavorites.png';
+  var star = img.src;
+
   if (typeof answer[0] !== 'undefined') {
     table_data = '<table class="table table-bordered table-striped">';
     for (var j = 0; j < answer.length; j += 2) {
       table_data += '<tr>';
+      table_data += `<td class='starFavorites' id=${answer[j]}>` + 'star' + '</td>';
+      //Amanda needs to fix this        table_data += `<td><a onclick="openTheWindow('${site}');">` + cell_data[cell_count] + '</a></td>';     
       table_data += '<td>' + answer[j] + '</td>';
       table_data += '<td>' + answer[j + 1] + '</td>';
       table_data += '</tr>';

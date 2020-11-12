@@ -93,12 +93,7 @@
 <div> </div>
 
 	<script>
-<<<<<<< HEAD
-		// const testFolder = '/Users/cesiabulnes/Desktop/PluMA/plugins';
-		const testFolder = '/Users/bhavytachauhan/Desktop/PluMA/plugins';
-=======
-		const testFolder = '/Users/rishabh/Desktop/bioOrg/PluMA/plugins';
->>>>>>> 0985443a63ce5d5c5c491610e9921ac683f2b0c1
+		const testFolder = '/Users/Ivonne/Desktop/bioOrg/PluMA/plugins';
 		const fs = require('fs');
 
 		const plugin_folders_fullpath = fs.readdirSync(testFolder)

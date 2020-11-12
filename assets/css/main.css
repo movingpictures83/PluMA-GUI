@@ -5,8 +5,11 @@
 .navbar {
   overflow: hidden;
   background-color:#221D5C;
+  /* height: 50px; */
   font-family: Arial;
   /* padding-top:15px; */
+  margin:25px;
+  
 }
 
 /* Links inside the navbar */
@@ -24,8 +27,8 @@
 .dropdown {   
   /* width: 50%; */
   float: right;
-  /* position: inherit; */
-  /* padding: 1px; */
+  position: inherit;
+  padding: 1px;
   overflow: hidden;
   z-index: 1;
 }
@@ -50,7 +53,7 @@
   /* float: right;   */
   /* padding-top: 15px; */
   /* padding-bottom: 15px; */
-  /* padding-right: 50px; */
+  padding-right: 50px;
   /* width: 5%; */
   font-size: 15px;
   border: none; 
@@ -177,6 +180,7 @@ color:white;
 }
 
 
+
 /* .InsideSearch_links:hover {
 background-color: rgb(8, 107, 46);
 } */
@@ -199,106 +203,105 @@ background-color: #3e8e41;
 /*==========================================================================================*/
 .showItem {
 display: list-item;
+border: none;
 }
 .hideItem {
 display: none;
+border: none;
 }
 
 
 #checkboxes{
   /* display: none; */
-  border: 1px #dadada solid;
+  border: none;
 }
-
-
-/* .multiselect{
-  width: 25%;
-} 
-
-
-.selectBox{
-  position: relative;
-}
-
-.selectBox select{
-  width: 100%;
-  font-weight:bold;
-}
-
-.overSelect{
-  position: absolute;
-  left: 0; right: 0; top: 0; bottom: 0;
-}
-
-#checkboxes{
-  display: none;
-  border: 1px #dadada solid;
-}
-
-#checkboxes label{
-  display: block;
-}
-
-#checkboxes label:hover{
-  background-color: grey;
-} 
-*/
 
 
 /*==========================================================================================*/
 /* Recently Used PLug-ins Table */
 /*==========================================================================================*/
-/* .RUT_dropbtn {
-  background-color: rgb(255, 250, 204);
-  color:black;
-  padding: 16px;
-  font-size: 16px;
+
+
+
+
+
+
+
+
+/*==========================================================================================*/
+/* Star favorites inside drop Menu */
+/*==========================================================================================*/
+/* ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+} */
+
+input[type="checkbox"][id^="fav_myCheckbox"] {
+  display: none;
   border: none;
+}
+
+label {
+  border: none;
+  padding: 10px;
+  display: block;
+  position: relative;
+  margin: 10px;
   cursor: pointer;
 }
 
-.RUT_dropbtn:hover, .RUT_dropbtn:focus {
-  background-color: #2980B9;
-}
-
-.RUT_dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.RUT_dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  color: red;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  
-}
-
-.RUT_dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
+label:before {
+  background-color: white;
+  color: white;
+  content: " ";
   display: block;
-
+  border: none;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
 }
 
-.RUT_dropdown a:hover {background-color: #ddd;}
-
-.RUT_show {display: block;}
-
-
-.setRUT_width{
-  width: 5000px;
-  
+label img {
+  height: 100px;
+  width: 100px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
 }
 
-.setRUT_pads{
-  padding:25px;
-} */
+:checked + label {
+  border: none;
+}
+
+:checked + label:before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked + label img {
+  transform: scale(0.9);
+  /* box-shadow: 0 0 5px #333; */
+  z-index: -1;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 /*====================================================================================================*/
@@ -450,6 +453,7 @@ body{
   /* background-color: #FFFACC; */
   /* background: rgba(255, 253, 238, 0.9); */
   background-color: rgb(255, 250, 204);
+  font-family: Arial;
   
 }
 
@@ -679,7 +683,12 @@ display: table;
   padding: 8px;
 }
 
+#add-plugin-inner:hover {
+  background-color:cyan;
+}
+
 #add-plugin-inner {
+  width: 150px;
   left: 8px;
   bottom: 54px;
   padding: 10px;
@@ -692,6 +701,7 @@ display: table;
 
 /* Input/output file upload buttons *Bhavyta */
 #custom-IFB {
+  width: 150px;
   right: 8px;
   bottom: 54px;
   margin-inline-start: 8px;
@@ -718,6 +728,7 @@ display: table;
 }
 
 #custom-OFB {
+  width: 150px;
   left: 8px;
   bottom: 54px;
   padding: 10px;
@@ -740,6 +751,8 @@ display: table;
   font-size: 14px;
   color: black;
 }
+
+
 
 /* #upload-input-file{
   display: inline-block;
@@ -772,16 +785,15 @@ display: table;
   display: inline-block;
 }
 
-.site-footer
-{
+.site-footer{
 background-color:#221D5C;;
 padding:45px 0 20px;
 font-size:15px;
 line-height:24px;
 color:#FFFDEE;
-font-family: Roboto;
+/* font-family: Roboto;
 font-style: normal;
-font-weight: normal;
+font-weight: normal; */
 }
 .site-footer h6
 {
@@ -792,11 +804,13 @@ text-align: center
 }
 .footer-links
 {
+margin-left: 50px;
 padding-left:0;
-list-style:none
+list-style:none;
 }
 .footer-links a
 {
+text-decoration: none;
 color:#FFFDEE
 }
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover
@@ -807,17 +821,19 @@ text-decoration:none;
 .footer-about {
   float: left;
   padding: 10px;
-  font-family: Roboto
+  margin-left: 50px;
+  /* font-family: Roboto */
 }
 .footer-links {
   padding: 10px;
-  font-family: Roboto;
+  /* font-family: Roboto; */
   display: inline-block;
   text-align: center;
 }
 .footer-image {
   float: right;
-  padding: 50px 0
+  padding: 50px 0;
+  margin-right: 75px;
 }
 .footer-container {
   min-height: 200px;

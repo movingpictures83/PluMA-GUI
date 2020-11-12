@@ -19,7 +19,6 @@
 
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
 	</head>
 
 	<body>
@@ -27,27 +26,20 @@
 			<img src= "biorg.png" width = "100" height = "40" >
 			<span><a href ="#home">PluMA: Plugin-based Microboime analysis</a></span>
 			<div class="dropdown">	
-				<!-- <button class="dropbtn" style="padding-top: 25%;">Search
-					<i class="fa fa-caret-down"></i>
-				</button> -->
-				<button type="button" name="load_data" id="load_data" class="btn btn-info dropbtn">SEARCH</button>
-
+				<button type="button" name="load_data" id="load_data" class="dropbtn">SEARCH</button>
 				<div class="dropdown-content">	
 					<!-- Search for plug-ins -->
 					<div class="spacingTitle"></div>
 					
 					<div class="AdvSearch_Background ">
 						<div>
-
 							<!-- <span class="material-icons">search</span> -->
-
-
-							<input style="width: 250px; height: 20px"type="text" id="myInput" onkeyup="startFiltering()" placeholder="Type to search">
+							<input style="width: 450px; height: 30px"type="text" id="myInput" onkeyup="startFiltering()" placeholder="Type to search">
 							<hr>
 							<div style="padding-left: 10px">
 								Last Modified: 
 								<div id="getMeTime"></div> 
-							
+			
 							</div>
 						</div>
 						
@@ -62,9 +54,9 @@
 						</div>					
 						<div id="checkboxes" class="row">
 							<div class="columns">
-								<input type="checkbox" id="fileconverters" onclick="checkboxClicked()">File Converters
-								<!-- <ul><label for="one"><input type="checkbox" id="one" checked="false" data-type="fileconverters" onclick()="clickFilter()"/>File Converters</label></ul> -->
-								<ul><label for="two"><input type="checkbox" id="transformations" onclick="checkboxClicked()"/>Transformations</label></ul>
+								<!-- <input type="checkbox" id="fileconverters" onclick="checkboxClicked()">File Converters -->
+								<ul><label for="one"><input type="checkbox" id="one" checked="false" data-type="fileconverters" onclick()="clickFilter()"/>File Converters</label></ul>
+								<ul><label for="two"></label><input type="checkbox" id="transformations" onclick="checkboxClicked()"/>Transformations</label></ul>
 								<ul><label for="three"><input type="checkbox" id="correlation" onclick="checkboxClicked()"/>Correlation</label></ul>
 							</div>
 
@@ -88,14 +80,9 @@
 						</div>
 					</form>
 					<div class="spacingContainer"></div>
-
-
-					
-						
-					
 					<form>
 						<div class="spacingTitle"></div>
-						<div class="spacingTitle"></div>
+						<!-- <div class="spacingTitle"></div> -->
 						<table>
 							<tr> 
 								<th>Plugins</th>
@@ -103,6 +90,7 @@
 							</tr>					
 							</div>
 						</table>
+						<!-- <img  id= "starFavorites" src="starFavorites.png" style="width: 5px; height: 5px;"/> -->
 						<div id="details_table"></div>
 					</form> 
 					<div class="spacingContainer"></div>
@@ -111,43 +99,62 @@
 		</div> <!-- Close navbar-->
 		<div class="spacingContainer"></div>
 			
-
-
-
-
 		<!-- Recently Used -->
 		
+		<div style="margin-left: 50px; ">
+			<div style="width:auto; height:60px;">
+				<button onclick="iPushContent('Demo1')" id="custom-IFB">Recently used</button>
+				<!-- <i class="fa fa-caret-down"></i> -->
+				<div id="Demo1" class="w3-hide w3-container">
+					<table>
+						<tr>
+							<td>This will be a plugin using C++ for synthesizers.</td>
+						</tr>
+						<tr>
+							<td>This will be a plugin using C++ for synthesizers.</td>
+						</tr>
+						<tr>
+							<td>This will be a plugin using C++ for synthesizers.</td>
+						</tr>
+					</table>		
+				</div>
+			</div>
+		</div>			
+		<!-- <div id="wrapper"></div> -->
 		
-		<div class="w3-container" style="width:auto; height:200px;">
-			<button onclick="iPushContent('Demo1')" class="w3-button w3-light-grey">Recently used</button>
-				
-			<!-- <i class="fa fa-caret-down"></i> -->
-			<div id="Demo1" class="w3-hide w3-container w3-light-grey">
-				<table>
-					<tr>
-						<td>This will be a plugin using C++ for synthesizers.</td>
-					</tr>
-					<tr>
-						<td>This will be a plugin using C++ for synthesizers.</td>
-					</tr>
-					<tr>
-						<td>This will be a plugin using C++ for synthesizers.</td>
-					</tr>
-				</table>		
+		<div style="margin-top:100px; margin-left:50px;">	
+			<input type="file" id="input-file" hidden="hidden" /> 
+			<button type="button" id="custom-IFB">Input file</button><br> 
+			<span id="custom-IFB-text">No file chosen</span>
+		</div>
+
+		<div id = "top-column" style="margin-left:50px; margin-top: 5px;">
+			<!-- Drag and Drop Feature  *Rishabh-->
+			<div id="pluginVertical">
+				<div class= "empty" id="file">
+					<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
+				</div>
+				<img id= "downArrow" src="down_arrow.png"/>
+				<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
 			</div>
 		</div>
 
+		<div id="add-plugin-btn" style="margin-left: 50px; margin-top: 5px;">
+			<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">Add Stage</button>
+		</div>
 
-
-
-		<div class="spacingContainer"></div>				
-		<div id="wrapper"></div>
+		<div id="upload-output-file" style="margin-left:55px; margin-top: 5px;">
+			<input type="file" id="output-file" hidden="hidden"/>
+			<button type="button" id="custom-OFB">Output file</button><br>
+			<span id="custom-OFB-text">No file chosen</span>
 			
-
-
-
-
-
+		</div>
+		
+		<script>
+			// create output file browser button
+			createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
+		</script>
+			
 
 		<!-- Footer -->
 		<footer id="footer" class="wrapper style1-alt">
@@ -156,13 +163,13 @@
 
 		<!-- Scripts -->
       <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
-			<script>window.i18n = new(require('./translations/i18n'));</script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/PlugInPool.js"></script>
+		<script>window.i18n = new(require('./translations/i18n'));</script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/PlugInPool.js"></script>
       <script>
         require('./assets/js/menu')
 				require('./assets/js/translations')
@@ -170,13 +177,6 @@
 				require('./assets/js/dialog')
 	  </script>
 	  
-
-
-
-
-
-
-
 		<!-- Choosing plugin from the pluma feature *cesia*-->
 		<!-- <div class="container">
 			<div class="box">
@@ -186,13 +186,8 @@
 <div> </div>
 
 
-
-
-
-
-
 	<script>
-		const testFolder = '/Users/Rebecca_Dupuis/Desktop/seniorProject/PluMA/plugins';
+		const testFolder = '/Users/Ivonne/Desktop/PluMA/plugins';
 		const fs = require('fs');
 
 		const plugin_folders_fullpath = fs.readdirSync(testFolder)
@@ -266,7 +261,6 @@
 
 
 <!-- <h2 class= "text">Add and Install more Plugins</h2> -->
-
 <!-- Trigger/Open The Modal -->
 <!-- <button id="myBtn">Search Plugin Pool</button> -->
 
@@ -343,7 +337,7 @@ function openModal() {
 						e.preventDefault();
 						e.stopPropagation();
 						child_process.exec(`git status`, {
-							cwd: "/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins"
+							cwd: "/Users/Ivonne/Desktop/PluMA/plugins"
 						}, (error, stdout, stderr) => {
 							if (error) {
 								dialog.showMessageBox({
@@ -362,9 +356,6 @@ function openModal() {
 						});
 					});
 				});
-
-
-
 
 		[].slice.call(
 			document
@@ -387,7 +378,7 @@ function openModal() {
 						e.preventDefault();
 						e.stopPropagation();
 						child_process.exec(`git clone ${aElem.href}`, {
-							cwd: "/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins"
+							cwd: "/Users/Ivonne/Desktop/PluMA/plugins"
 						}, (error, stdout, stderr) => {
 							
 							if (error) {
@@ -445,135 +436,6 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 </script>
 
 <br/>
-<br/>
-<br/>
-<!-- Feature: input/output file uploading for each plugin *Bhavyta -->
-
-	<!--// CHECK TEST PATH HERE IF ERROR
-	<script src = "assets/js/readmeparser.js"></script>
-
-	<script>
-		// function to extract name of uploaded file from the fake path
-		function getNameFromPath(filePath) {
-			return filePath.substr(filePath.lastIndexOf('\\') + 1);
-		}
-
-		// function to validate uploaded file type
-		function ValidateType(uploadedFile) {
-			var isValid = false;
-			if (uploadedFile.type == "file") {
-				var fileName = getNameFromPath(uploadedFile.value);
-				if (fileName.length > 0) {
-					// p is the plugin associated with the specific button
-					var p="";
-					// if input button, get plugin name from first box
-					if (uploadedFile.id==="input-file"){
-						p = document.getElementById("first-plugin");
-						console.log(p);
-						console.log(p.innerText + "...");
-					}	
-					// if output button, get plugin name from last box
-					if (uploadedFile.id==="output-file"){
-						p = document.getElementById("last-plugin");
-						console.log(p);
-						console.log(p.innerText);
-					}
-					// now p.innerText contains name of plugin
-
-					// variable to store valid extension
-					var validExt = "";
-					// simple search for now
-					for (var i=0; i<pluginNames.length; i++){
-						var compareText = pluginNames[i]+'\n';
-						if(p.innerText === compareText){
-							if(uploadedFile.id==="input-file"){
-								validExt = "." + pluginInputTypes[i];
-							}
-							if(uploadedFile.id==="output-file"){
-								validExt = "." + pluginOutputTypes[i];
-							}
-						}
-					}
-					console.log(validExt);
-					var fileExt = fileName.substr(fileName.length - validExt.length, validExt.length);
-					if (fileExt.toLowerCase() == validExt.toLowerCase())
-						isValid = true;
-					if(!isValid) {
-						alert("ERROR: " + fileName + " couldn't be uploaded"
-						+ "\n Only " + validExt + " files are allowed"
-						+ "\n Please try again");
-						uploadedFile.value = "";
-					}
-				}
-			}
-			return isValid;
-		}
-
-		function createFileBrowserBtn(actualFileBtn, customBtn, customTxt) {
-			customBtn.addEventListener("click", function(){
-				// p is the plugin associated with the specific button
-				var p="";
-				// assign value to p depending on which button it is
-				console.log(actualFileBtn.id);
-				if(actualFileBtn.id==="input-file"){
-					p = document.getElementById("first-plugin");
-				}
-
-				if(actualFileBtn.id==="output-file"){
-					p = document.getElementById("last-plugin");
-				}
-
-				// check if p is empty
-				if(p.innerText===""){
-					alert("Please add a plugin first");
-				}
-				else {
-					actualFileBtn.click();
-				}
-			});
-			actualFileBtn.addEventListener("change", function(){
-				if(ValidateType(actualFileBtn)){
-					customTxt.innerHTML = actualFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
-				} else{
-					customTxt.innerHTML = "No file chosen";
-				}
-			});
-		}
-		// create input file browser button
-		createFileBrowserBtn(document.getElementById("input-file"), document.getElementById("custom-IFB"), document.getElementById("custom-IFB-text"));
-		</script>
-	</div> -->
-
-
-	<div id = "top-column">
-		<!-- Drag and Drop Feature  *Rishabh-->
-		<div id="pluginVertical">
-			<div id = "plugin">
-				<input type="file" id="input-file" hidden="hidden" /> 
-				<button type="button" id="custom-IFB-blue">INPUT FILE</button>	
-				<div class= "empty" id="file">
-					<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
-				</div>
-				<div id="upload-output-file">
-					<input type="file" id="output-file" hidden="hidden" />
-					<button type="button" id="custom-OFB-blue">OUTPUT FILE</button> 
-					<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
-					<img id="deleteButton" src= "trash.png" onclick="deletePluginHorizontal(this)"/>	
-					<br/>
-					<script>
-						// create output file browser button
-						createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
-					</script>
-				</div>
-			</div>
-			<hr>
-		</div>
-		
-	</div>
-
-	<div id="add-plugin-btn" style="display: block;">
-		<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">ADD STAGE</button>
-	</div>
 
 	<script>
 		function addHorizontalPlugin(i) {
@@ -698,16 +560,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 		}
 	</script>
 
-	<div id="upload-output-file">
-		<input type="file" id="output-file" hidden="hidden" />
-		<button type="button" id="custom-OFB">OUTPUT FILE</button> <br/>
-		<span id="custom-OFB-text">No file chosen</span>
-		<br>
-		<script>
-			// create output file browser button
-			createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
-		</script>
-	</div>
+	
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
@@ -903,14 +756,14 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
   
 			<div class="footer-links">
 			  <h6>Helpful Links</h6>
-			  <ul class="footer-links">
+			  <ul style="list-style-type: none;">
 				<li><a href="http://biorg.cis.fiu.edu/pluma/">About PluMA</a></li>
 				<li><a href="http://biorg.cis.fiu.edu/pluma/userguide.pdf">User Guide</a></li>
 			  </ul>
 			</div>
   
 			<div class="footer-image">
-				<img src="fiuscis.png" alt="FIU SCIS" width = "300" height = "100">
+				<img src="fiuscis.png" alt="FIU SCIS" width = "160" height = "60">
 			</div>
 		  </div>
 		</div>
@@ -925,17 +778,17 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 <script>
 	function writeFullTable() {
   $.ajax({
-    url: "Web_Scraping/PluMA/results.csv",
+    url: "./Web_Scraping/PluMA/results.csv",
     dataType: "text",
     success: function (data) {
       var pluginDetails = data.split(/\r?\n|\r/);
       var date;
-      var table_data = '<table class="table table-bordered table-striped">';
+	  var table_data = '<table class="table table-bordered table-striped">';
 
-  
       for (var count = 0; count < pluginDetails.length; count++) {
         if (count == pluginDetails.length - 1) {
           date = pluginDetails[count]
+
           break;
         }
         var cell_data = pluginDetails[count].split(/[,]+/)
@@ -946,25 +799,12 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
           cell_data = cell_data.splice(0, 2);
           for (var cell_count = 0; cell_count < cell_data.length; cell_count++) {
             if (cell_count == 0) {
-              table_data += `<td><a onclick="openTheWindow('${site}');">` + cell_data[cell_count] + '</a></td>';
-
-              //git clone ${site} 
-              
-
-
-              // clone('https://github.com/owner/repo')
-              //     .then(repo => {
-              //         // Access any repository methods here.
-              //         console.log(repo.path());
-              //     });
-
-			  // path/to/repo/.git
-           
-            
+				table_data += `<td class='starFavorites' id=${cell_data[cell_count]}>` + `<img src='starFavorites.png' alt="star"></img>` + '</td>';
+              table_data += `<td><a onclick="openTheWindow('${site}');">` + cell_data[cell_count] + '</a></td>';     
             }
             else {
               table_data += '<td>' + cell_data[cell_count] + '</td>';
-            }
+			}
           }
           table_data += '</tr>';
         }
@@ -999,22 +839,3 @@ const child_process = require("child_process");
   });
 }//we don't need this
 </script>
-
-<!-- Trigger update button -->
-<!-- <script>
-	$(document).ready(function(){
-		$("#load_data").click(function(){
-			$.ajax({
-				method: "GET",
-				url: "PluMA/PluMA-GUI/Web_Scraping/PluMA/fileCleaning.py ", 
-				data: {"place" : value},
-				dataType: "text",
-				success: function(result){
-					var data=CSV.parse(result);
-					console.log(result);
-					console.log("Button pressed")
-				}
-			});
-		});
-	})
-</script> -->
