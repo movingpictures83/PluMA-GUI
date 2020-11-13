@@ -24,7 +24,7 @@
 	<body>
 		<div class="navbar">
 			<img src= "biorg.png" width = "100" height = "40" >
-			<span><a href ="#home">PluMA: Plugin-based Microboime analysis</a></span>
+			<span><h1>Plugin-based Microbiome Analysis</h1></span>
 			<div class="dropdown">	
 				<button type="button" name="load_data" id="load_data" class="dropbtn">SEARCH</button>
 				<div class="dropdown-content">	
@@ -55,7 +55,7 @@
 						<div id="checkboxes" class="row">
 							<div class="columns">
 								<!-- <input type="checkbox" id="fileconverters" onclick="checkboxClicked()">File Converters -->
-								<ul><label for="one"><input type="checkbox" id="one" checked="false" data-type="fileconverters" onclick()="clickFilter()"/>File Converters</label></ul>
+								<ul><label for="one"><input type="checkbox" id="fileconverters" onclick="checkboxClicked()"/>File Converters</label></ul>
 								<ul><label for="two"></label><input type="checkbox" id="transformations" onclick="checkboxClicked()"/>Transformations</label></ul>
 								<ul><label for="three"><input type="checkbox" id="correlation" onclick="checkboxClicked()"/>Correlation</label></ul>
 							</div>
@@ -90,7 +90,6 @@
 							</tr>					
 							</div>
 						</table>
-						<!-- <img  id= "starFavorites" src="starFavorites.png" style="width: 5px; height: 5px;"/> -->
 						<div id="details_table"></div>
 					</form> 
 					<div class="spacingContainer"></div>
@@ -103,19 +102,10 @@
 		
 		<div style="margin-left: 50px; ">
 			<div style="width:auto; height:60px;">
-				<button onclick="iPushContent('Demo1')" id="custom-IFB">Recently used</button>
+				<button onclick="iPushContent('Demo1')" id="custom-IFB">Recently used plugins</button>
 				<!-- <i class="fa fa-caret-down"></i> -->
 				<div id="Demo1" class="w3-hide w3-container">
-					<table>
-						<tr>
-							<td>This will be a plugin using C++ for synthesizers.</td>
-						</tr>
-						<tr>
-							<td>This will be a plugin using C++ for synthesizers.</td>
-						</tr>
-						<tr>
-							<td>This will be a plugin using C++ for synthesizers.</td>
-						</tr>
+					<table id=recentlyUsed>
 					</table>		
 				</div>
 			</div>
@@ -804,6 +794,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 
 <script type="module">
 	$(document).ready(writeFullTable());
+	$(document).ready(showRecentlyUsed());
 </script>
 
 <script>
@@ -831,7 +822,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
           for (var cell_count = 0; cell_count < cell_data.length; cell_count++) {
             if (cell_count == 0) {
 				table_data += `<td class='starFavorites' id=${cell_data[cell_count]}>` + `<img src='starFavorites.png' alt="star"></img>` + '</td>';
-              table_data += `<td><a onclick="openTheWindow('${site}');">` + cell_data[cell_count] + ' draggable="true" ondragstart="dragPlugin(event)"</a></td>';     
+              table_data += `<td><a onclick="openTheWindow('${site}');">` + cell_data[cell_count] + '"</a></td>';     
             }
             else {
               table_data += '<td>' + cell_data[cell_count] + '</td>';
@@ -848,7 +839,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 }
 
 function dragPlugin(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
+  ev.dataTransfer.setData(this.id, ev.target.id);
 }
 
 function handlePluginDrop(ev) {
