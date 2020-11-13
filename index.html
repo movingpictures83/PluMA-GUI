@@ -126,7 +126,7 @@
 		<div id = "top-column" style="margin-left:50px; margin-top: 5px;">
 			<!-- Drag and Drop Feature  *Rishabh-->
 			<div id="pluginVertical">
-				<div id = "plugin">
+				<div id = "plugin" ondrop = "handlePluginDrop(ev)" ondragover="allowDrop(event)">
 					<div style="margin-top:100px; margin-left:50px;">	
 						<input type="file" id="input-file" hidden="hidden" /> 
 						<button type="button" id="custom-IFB-blue">INPUT FILE</button><br> 
@@ -442,7 +442,9 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	<script>
 		function addHorizontalPlugin(i) {
 			var outerDiv = document.createElement("div");
-			outerDiv.id = "plugin";
+			outerDiv.id = "plugin"; 
+			outerDiv.ondrop = "handlePluginDrop(ev)";
+			outerDiv.ondragover = "allowDrop(event)"
 			var inputDiv = document.createElement("div");
 			inputDiv.style = "margin-top:100px; margin-left:50px;";
 			var buttonInput = document.createElement("input");
@@ -523,7 +525,9 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			var outerDiv = document.createElement("div");
 			outerDiv.id = "pluginVertical";
 			var pluginDiv = document.createElement("div");
-			pluginDiv.id = "plugin";
+			pluginDiv.id = "plugin"; 
+			pluginDiv.ondrop = "handlePluginDrop(ev)";
+			pluginDiv.ondragover = "allowDrop(event)"
 			var inputDiv = document.createElement("div");
 			inputDiv.style = "margin-top:100px; margin-left:50px;";
 			var buttonInput = document.createElement("input");
@@ -827,7 +831,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
           for (var cell_count = 0; cell_count < cell_data.length; cell_count++) {
             if (cell_count == 0) {
 				table_data += `<td class='starFavorites' id=${cell_data[cell_count]}>` + `<img src='starFavorites.png' alt="star"></img>` + '</td>';
-              table_data += `<td><a onclick="openTheWindow('${site}');">` + cell_data[cell_count] + '</a></td>';     
+              table_data += `<td><a onclick="openTheWindow('${site}');">` + cell_data[cell_count] + ' draggable="true" ondragstart="dragPlugin(event)"</a></td>';     
             }
             else {
               table_data += '<td>' + cell_data[cell_count] + '</td>';
@@ -841,6 +845,23 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
       document.getElementById("getMeTime").innerHTML = date;
     }
   });
+}
+
+function dragPlugin(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function handlePluginDrop(ev) {
+
+	if (dragSrcEl !== this) {
+      dragSrcEl.text = this.id;
+    }
+
+    return false;
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
 }
 
 function openTheWindow(url) {
