@@ -122,33 +122,35 @@
 		</div>			
 		<!-- <div id="wrapper"></div> -->
 		
-		<div style="margin-top:100px; margin-left:50px;">	
-			<input type="file" id="input-file" hidden="hidden" /> 
-			<button type="button" id="custom-IFB">Input file</button><br> 
-			<span id="custom-IFB-text">No file chosen</span>
-		</div>
 
 		<div id = "top-column" style="margin-left:50px; margin-top: 5px;">
 			<!-- Drag and Drop Feature  *Rishabh-->
 			<div id="pluginVertical">
-				<div class= "empty" id="file">
-					<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
+				<div id = "plugin">
+					<div style="margin-top:100px; margin-left:50px;">	
+						<input type="file" id="input-file" hidden="hidden" /> 
+						<button type="button" id="custom-IFB-blue">INPUT FILE</button><br> 
+					</div>
+					<div class= "empty" id="file">
+						<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
+					</div>
+					<img id="deleteButton" src= "master_trash.png" onclick="deleteStage(this)"/>
+					<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
+					<div id="upload-output-file" style="margin-left:55px; margin-top: 5px;">
+						<input type="file" id="output-file" hidden="hidden"/>
+						<button type="button" id="custom-OFB-blue">OUTPUT FILE</button><br>
+						
+					</div>
+					<br>
 				</div>
-				<img id= "downArrow" src="down_arrow.png"/>
-				<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
 			</div>
 		</div>
+
 
 		<div id="add-plugin-btn" style="margin-left: 50px; margin-top: 5px;">
 			<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">Add Stage</button>
 		</div>
 
-		<div id="upload-output-file" style="margin-left:55px; margin-top: 5px;">
-			<input type="file" id="output-file" hidden="hidden"/>
-			<button type="button" id="custom-OFB">Output file</button><br>
-			<span id="custom-OFB-text">No file chosen</span>
-			
-		</div>
 		
 		<script>
 			// create output file browser button
@@ -441,17 +443,19 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 		function addHorizontalPlugin(i) {
 			var outerDiv = document.createElement("div");
 			outerDiv.id = "plugin";
+			var inputDiv = document.createElement("div");
+			inputDiv.style = "margin-top:100px; margin-left:50px;";
 			var buttonInput = document.createElement("input");
 			buttonInput.type = "file";
 			buttonInput.id = "input-file";
 			buttonInput.hidden = "hidden";
-			outerDiv.appendChild(buttonInput);
+			inputDiv.appendChild(buttonInput);
 			var buttonInputButton = document.createElement("button");
 			buttonInputButton.type = "button";
 			buttonInputButton.id = "custom-IFB-blue";
 			buttonInputButton.textContent = "INPUT FILE";
-			outerDiv.appendChild(buttonInputButton);
-			var linebreak = document.createElement("br");
+			inputDiv.appendChild(buttonInputButton);
+			outerDiv.appendChild(inputDiv);
 			var innerDiv = document.createElement("div");
 			innerDiv.className = "empty";
 			innerDiv.id = "file";
@@ -461,8 +465,19 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			deleteImg.onclick = function(){deletePlugin(this)};
 			innerDiv.appendChild(deleteImg);
 			outerDiv.appendChild(innerDiv);
+			var masterDeleteImg = document.createElement("img");
+			masterDeleteImg.src = "master_trash.png";
+			masterDeleteImg.id = "deleteButton"
+			masterDeleteImg.onclick = function() {deleteStage(this)};
+			outerDiv.appendChild(masterDeleteImg);
+			var plusImg = document.createElement("img");
+			plusImg.src = "plus_sign.png";
+			plusImg.id = "plus-sign"
+			plusImg.onclick = function() {addHorizontalPlugin(this)};
+			outerDiv.appendChild(plusImg);
 			var outputDiv = document.createElement("div");
 			outputDiv.id = "upload-output-file";
+			outputDiv.style = "margin-left:55px; margin-top: 5px;"
 			var buttonOutput = document.createElement("input");
 			buttonOutput.type = "file";
 			buttonOutput.id = "output-file";
@@ -473,12 +488,10 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			buttonOutputButton.id = "custom-OFB-blue";
 			buttonOutputButton.textContent = "OUTPUT FILE";
 			outputDiv.appendChild(buttonOutputButton);
-			var outputLinebreak = document.createElement("br");
-			outputDiv.appendChild(outputLinebreak);
 			outerDiv.appendChild(outputDiv);
-			var hrTag = document.createElement("hr");
-			outerDiv.appendChild(hrTag);
-			(i.parentNode).appendChild(outerDiv);
+			var br = document.createElement("br");
+			outerDiv.appendChild(br);
+			((i.parentNode).parentNode).appendChild(outerDiv);
 			//Change the color grey back to blue now that there is a horizontal plugin
 			if(document.contains(document.getElementById("custom-IFB-gray")))
 			{
@@ -495,20 +508,29 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 
 	<script>
 		function deletePlugin(i) {
-			((((i.parentNode).parentNode)).parentNode).removeChild(i.parentNode.parentNode)
+			(((i.parentNode).parentNode).parentNode).removeChild(i.parentNode.parentNode)
+		}
+	</script>
+
+	<script>
+		function deleteStage(i) {
+			(((i.parentNode).parentNode).parentNode).removeChild(i.parentNode.parentNode)
 		}
 	</script>
 
 	<script>
 		function addPluginBox(i) {
-			var linebreak = document.createElement("br");
 			var outerDiv = document.createElement("div");
 			outerDiv.id = "pluginVertical";
+			var pluginDiv = document.createElement("div");
+			pluginDiv.id = "plugin";
+			var inputDiv = document.createElement("div");
+			inputDiv.style = "margin-top:100px; margin-left:50px;";
 			var buttonInput = document.createElement("input");
 			buttonInput.type = "file";
 			buttonInput.id = "input-file";
 			buttonInput.hidden = "hidden";
-			outerDiv.appendChild(buttonInput);
+			inputDiv.appendChild(buttonInput);
 			var buttonInputButton = document.createElement("button");
 			buttonInputButton.type = "button";
 			if(document.contains(document.getElementById("custom-IFB-blue")))
@@ -523,23 +545,30 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 				buttonInputButton.id = "custom-IFB-blue";
 			}
 			buttonInputButton.textContent = "INPUT FILE";
-			outerDiv.appendChild(buttonInputButton);
+			inputDiv.appendChild(buttonInputButton);
+			pluginDiv.appendChild(inputDiv);
 			var innerDiv = document.createElement("div");
 			innerDiv.className = "empty";
 			innerDiv.id = "file";
-			var plusImg = document.createElement("img");
-			plusImg.src = "plus_sign.png";
-			plusImg.id = "plus-sign"
-			plusImg.onclick = function() {addHorizontalPlugin(this)};
-			innerDiv.appendChild(plusImg);
 			var deleteImg = document.createElement("img");
 			deleteImg.src = "trash.png";
 			deleteImg.id = "deleteButton"
 			deleteImg.onclick = function() {deletePlugin(this)};
 			innerDiv.appendChild(deleteImg);
-			outerDiv.appendChild(innerDiv);
+			pluginDiv.appendChild(innerDiv);
+			var plusImg = document.createElement("img");
+			plusImg.src = "plus_sign.png";
+			plusImg.id = "plus-sign"
+			plusImg.onclick = function() {addHorizontalPlugin(this)};
+			pluginDiv.appendChild(plusImg);
+			var masterDeleteImg = document.createElement("img");
+			masterDeleteImg.src = "master_trash.png";
+			masterDeleteImg.id = "deleteButton"
+			masterDeleteImg.onclick = function() {deleteStage(this)};
+			pluginDiv.appendChild(masterDeleteImg);
 			var outputDiv = document.createElement("div");
 			outputDiv.id = "upload-output-file";
+			outputDiv.style = "margin-left:55px; margin-top: 5px;";
 			var buttonOutput = document.createElement("input");
 			buttonOutput.type = "file";
 			buttonOutput.id = "output-file";
@@ -550,12 +579,10 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			buttonOutputButton.id = "custom-OFB-blue";
 			buttonOutputButton.textContent = "OUTPUT FILE";
 			outputDiv.appendChild(buttonOutputButton);
-			var outputLinebreak = document.createElement("br");
-			outputDiv.appendChild(outputLinebreak);
-			outerDiv.appendChild(outputDiv);
-			var endLinebreak = document.createElement("br");
-			var hrTag = document.createElement("hr");
-			outerDiv.appendChild(hrTag)
+			pluginDiv.appendChild(outputDiv);
+			var br = document.createElement("br");
+			pluginDiv.appendChild(br);
+			outerDiv.appendChild(pluginDiv);
 			document.getElementById("top-column").appendChild(outerDiv);
 		}
 	</script>
