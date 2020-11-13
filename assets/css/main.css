@@ -295,6 +295,15 @@ label img {
 
 
 
+/* Active button color  */
+ 
+
+button:active{
+  background-color: green;
+}
+button:focus{
+  background-color: blueviolet;
+}
 
 
 
@@ -445,7 +454,9 @@ left:-232px;                             /* CHROME, SAFARI */
 
 /* Previous Code */
 h1{
-  color: rgb(204, 153, 0);
+  color: rgb(255, 250, 204);
+  font-size: 20px !important;
+  display: contents;
 }
 
 body{
@@ -454,7 +465,6 @@ body{
   /* background: rgba(255, 253, 238, 0.9); */
   background-color: rgb(255, 250, 204);
   font-family: Arial;
-  
 }
 
 table {
@@ -691,7 +701,7 @@ display: table;
 
 /* Input/output file upload buttons *Bhavyta */
 #custom-IFB {
-  width: 150px;
+  width: 200px;
   right: 8px;
   bottom: 54px;
   margin-inline-start: 8px;

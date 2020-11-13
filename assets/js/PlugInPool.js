@@ -1,4 +1,33 @@
+var local = localStorage.getItem('favorites');
+var favoritePlugins = local.split(',');
 var expanded = false;
+local = localStorage.getItem('recentlyUsed');
+var recentPlugins = new Queue();
+if(local){
+  local = local.split(',');
+  for(var i in local){
+    recentPlugins.addToRecentlyUsed(i);
+  }
+}
+
+function Queue() { 
+  var a = [], 
+  b = 0; 
+  this.getLength = function () { return a.length - b }; 
+  this.isEmpty = function () { return 0 == a.length }; 
+  this.enqueue = function (b) { a.push(b) }; 
+  this.dequeue = function () { 
+      if (0 != a.length) { 
+          var c = a[b]; 
+          2 * ++b >= a.length && (a = a.slice(b), b = 0); 
+          return c 
+      } 
+  }; 
+  this.peek = function () { 
+      return 0 < a.length ? a[b] : void 0 
+  } 
+};
+
 function showCheckboxes() {
   var checkboxes = document.getElementById("checkboxes");
 
@@ -11,6 +40,95 @@ function showCheckboxes() {
     expanded = false;
   }
 }
+
+function showRecentlyUsed(){
+  var table_data = '';
+  if(recentPlugins.getLength() == 0){
+    table_data += '<tr><td>Start using plugins to fill up this table!</td></tr>';
+  }
+  else{
+    for(var i=0; i<3; i++){
+      table_data += `<tr><td>${recentPlugins[i]}</td></tr>`;
+    }
+  }
+						// <tr>
+						// 	<td>This will be a plugin using C++ for synthesizers.</td>
+						// </tr>
+						// <tr>
+						// 	<td>This will be a plugin using C++ for synthesizers.</td>
+						// </tr>
+  $('#recentlyUsed').html(table_data);
+}
+
+function writeFullTable() {
+  $.ajax({
+    url: "./Web_Scraping/PluMA/results.csv",
+    dataType: "text",
+    success: function (data) {
+      var pluginDetails = data.split(/\r?\n|\r/);
+      var date;
+	  var table_data = '<table class="table table-bordered table-striped">';
+
+      for (var count = 0; count < pluginDetails.length; count++) {
+        if (count == pluginDetails.length - 1) {
+          date = pluginDetails[count]
+
+          break;
+        }
+        var cell_data = pluginDetails[count].split(/[,]+/)
+        table_data += '<tr>';
+        if (cell_data.length >= 3) {
+          cell_data[1] = cell_data[1].replace(/^"|"$/g, '');
+          var site = cell_data[3] + '.git'; //need to use this to clone repo
+		  cell_data = cell_data.splice(0, 2);
+		  
+          for (var cell_count = 0; cell_count < cell_data.length; cell_count++) {
+            if (cell_count == 0) {
+				table_data += `<td class='starFavorites' id=${cell_data[cell_count]}>` + `<button onclick="return favorite(${cell_data[cell_count]})"> <img src='starFavorites.png' height="15" width="15"></img></button>` + '</td>';
+              table_data += `<td><a onclick="addToRecentlyUsed('${cell_data[cell_count]}');">` + cell_data[cell_count] + '</a></td>';     
+            }
+            else {
+              table_data += '<td>' + cell_data[cell_count] + '</td>';
+			}
+          }
+          table_data += '</tr>';
+        }
+      }
+      table_data += '</table>';
+      $('#details_table').html(table_data);
+      document.getElementById("getMeTime").innerHTML = date;
+    }
+  });
+}
+
+ function addToRecentlyUsed(plugin) {
+   if(recentPlugins.length == 3){
+     recentPlugins.dequeue();
+   }
+  recentPlugins.enqueue(plugin.id);
+  showRecentlyUsed();
+  return false;
+// const child_process = require("child_process");
+//   child_process.exec(`git clone ${url}`, {
+//     cwd: "/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins"
+//   }, (error, stdout, stderr) => {
+    
+//     if (error) {
+//       dialog.showMessageBox({
+//         type: "error",
+//         title: "Plugin download error",
+//         message: `Plugin was already downloaded at ${url} \n\n ${stderr} ${error}`
+//       })
+//       return;
+//     }
+
+//     dialog.showMessageBox({
+//       type: "info",
+//       title: "Plugin download success",
+//       message: "Plugin was successfully downloaded in the installed plugin list!"
+//     });
+//   });
+}//we don't need this
 
 // url: "PluMA/PluMA-GUI/Web_Scraping/PluMA/fileCleaning.py ", 
 // Update Data in search.
@@ -45,6 +163,7 @@ function showCheckboxes() {
 toggle between hiding and showing the dropdown content */
 function RUT() {
   document.getElementById("myDropdown").classList.toggle("RUT_show");
+
 }
 
 // Close the dropdown if the user clicks outside of it
@@ -107,26 +226,22 @@ function iPushContent(id) {
 
 
 
-
-
-
 // Alternates color inside the table 
 // var NodeGit = require("nodegit");
 // var cloneURL = "https://github.com/movingpictures83/";
 
+
+
+
 function updateTable(answer) {
   var table_data = 'No matches found';
-
-  var img = document.createElement('img'); 
-  img.src = 'starFavorites.png';
-  var star = img.src;
 
   if (typeof answer[0] !== 'undefined') {
     table_data = '<table class="table table-bordered table-striped">';
     for (var j = 0; j < answer.length; j += 2) {
       table_data += '<tr>';
-      table_data += `<td class='starFavorites' id=${answer[j]}>` + 'star' + '</td>';
-      //Amanda needs to fix this        table_data += `<td><a onclick="openTheWindow('${site}');">` + cell_data[cell_count] + '</a></td>';     
+      table_data += `<td class='starFavorites' id=${answer[j]}>` + `<button onclick="return favorite(${answer[j]})">` + `<img src='starFavorites.png' alt="star" height="15" width="15"></img></button>` + '</td>';
+      //Amanda needs to fix this table_data += `<td><a onclick="openTheWindow('${site}');">` + cell_data[cell_count] + '</a></td>';     
       table_data += '<td>' + answer[j] + '</td>';
       table_data += '<td>' + answer[j + 1] + '</td>';
       table_data += '</tr>';
@@ -235,8 +350,6 @@ function checkboxClicked() {
     checked.push("Favorites");
   } 
 
- 
-
   var dataArray = []
   $.ajax({
     url: "Web_Scraping/PluMA/results.csv",
@@ -248,7 +361,12 @@ function checkboxClicked() {
         if (cell_data.length >= 3 && cell_data.some(r => checked.includes(r))) {
           cell_data[1] = cell_data[1].replace(/^"|"$/g, '');
           dataArray.push(cell_data[0]);
-          dataArray.push(cell_data[1])
+          dataArray.push(cell_data[1]);
+        }
+        if(checked.includes("Favorites") && cell_data.some(f => favoritePlugins.includes(f))){
+          cell_data[1] = cell_data[1].replace(/^"|"$/g, '');
+          dataArray.push(cell_data[0]);
+          dataArray.push(cell_data[1]);
         }
       }
 
@@ -262,7 +380,14 @@ function checkboxClicked() {
   });
 }
 
+function favorite(plugin){
+  favoritePlugins.push(plugin.id);
+  return false;
+}
 
-
-
-
+window.onbeforeunload = closingCode;
+function closingCode(){
+  localStorage.setItem('favorites', favoritePlugins);
+  localStorage.setItem('recentlyUsed', recentPlugins);
+   return null;
+}
