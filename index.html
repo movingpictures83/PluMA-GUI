@@ -805,7 +805,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
     success: function (data) {
       var pluginDetails = data.split(/\r?\n|\r/);
       var date;
-	  var table_data = '<table class="table table-bordered table-striped">';
+	  var table_data = '<table class="table table-bordered table-striped" draggable="true" ondragstart="dragPlugin(event)>';
 
       for (var count = 0; count < pluginDetails.length; count++) {
         if (count == pluginDetails.length - 1) {
@@ -839,7 +839,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 }
 
 function dragPlugin(ev) {
-  ev.dataTransfer.setData(this.id, ev.target.id);
+  ev.dataTransfer.setData("text", ev.target.id);
 }
 
 function handlePluginDrop(ev) {
