@@ -20,28 +20,31 @@ function showCheckboxes() {
 }
 
 function showRecentlyUsed() {
-  local = localStorage.getItem('recentlyUsed');
-  if (local != undefined || local != null) {
-    local = local.split(',');
-    for (var i; i<local.length; i++) {
-      addToRecentlyUsed(local[i]);
+  if (recentPlugins == undefined || recentPlugins.length === 0) { //first time opening app
+    local = localStorage.getItem('recentlyUsed'); //load up the saved content
+    if (local != undefined || local != null) { //if there is saved content
+      local = local.split(',');
+      for (var i=0; i < local.length; i++) {
+        addToRecentlyUsed(local[i]); //update the class array
+      }
     }
   }
+  //when we finish loading
   var table_data = '';
   if (recentPlugins === undefined || recentPlugins.length == 0) {
-    table_data += '<tr><td>Start using plugins to fill up this table!</td></tr>';
+    table_data += '<tr><td>Start using plugins to fill up this table!</td></tr>'; //if there is no content
   }
   else {
     for (var i = 0; i < 3; i++) {
       if (recentPlugins[i] === undefined) {
-        table_data += '<tr><td>Start using plugins to fill up this row!</td></tr>';
+        table_data += '<tr><td>Start using plugins to fill up this row!</td></tr>'; //some content is not present
       }
-      else{
-      table_data += `<tr><td>${recentPlugins[i]}</td></tr>`;
+      else {
+        table_data += `<tr><td>${recentPlugins[i]}</td></tr>`; //content is present
       }
     }
   }
-  $('#recentlyUsed').html(table_data);
+  $('#recentlyUsed').html(table_data); //show data
 }
 
 function writeFullTable() {
@@ -56,7 +59,6 @@ function writeFullTable() {
       for (var count = 0; count < pluginDetails.length; count++) {
         if (count == pluginDetails.length - 1) {
           date = pluginDetails[count]
-
           break;
         }
         var cell_data = pluginDetails[count].split(/[,]+/)
@@ -69,7 +71,7 @@ function writeFullTable() {
           for (var cell_count = 0; cell_count < cell_data.length; cell_count++) {
             if (cell_count == 0) {
               table_data += `<td class='starFavorites' id=${cell_data[cell_count]}>` + `<button onclick="return favorite(${cell_data[cell_count]})"> <img src='starFavorites.png' height="15" width="15"></img></button>` + '</td>';
-              table_data += `<td><a onclick="addToRecentlyUsed('${cell_data[cell_count]}');">` + cell_data[cell_count] + '</a></td>';
+              table_data += `<td><a onclick="addToRecentlyUsed('${cell_data[cell_count]}', '${site}');">` + cell_data[cell_count] + '</a></td>';
             }
             else {
               table_data += '<td>' + cell_data[cell_count] + '</td>';
@@ -85,66 +87,25 @@ function writeFullTable() {
   });
 }
 
-function addToRecentlyUsed(plugin) {
-  if (recentPlugins != undefined) {
-    recentPlugins.push(plugin);
+function addToRecentlyUsed(plugin, site = "") {
+  if (recentPlugins != undefined && !recentPlugins.includes(plugin)) { //if there is content
+    recentPlugins.push(plugin); //push new content in
     if (recentPlugins.length == 4) {
-      recentPlugins.shift();
+      recentPlugins.shift(); //delete old content 
     }
   }
-  else{
-    recentPlugins = [plugin];
+  else { //if there isnt content 
+    recentPlugins = [plugin]; //make new content
   }
   showRecentlyUsed();
+
+  //download plugin
+  if(site != ""){
+    //here is where the ajax code will go
+    console.log('request');
+  }
   return false;
-  // const child_process = require("child_process");
-  //   child_process.exec(`git clone ${url}`, {
-  //     cwd: "/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins"
-  //   }, (error, stdout, stderr) => {
-
-  //     if (error) {
-  //       dialog.showMessageBox({
-  //         type: "error",
-  //         title: "Plugin download error",
-  //         message: `Plugin was already downloaded at ${url} \n\n ${stderr} ${error}`
-  //       })
-  //       return;
-  //     }
-
-  //     dialog.showMessageBox({
-  //       type: "info",
-  //       title: "Plugin download success",
-  //       message: "Plugin was successfully downloaded in the installed plugin list!"
-  //     });
-  //   });
-}//we don't need this
-
-// url: "PluMA/PluMA-GUI/Web_Scraping/PluMA/fileCleaning.py ", 
-// Update Data in search.
-//this should work, but I am getting a stupid function not defined error
-// function update() {
-//   $(document).ready(function () {
-//     $("#load_data").click(function () {
-//       $.ajax({
-//         method: "POST",
-//         url: "PluMA/PluMA-GUI/Web_Scraping/PluMA/fileCleaning.py ",
-//         data: { "place": value },
-//         dataType: "text",
-//         success: function (result) {
-//           var data = CSV.parse(result);
-//           console.log(result);
-//           console.log("Button pressed")
-//         }
-//       });
-//     });
-//   })
-// }
-
-
-// Handling plug-ins & Description tables dynamically
-//=============================================================================================
-
-
+}
 
 // Recently Used Plugins
 //=============================================================================================
@@ -169,37 +130,6 @@ window.onclick = function (event) {
   }
 }
 
-// Button opens down advance search
-//=============================================================================================
-//   let dropdownBtn = document.querySelector('.InsideSearch_menu-btn');
-//   let menuContent = document.querySelector('.InsideSearch_menu-content');
-//   dropdownBtn.addEventListener('click',()=>{
-//      if(menuContent.style.display===""){
-//         menuContent.style.display="block";
-//      } else {
-//         menuContent.style.display="";
-//      }
-//   })
-
-
-//PushDown content when advanced search opens - STARTS
-//=============================================================================================
-// var acc = document.getElementsByClassName("accordion");
-// var i;
-
-// for (i = 0; i < acc.length; i++) {
-//   acc[i].addEventListener("click", function () {
-//     this.classList.toggle("Accordian_Active");
-//     var panel = this.nextElementSibling;
-//     if (panel.style.display === "block") {
-//       panel.style.display = "none";
-//     } else {
-//       panel.style.display = "block";
-//     }
-//   });
-// }
-
-
 //PushDown content - ENDS
 //=============================================================================================
 
@@ -213,15 +143,6 @@ function iPushContent(id) {
   }
 }
 
-
-
-// Alternates color inside the table 
-// var NodeGit = require("nodegit");
-// var cloneURL = "https://github.com/movingpictures83/";
-
-
-
-
 function updateTable(answer) {
   var table_data = 'No matches found';
 
@@ -229,8 +150,7 @@ function updateTable(answer) {
     table_data = '<table class="table table-bordered table-striped">';
     for (var j = 0; j < answer.length; j += 2) {
       table_data += '<tr>';
-      table_data += `<td class='starFavorites' id=${answer[j]}>` + `<button onclick="return favorite(${answer[j]})">` + `<img src='starFavorites.png' alt="star" height="15" width="15"></img></button>` + '</td>';
-      //Amanda needs to fix this table_data += `<td><a onclick="openTheWindow('${site}');">` + cell_data[cell_count] + '</a></td>';     
+      table_data += `<td class='starFavorites' id=${answer[j]}>` + `<button onclick="return favorite(${answer[j]})">` + `<img src='starFavorites.png' alt="star" height="15" width="15"></img></button>` + '</td>';  
       table_data += '<td>' + answer[j] + '</td>';
       table_data += '<td>' + answer[j + 1] + '</td>';
       table_data += '</tr>';
@@ -370,7 +290,12 @@ function checkboxClicked() {
 }
 
 function favorite(plugin) {
-  favoritePlugins.push(plugin.id);
+  if(!favoritePlugins.includes(plugin.id)){
+    favoritePlugins.push(plugin.id);
+  }
+  else{
+    favoritePlugins.splice(favoritePlugins.indexOf(plugin.id), 1);
+  }
   return false;
 }
 
