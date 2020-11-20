@@ -1,32 +1,10 @@
 var local = localStorage.getItem('favorites');
-var favoritePlugins = local.split(',');
-var expanded = false;
-local = localStorage.getItem('recentlyUsed');
-var recentPlugins = new Queue();
-if(local){
-  local = local.split(',');
-  for(var i in local){
-    recentPlugins.addToRecentlyUsed(i);
-  }
+var favoritePlugins = [];
+if (local != undefined || local != null) {
+  favoritePlugins = local.split(',');
 }
-
-function Queue() { 
-  var a = [], 
-  b = 0; 
-  this.getLength = function () { return a.length - b }; 
-  this.isEmpty = function () { return 0 == a.length }; 
-  this.enqueue = function (b) { a.push(b) }; 
-  this.dequeue = function () { 
-      if (0 != a.length) { 
-          var c = a[b]; 
-          2 * ++b >= a.length && (a = a.slice(b), b = 0); 
-          return c 
-      } 
-  }; 
-  this.peek = function () { 
-      return 0 < a.length ? a[b] : void 0 
-  } 
-};
+var expanded = false;
+var recentPlugins = [];
 
 function showCheckboxes() {
   var checkboxes = document.getElementById("checkboxes");
@@ -41,22 +19,28 @@ function showCheckboxes() {
   }
 }
 
-function showRecentlyUsed(){
-  var table_data = '';
-  if(recentPlugins.getLength() == 0){
-    table_data += '<tr><td>Start using plugins to fill up this table!</td></tr>';
-  }
-  else{
-    for(var i=0; i<3; i++){
-      table_data += `<tr><td>${recentPlugins[i]}</td></tr>`;
+function showRecentlyUsed() {
+  local = localStorage.getItem('recentlyUsed');
+  if (local != undefined || local != null) {
+    local = local.split(',');
+    for (var i; i<local.length; i++) {
+      addToRecentlyUsed(local[i]);
     }
   }
-						// <tr>
-						// 	<td>This will be a plugin using C++ for synthesizers.</td>
-						// </tr>
-						// <tr>
-						// 	<td>This will be a plugin using C++ for synthesizers.</td>
-						// </tr>
+  var table_data = '';
+  if (recentPlugins === undefined || recentPlugins.length == 0) {
+    table_data += '<tr><td>Start using plugins to fill up this table!</td></tr>';
+  }
+  else {
+    for (var i = 0; i < 3; i++) {
+      if (recentPlugins[i] === undefined) {
+        table_data += '<tr><td>Start using plugins to fill up this row!</td></tr>';
+      }
+      else{
+      table_data += `<tr><td>${recentPlugins[i]}</td></tr>`;
+      }
+    }
+  }
   $('#recentlyUsed').html(table_data);
 }
 
@@ -67,7 +51,7 @@ function writeFullTable() {
     success: function (data) {
       var pluginDetails = data.split(/\r?\n|\r/);
       var date;
-	  var table_data = '<table class="table table-bordered table-striped">';
+      var table_data = '<table class="table table-bordered table-striped">';
 
       for (var count = 0; count < pluginDetails.length; count++) {
         if (count == pluginDetails.length - 1) {
@@ -80,16 +64,16 @@ function writeFullTable() {
         if (cell_data.length >= 3) {
           cell_data[1] = cell_data[1].replace(/^"|"$/g, '');
           var site = cell_data[3] + '.git'; //need to use this to clone repo
-		  cell_data = cell_data.splice(0, 2);
-		  
+          cell_data = cell_data.splice(0, 2);
+
           for (var cell_count = 0; cell_count < cell_data.length; cell_count++) {
             if (cell_count == 0) {
-				table_data += `<td class='starFavorites' id=${cell_data[cell_count]}>` + `<button onclick="return favorite(${cell_data[cell_count]})"> <img src='starFavorites.png' height="15" width="15"></img></button>` + '</td>';
-              table_data += `<td><a onclick="addToRecentlyUsed('${cell_data[cell_count]}');">` + cell_data[cell_count] + '</a></td>';     
+              table_data += `<td class='starFavorites' id=${cell_data[cell_count]}>` + `<button onclick="return favorite(${cell_data[cell_count]})"> <img src='starFavorites.png' height="15" width="15"></img></button>` + '</td>';
+              table_data += `<td><a onclick="addToRecentlyUsed('${cell_data[cell_count]}');">` + cell_data[cell_count] + '</a></td>';
             }
             else {
               table_data += '<td>' + cell_data[cell_count] + '</td>';
-			}
+            }
           }
           table_data += '</tr>';
         }
@@ -101,33 +85,38 @@ function writeFullTable() {
   });
 }
 
- function addToRecentlyUsed(plugin) {
-   if(recentPlugins.length == 3){
-     recentPlugins.dequeue();
-   }
-  recentPlugins.enqueue(plugin.id);
+function addToRecentlyUsed(plugin) {
+  if (recentPlugins != undefined) {
+    recentPlugins.push(plugin);
+    if (recentPlugins.length == 4) {
+      recentPlugins.shift();
+    }
+  }
+  else{
+    recentPlugins = [plugin];
+  }
   showRecentlyUsed();
   return false;
-// const child_process = require("child_process");
-//   child_process.exec(`git clone ${url}`, {
-//     cwd: "/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins"
-//   }, (error, stdout, stderr) => {
-    
-//     if (error) {
-//       dialog.showMessageBox({
-//         type: "error",
-//         title: "Plugin download error",
-//         message: `Plugin was already downloaded at ${url} \n\n ${stderr} ${error}`
-//       })
-//       return;
-//     }
+  // const child_process = require("child_process");
+  //   child_process.exec(`git clone ${url}`, {
+  //     cwd: "/Users/edwardpalermo/Desktop/seniorProject/PluMA/plugins"
+  //   }, (error, stdout, stderr) => {
 
-//     dialog.showMessageBox({
-//       type: "info",
-//       title: "Plugin download success",
-//       message: "Plugin was successfully downloaded in the installed plugin list!"
-//     });
-//   });
+  //     if (error) {
+  //       dialog.showMessageBox({
+  //         type: "error",
+  //         title: "Plugin download error",
+  //         message: `Plugin was already downloaded at ${url} \n\n ${stderr} ${error}`
+  //       })
+  //       return;
+  //     }
+
+  //     dialog.showMessageBox({
+  //       type: "info",
+  //       title: "Plugin download success",
+  //       message: "Plugin was successfully downloaded in the installed plugin list!"
+  //     });
+  //   });
 }//we don't need this
 
 // url: "PluMA/PluMA-GUI/Web_Scraping/PluMA/fileCleaning.py ", 
@@ -219,7 +208,7 @@ function iPushContent(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
-  } else { 
+  } else {
     x.className = x.className.replace(" w3-show", "");
   }
 }
@@ -323,32 +312,32 @@ function checkboxClicked() {
     checked.push("Correlation");
   }
   if (visualization.checked) {
-      checked.push("Visualization");
-  } 
+    checked.push("Visualization");
+  }
   if (dissimilarity.checked) {
     checked.push("Dissimilarity");
-  } 
+  }
   if (centrality.checked) {
     checked.push("Centrality");
-  } 
+  }
   if (clustering.checked) {
     checked.push("Clustering");
-  } 
+  }
   if (timeseries.checked) {
     checked.push("Time Series");
-  } 
+  }
   if (externaltools.checked) {
     checked.push("External Tools");
-  } 
+  }
   if (statistics.checked) {
     checked.push("Statistics");
   }
   if (miscellaneous.checked == true) {
-    checked.push("Miscellaneous"); 
-  } 
+    checked.push("Miscellaneous");
+  }
   if (favorites.checked == true) {
     checked.push("Favorites");
-  } 
+  }
 
   var dataArray = []
   $.ajax({
@@ -363,31 +352,31 @@ function checkboxClicked() {
           dataArray.push(cell_data[0]);
           dataArray.push(cell_data[1]);
         }
-        if(checked.includes("Favorites") && cell_data.some(f => favoritePlugins.includes(f))){
+        if (checked.includes("Favorites") && cell_data.some(f => favoritePlugins.includes(f))) {
           cell_data[1] = cell_data[1].replace(/^"|"$/g, '');
           dataArray.push(cell_data[0]);
           dataArray.push(cell_data[1]);
         }
       }
 
-      if(dataArray === undefined || dataArray.length == 0){
+      if (dataArray === undefined || dataArray.length == 0) {
         writeFullTable();
       }
-      else{
+      else {
         updateTable(dataArray);
       }
     }
   });
 }
 
-function favorite(plugin){
+function favorite(plugin) {
   favoritePlugins.push(plugin.id);
   return false;
 }
 
 window.onbeforeunload = closingCode;
-function closingCode(){
+function closingCode() {
   localStorage.setItem('favorites', favoritePlugins);
   localStorage.setItem('recentlyUsed', recentPlugins);
-   return null;
+  return null;
 }
