@@ -38,7 +38,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="spacingContainer"></div>
+					<div class="spacingTitle"></div>
 
 					<!-- Filter Checkboxes  -->
 					<form>
@@ -49,7 +49,7 @@
 							<div class="columns">
 								<!-- <input type="checkbox" id="fileconverters" onclick="checkboxClicked()">File Converters -->
 								<ul><label for="one"><input type="checkbox" id="fileconverters" onclick="checkboxClicked()"/>File Converters</label></ul>
-								<ul><label for="two"></label><input type="checkbox" id="transformations" onclick="checkboxClicked()"/>Transformations</label></ul>
+								<ul><label for="two"><input type="checkbox" id="transformations" onclick="checkboxClicked()"/>Transformations</label></ul>
 								<ul><label for="three"><input type="checkbox" id="correlation" onclick="checkboxClicked()"/>Correlation</label></ul>
 							</div>
 
@@ -72,10 +72,10 @@
 							</div>
 						</div>
 					</form>
-					<div class="spacingContainer"></div>
+					<hr>
+					<!-- <div class="spacingTitle"></div> -->
 					<form>
 						<div class="spacingTitle"></div>
-						<!-- <div class="spacingTitle"></div> -->
 						<table>
 							<tr> 
 								<th>Plugins</th>
@@ -105,7 +105,8 @@
 		</div>			
 		<!-- <div id="wrapper"></div> -->
 		
-
+		<button id="myBtn">Search Plugin Pool</button>
+	
 		<div id = "top-column" style="margin-left:50px; margin-top: 5px;">
 			<!-- Drag and Drop Feature  *Rishabh-->
 			<div id="pluginVertical">
@@ -243,7 +244,7 @@
 
 <!-- <h2 class= "text">Add and Install more Plugins</h2> -->
 <!-- Trigger/Open The Modal -->
-<!-- <button id="myBtn">Search Plugin Pool</button> -->
+
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -268,8 +269,7 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
-  modal.style.display = "block";
-	openModal();
+	openTheWindow();
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -434,7 +434,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			var buttonInputButton = document.createElement("button");
 			buttonInputButton.type = "button";
 			buttonInputButton.id = "custom-IFB-blue";
-			buttonInputButton.textContent = "INPUT FILE";
+			buttonInputButton.textContent = "Input File";
 			inputDiv.appendChild(buttonInputButton);
 			outerDiv.appendChild(inputDiv);
 			var innerDiv = document.createElement("div");
@@ -467,7 +467,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			var buttonOutputButton = document.createElement("button");
 			buttonOutputButton.type = "button";
 			buttonOutputButton.id = "custom-OFB-blue";
-			buttonOutputButton.textContent = "OUTPUT FILE";
+			buttonOutputButton.textContent = "Output File";
 			outputDiv.appendChild(buttonOutputButton);
 			outerDiv.appendChild(outputDiv);
 			var br = document.createElement("br");
@@ -527,7 +527,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			{
 				buttonInputButton.id = "custom-IFB-blue";
 			}
-			buttonInputButton.textContent = "INPUT FILE";
+			buttonInputButton.textContent = "Input File";
 			inputDiv.appendChild(buttonInputButton);
 			pluginDiv.appendChild(inputDiv);
 			var innerDiv = document.createElement("div");
@@ -560,7 +560,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			var buttonOutputButton = document.createElement("button");
 			buttonOutputButton.type = "button";
 			buttonOutputButton.id = "custom-OFB-blue";
-			buttonOutputButton.textContent = "OUTPUT FILE";
+			buttonOutputButton.textContent = "Output File";
 			outputDiv.appendChild(buttonOutputButton);
 			pluginDiv.appendChild(outputDiv);
 			var br = document.createElement("br");
@@ -576,7 +576,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 
 			
 	<script>
-
+//to generate config file
 		//once the save button is clicked, the filenames are saved into a text file
 		function parseInput(event){
 			require('fs');
@@ -586,7 +586,6 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			
 			var cl = document.getElementById("file").className;
 			var cl2 = document.getElementsByClassName("empty");
-			
 
 			inputName = inputName.trim()
 			fs.writeFileSync('assets/config.txt', inputName + "\n", (err) => {throw err});
@@ -602,8 +601,6 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			outputName = outputName.trim()
 			fs.appendFileSync('assets/config.txt', outputName + "\n", (err) => {throw err});
 			alert("Data has been saved");
-			
-
 		}
 		
     //calls function at the start of draggging the function
@@ -783,6 +780,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 
 <script type="module">
 	$(document).ready(writeFullTable());
+
 	$(document).ready(showRecentlyUsed());
 </script>
 

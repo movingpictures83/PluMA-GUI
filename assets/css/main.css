@@ -8,7 +8,7 @@
   /* height: 50px; */
   font-family: Arial;
   /* padding-top:15px; */
-  margin:25px;
+  /* margin:25px; */
   
 }
 
@@ -28,7 +28,7 @@
   /* width: 50%; */
   float: right;
   position: inherit;
-  padding: 1px;
+  /* padding: 1px; */
   overflow: hidden;
   z-index: 1;
 }
@@ -51,9 +51,9 @@
 /* Dropdown button */
 .dropdown .dropbtn {
   /* float: right;   */
-  /* padding-top: 15px; */
+  padding-top: 10px;
   /* padding-bottom: 15px; */
-  padding-right: 50px;
+  /* padding-right: 30px; */
   /* width: 5%; */
   font-size: 15px;
   border: none; 
@@ -65,9 +65,9 @@
   margin: auto; /* Important for vertical align on mobile phones */
 }
 
-/* Add a red background color to navbar links on hover */
+/* Add a background color to navbar links on hover */
 .navbar a:hover, .dropdown:hover .dropbtn, .csv_button:hover {
-  background-color: red;
+  background-color: #151143
 }
 
 /* Dropdown content (hidden by default) */
@@ -123,9 +123,9 @@
 
 .columns {
   font-size: 15px;
-  float: left;
+  /* float: left; */
   padding: 5px;
-  columns: 150px 3;
+  columns: 25px 3 ;
 }
 
 /* Clear floats after the columns */
@@ -246,26 +246,28 @@ input[type="checkbox"][id^="fav_myCheckbox"] {
 
 label {
   border: none;
-  padding: 10px;
+  /* padding: 10px; */
   display: block;
   position: relative;
-  margin: 10px;
+  /* margin: 10px; */
   cursor: pointer;
 }
 
 label:before {
   background-color: white;
   color: white;
-  content: " ";
+  /* content: " "; */
   display: block;
   border: none;
   position: absolute;
-  top: -5px;
-  left: -5px;
+  /* top: -5px; */
+  /* left: -5px; */
   width: 25px;
   height: 25px;
   text-align: center;
-  line-height: 28px;
+
+  /* was 28px  */
+  line-height: px; 
   transition-duration: 0.4s;
   transform: scale(0);
 }
@@ -545,6 +547,7 @@ tr:nth-child(even) {
   text-decoration: none;
   cursor: pointer;
 }
+
 /* .fill{
   text-align: center;
   position: relative;

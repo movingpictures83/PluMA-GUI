@@ -19,12 +19,29 @@ function showCheckboxes() {
   }
 }
 
+function openTheWindow(){
+  var exec = require('child_process').exec;
+
+  // child = exec('cd ./Web_Scraping/PluMA/ & python fileCleaning.py',
+  //     function (error, stdout, stderr) {
+  //         console.log('stdout: ' + stdout);
+  //         console.log('stderr: ' + stderr);
+  //         if (error !== null) {
+  //              console.log('exec error: ' + error);
+  //         }
+  //     });
+
+  exec('cd ../../ & git clone https://github.com/movingpictures83/PluMA-GUI.git')
+
+}
+
+
 function showRecentlyUsed() {
   if (recentPlugins == undefined || recentPlugins.length === 0) { //first time opening app
     local = localStorage.getItem('recentlyUsed'); //load up the saved content
     if (local != undefined || local != null) { //if there is saved content
       local = local.split(',');
-      for (var i=0; i < local.length; i++) {
+      for (var i = 0; i < local.length; i++) {
         addToRecentlyUsed(local[i]); //update the class array
       }
     }
@@ -54,6 +71,7 @@ function writeFullTable() {
     success: function (data) {
       var pluginDetails = data.split(/\r?\n|\r/);
       var date;
+
       var table_data = '<table class="table table-bordered table-striped">';
 
       for (var count = 0; count < pluginDetails.length; count++) {
@@ -70,8 +88,13 @@ function writeFullTable() {
 
           for (var cell_count = 0; cell_count < cell_data.length; cell_count++) {
             if (cell_count == 0) {
-              table_data += `<td class='starFavorites' id=${cell_data[cell_count]}>` + `<button onclick="return favorite(${cell_data[cell_count]})"> <img src='starFavorites.png' height="15" width="15"></img></button>` + '</td>';
-              table_data += `<td><a onclick="addToRecentlyUsed('${cell_data[cell_count]}', '${site}');">` + cell_data[cell_count] + '</a></td>';
+              if (favoritePlugins.includes(cell_data[cell_count])) {
+                table_data += `<td class='starFavorites' id=${cell_data[cell_count]}>` + `<button onclick="return favorite(${cell_data[cell_count]})"> <img src='starFavorites.png' height="15" width="15"></img></button>` + '</td>';
+              }
+              else {
+                table_data += `<td class='starFavorites' id=${cell_data[cell_count]}>` + `<button onclick="return favorite(${cell_data[cell_count]})"> <img src='star-image.png' height="15" width="15"></img></button>` + '</td>';
+              }
+              table_data += `<td draggable="true" ondragstart="dragPlugin(event)"><a onclick="addToRecentlyUsed('${cell_data[cell_count]}', '${site}');">` + cell_data[cell_count] + '</a></td>';
             }
             else {
               table_data += '<td>' + cell_data[cell_count] + '</td>';
@@ -80,6 +103,7 @@ function writeFullTable() {
           table_data += '</tr>';
         }
       }
+
       table_data += '</table>';
       $('#details_table').html(table_data);
       document.getElementById("getMeTime").innerHTML = date;
@@ -100,7 +124,7 @@ function addToRecentlyUsed(plugin, site = "") {
   showRecentlyUsed();
 
   //download plugin
-  if(site != ""){
+  if (site != "") {
     //here is where the ajax code will go
     console.log('request');
   }
@@ -113,7 +137,6 @@ function addToRecentlyUsed(plugin, site = "") {
 toggle between hiding and showing the dropdown content */
 function RUT() {
   document.getElementById("myDropdown").classList.toggle("RUT_show");
-
 }
 
 // Close the dropdown if the user clicks outside of it
@@ -143,15 +166,27 @@ function iPushContent(id) {
   }
 }
 
-function updateTable(answer) {
+
+function updateTable(answer, flag = false) {
   var table_data = 'No matches found';
 
   if (typeof answer[0] !== 'undefined') {
     table_data = '<table class="table table-bordered table-striped">';
     for (var j = 0; j < answer.length; j += 2) {
       table_data += '<tr>';
-      table_data += `<td class='starFavorites' id=${answer[j]}>` + `<button onclick="return favorite(${answer[j]})">` + `<img src='starFavorites.png' alt="star" height="15" width="15"></img></button>` + '</td>';  
-      table_data += '<td>' + answer[j] + '</td>';
+      if (favoritePlugins.includes("")) {
+        favoritePlugins.splice(favoritePlugins.indexOf(""), 1);
+      }
+      if (flag && favoritePlugins.includes(answer[j]) && answer[j] != "") {
+        table_data += `<td class='starFavorites' id=${answer[j]}>` + `<button onclick="return favorite(${answer[j]})"> <img src='starFavorites.png' height="15" width="15"></img></button>` + '</td>';
+      }
+      else if (!flag && favoritePlugins.includes(answer[j][0]) && answer[j] != [""]) {
+        table_data += `<td class='starFavorites' id=${answer[j]}>` + `<button onclick="return favorite(${answer[j]})"> <img src='starFavorites.png' height="15" width="15"></img></button>` + '</td>';
+      }
+      else {
+        table_data += `<td class='starFavorites' id=${answer[j]}>` + `<button onclick="return favorite(${answer[j]})"> <img src='star-image.png' height="15" width="15"></img></button>` + '</td>';
+      }
+      table_data += `<td draggable="true" ondragstart="dragPlugin(event)"><a onclick="addToRecentlyUsed('${answer[j]}');">` + answer[j] + '</a></td>';
       table_data += '<td>' + answer[j + 1] + '</td>';
       table_data += '</tr>';
     }
@@ -198,7 +233,11 @@ function startFiltering() {
         }
       }
 
-      updateTable(answer);
+      let uniqueAnswers = answer.filter((c, index) => {
+        return answer.indexOf(c) === index;
+      });
+
+      updateTable(uniqueAnswers);
     }
   });
 }
@@ -267,13 +306,12 @@ function checkboxClicked() {
       var pluginDetails = data.split(/\r?\n|\r/);
       for (var count = 0; count < pluginDetails.length; count++) {
         var cell_data = pluginDetails[count].split(/[,]+/)
+        cell_data[1] = cell_data[1].replace(/^"|"$/g, '');
         if (cell_data.length >= 3 && cell_data.some(r => checked.includes(r))) {
-          cell_data[1] = cell_data[1].replace(/^"|"$/g, '');
           dataArray.push(cell_data[0]);
           dataArray.push(cell_data[1]);
         }
         if (checked.includes("Favorites") && cell_data.some(f => favoritePlugins.includes(f))) {
-          cell_data[1] = cell_data[1].replace(/^"|"$/g, '');
           dataArray.push(cell_data[0]);
           dataArray.push(cell_data[1]);
         }
@@ -283,17 +321,17 @@ function checkboxClicked() {
         writeFullTable();
       }
       else {
-        updateTable(dataArray);
+        updateTable(dataArray, true);
       }
     }
   });
 }
 
 function favorite(plugin) {
-  if(!favoritePlugins.includes(plugin.id)){
+  if (!favoritePlugins.includes(plugin.id)) {
     favoritePlugins.push(plugin.id);
   }
-  else{
+  else {
     favoritePlugins.splice(favoritePlugins.indexOf(plugin.id), 1);
   }
   return false;
