@@ -5,6 +5,15 @@ if (local != undefined || local != null) {
 }
 var expanded = false;
 var recentPlugins = [];
+var savedPath = "../plugins/";
+local = localStorage.getItem('savedPath');
+if (local != undefined || local != "null" || local != null || local != "" || !local.includes("../plugins/")) {
+  document.getElementById("nameField").placeholder = local;
+  savedPath = local;
+}
+else {
+  document.getElementById("nameField").placeholder = savedPath;
+}
 
 function showCheckboxes() {
   var checkboxes = document.getElementById("checkboxes");
@@ -18,23 +27,6 @@ function showCheckboxes() {
     expanded = false;
   }
 }
-
-function openTheWindow(){
-  var exec = require('child_process').exec;
-
-  // child = exec('cd ./Web_Scraping/PluMA/ & python fileCleaning.py',
-  //     function (error, stdout, stderr) {
-  //         console.log('stdout: ' + stdout);
-  //         console.log('stderr: ' + stderr);
-  //         if (error !== null) {
-  //              console.log('exec error: ' + error);
-  //         }
-  //     });
-
-  exec('cd ../../ & git clone https://github.com/movingpictures83/PluMA-GUI.git')
-
-}
-
 
 function showRecentlyUsed() {
   if (recentPlugins == undefined || recentPlugins.length === 0) { //first time opening app
@@ -66,7 +58,7 @@ function showRecentlyUsed() {
 
 function writeFullTable() {
   $.ajax({
-    url: "./Web_Scraping/PluMA/results.csv",
+    url: "./Web_Scraping/PluMA/PluMA/results.csv",
     dataType: "text",
     success: function (data) {
       var pluginDetails = data.split(/\r?\n|\r/);
@@ -112,8 +104,10 @@ function writeFullTable() {
 }
 
 function addToRecentlyUsed(plugin, site = "") {
-  if (recentPlugins != undefined && !recentPlugins.includes(plugin)) { //if there is content
-    recentPlugins.push(plugin); //push new content in
+  if (recentPlugins != undefined) {
+    if (!recentPlugins.includes(plugin)) { //if there is content
+      recentPlugins.push(plugin); //push new content in
+    }
     if (recentPlugins.length == 4) {
       recentPlugins.shift(); //delete old content 
     }
@@ -125,8 +119,8 @@ function addToRecentlyUsed(plugin, site = "") {
 
   //download plugin
   if (site != "") {
-    //here is where the ajax code will go
-    console.log('request');
+    var exec = require('child_process').exec;
+    exec(`cd ${savedPath} & git clone ${site}`);
   }
   return false;
 }
@@ -166,13 +160,12 @@ function iPushContent(id) {
   }
 }
 
-
 function updateTable(answer, flag = false) {
   var table_data = 'No matches found';
 
   if (typeof answer[0] !== 'undefined') {
     table_data = '<table class="table table-bordered table-striped">';
-    for (var j = 0; j < answer.length; j += 2) {
+    for (var j = 0; j < answer.length; j += 3) {
       table_data += '<tr>';
       if (favoritePlugins.includes("")) {
         favoritePlugins.splice(favoritePlugins.indexOf(""), 1);
@@ -186,7 +179,7 @@ function updateTable(answer, flag = false) {
       else {
         table_data += `<td class='starFavorites' id=${answer[j]}>` + `<button onclick="return favorite(${answer[j]})"> <img src='star-image.png' height="15" width="15"></img></button>` + '</td>';
       }
-      table_data += `<td draggable="true" ondragstart="dragPlugin(event)"><a onclick="addToRecentlyUsed('${answer[j]}');">` + answer[j] + '</a></td>';
+      table_data += `<td draggable="true" ondragstart="dragPlugin(event)"><a onclick="addToRecentlyUsed('${answer[j]}', '${answer[j + 2]}');">` + answer[j] + '</a></td>';
       table_data += '<td>' + answer[j + 1] + '</td>';
       table_data += '</tr>';
     }
@@ -199,19 +192,21 @@ function updateTable(answer, flag = false) {
 //=============================================================================================
 function startFiltering() {
   var dataArray = [];
+  var links = [];
   $.ajax({
-    url: "Web_Scraping/PluMA/results.csv",
+    url: "Web_Scraping/PluMA/PluMA/results.csv",
     dataType: "text",
     success: function (data) {
       var pluginDetails = data.split(/\r?\n|\r/);
       for (var count = 0; count < pluginDetails.length; count++) {
-        var cell_data = pluginDetails[count].split(/[/,]+/)
+        var cell_data = pluginDetails[count].split(/[,]+/)
         if (cell_data.length >= 3) {
           cell_data[1] = cell_data[1].replace(/^"|"$/g, '');
           var names = cell_data.splice(0, 1);
           dataArray.push(names);
           var descriptions = cell_data.splice(0, 1);
           dataArray.push(descriptions);
+          links.push(cell_data.splice(1, 1));
         }
       }
 
@@ -224,12 +219,14 @@ function startFiltering() {
 
       for (var i = 0; i < found.length; i++) {
         if (dataArray.indexOf(found[i]) % 2 == 0) { //it is a name
-          answer.push(dataArray[dataArray.indexOf(found[i])])
-          answer.push(dataArray[dataArray.indexOf(found[i]) + 1])
+          answer.push(dataArray[dataArray.indexOf(found[i])]);
+          answer.push(dataArray[dataArray.indexOf(found[i]) + 1]);
+          answer.push(links[dataArray.indexOf(found[i])] + '.git');
         }
         else { //it is a description
-          answer.push(dataArray[dataArray.indexOf(found[i]) - 1])
+          answer.push(dataArray[dataArray.indexOf(found[i]) - 1]);
           answer.push(dataArray[dataArray.indexOf(found[i])])
+          answer.push(links[dataArray.indexOf(found[i]) - 1] + '.git');
         }
       }
 
@@ -240,6 +237,19 @@ function startFiltering() {
       updateTable(uniqueAnswers);
     }
   });
+}
+
+function update() {
+  var exec = require('child_process').exec;
+
+  child = exec('cd ./Web_Scraping/PluMA/PluMA & python fileCleaning.py',
+    function (error, stdout, stderr) {
+      console.log('stdout: ' + stdout);
+      console.log('stderr: ' + stderr);
+      if (error !== null) {
+        console.log('exec error: ' + error);
+      }
+    });
 }
 
 // Check box >> trigger filter
@@ -300,9 +310,10 @@ function checkboxClicked() {
 
   var dataArray = []
   $.ajax({
-    url: "Web_Scraping/PluMA/results.csv",
+    url: "Web_Scraping/PluMA/PluMA/results.csv",
     dataType: "text",
     success: function (data) {
+      var pluginDetails = data.split(/\r?\n|\r/);
       var pluginDetails = data.split(/\r?\n|\r/);
       for (var count = 0; count < pluginDetails.length; count++) {
         var cell_data = pluginDetails[count].split(/[,]+/)
@@ -314,6 +325,7 @@ function checkboxClicked() {
         if (checked.includes("Favorites") && cell_data.some(f => favoritePlugins.includes(f))) {
           dataArray.push(cell_data[0]);
           dataArray.push(cell_data[1]);
+          dataArray.push(cell_data[3] + '.git');
         }
       }
 
@@ -337,9 +349,25 @@ function favorite(plugin) {
   return false;
 }
 
+// Testing for saving directory (inside settings in navbar )
+function getUserName() {
+  var nameField = document.getElementById('nameField').value;
+  if (nameField.length < 3) {
+    result.textContent = 'Path must contain at least 3 characters';
+  } else {
+    result.textContent = 'Your path is: ' + nameField;
+    savedPath = nameField;
+  }
+}
+var subButton = document.getElementById('subButton');
+subButton.addEventListener('click', getUserName, false);
+
 window.onbeforeunload = closingCode;
 function closingCode() {
   localStorage.setItem('favorites', favoritePlugins);
   localStorage.setItem('recentlyUsed', recentPlugins);
+  localStorage.setItem('savedPath', savedPath);
   return null;
 }
+
+

@@ -22,6 +22,7 @@
 		<div class="navbar">
 			<img src= "biorg.png" width = "100" height = "40" >
 			<span><h1>Plugin-based Microbiome Analysis</h1></span>
+
 			<div class="dropdown">	
 				<button type="button" name="load_data" id="load_data" class="dropbtn">Plugins</button>
 				<div class="dropdown-content">	
@@ -30,11 +31,13 @@
 					
 					<div class="AdvSearch_Background ">
 						<div>
-							<input style="width: 450px; height: 30px"type="text" id="myInput" onkeyup="startFiltering()" placeholder="Type to search">
+							<input style="width: 400px; height: 30px"type="text" id="myInput" onkeyup="startFiltering()" placeholder="Type to search">
 							<hr>
 							<div style="padding-left: 10px">
 								Last Updated: 
 								<div id="getMeTime"></div> 
+								<button type="button" id="load_data" onclick="update()">Update</button>
+		
 							</div>
 						</div>
 					</div>
@@ -73,7 +76,7 @@
 						</div>
 					</form>
 					<hr>
-					<!-- <div class="spacingTitle"></div> -->
+	
 					<form>
 						<div class="spacingTitle"></div>
 						<table>
@@ -81,18 +84,43 @@
 								<th>Plugins</th>
 								<th>Descriptions</th>
 							</tr>					
-							</div>
+				</div>
 						</table>
 						<div id="details_table"></div>
 					</form> 
 					<div class="spacingContainer"></div>
 				</div>
-			</div>	
+			</div>
+			
+			<div class="dropdownSettings">
+				<button type="button" class="dropbtnSettings">Settings</button>
+				<div class="dropdownSettings-content">
+
+					<form>
+						Settings
+						<div class="spacingContainer"></div>
+
+						<div>
+							<!-- <input style="width: 450px; height: 30px" type="text" placeholder="PluMA/Plugins/PathToLegendOfDaPinga"> -->
+							<label id='nameLable' for='nameField'>Download directory</label>
+   							<input id='nameField' style="width: 450px; height: 30px" type='text'></input>
+						</div>
+
+
+						<div class="spacingContainer"></div>
+						<!-- <button type="button">Save Path</button> -->
+						<button id='subButton' type='button'>Save path</button>
+						<p id='result'></p>
+							
+					</form>
+
+				</div>
+			</div> <!--Close dropdownSettings-->
+
 		</div> <!-- Close navbar-->
 		<div class="spacingContainer"></div>
 			
 		<!-- Recently Used -->
-		
 		<div style="margin-left: 50px; ">
 			<div style="width:auto; height:60px;">
 				<button onclick="iPushContent('Demo1')" id="custom-IFB">Recently used plugins</button>
@@ -103,9 +131,6 @@
 				</div>
 			</div>
 		</div>			
-		<!-- <div id="wrapper"></div> -->
-		
-		<button id="myBtn">Search Plugin Pool</button>
 	
 		<div id = "top-column" style="margin-left:50px; margin-top: 5px;">
 			<!-- Drag and Drop Feature  *Rishabh-->
@@ -158,15 +183,7 @@
 				require('./assets/js/ipc')
 				require('./assets/js/dialog')
 	  </script>
-	  
-		<!-- Choosing plugin from the pluma feature *cesia*-->
-		<!-- <div class="container">
-			<div class="box">
-				<p id="demo"></p>
-			</div>
-		</div> -->
 <div> </div>
-
 
 	<script>
 		const testFolder = '/Users/Ivonne/Desktop/PluMA/plugins';
@@ -570,11 +587,8 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 		}
 	</script>
 
-	
-
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-			
+	
 	<script>
 //to generate config file
 		//once the save button is clicked, the filenames are saved into a text file

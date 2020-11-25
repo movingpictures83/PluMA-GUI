@@ -33,9 +33,9 @@ def letsClean():
     f.close()
     print(categoriesList)
 
-# if(os.path.isfile('./results.csv')):
-#     os.remove('./results.csv')
+if(os.path.isfile('./results.csv')):
+    os.remove('./results.csv')
 #Source: https://pymotw.com/2/subprocess/
-subprocess.call(['scrapy crawl pluginNames -o results.csv -t csv'], shell=True)
+subprocess.call('scrapy crawl pluginNames -o results.csv -t csv', shell=True)
 letsClean()
 

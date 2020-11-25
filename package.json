@@ -1,7 +1,7 @@
 {
-  "name": "electron-tutorial-app",
-  "productName": "Electron tutorial app",
-  "description": "Application for electron tutorials",
+  "name": "pluma-beta-gui",
+  "productName": "PluMA-GUI 2.0 Beta",
+  "description": "Application for Plugin-based Microbiome Analysis ",
   "version": "0.1.5",
   "main": "main.js",
   "license": "MIT",

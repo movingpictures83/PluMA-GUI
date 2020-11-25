@@ -23,6 +23,84 @@
   
 }
 
+.dropdownSettings{
+  float: right;
+  overflow: hidden; 
+}
+
+.dropdownSettings .dropbtnSettings {
+ /* float: right;   */
+ padding-top: 10px;
+ /* padding-bottom: 15px; */
+ /* padding-right: 30px; */
+ /* width: 5%; */
+ font-size: 15px;
+ border: none; 
+ color: white;
+ outline: none;
+ text-align: center;
+ background-color: inherit;
+ font-family: inherit; /* Important for vertical align on mobile phones */
+ margin: auto; /* Important for vertical align on mobile phones */
+}
+
+.navbar a:hover, .dropdownSettings:hover .dropbtnSettings {
+  background-color: #151143
+}
+
+.dropdownSettings-content {
+  /* color:#F2F0DF; Text color */
+  display: none;
+  position: absolute;
+  left:60%;
+  background-color:#221d5c;  
+  /* color: rgb(255, 250, 204); */
+  color: white;
+  /* background-color:#a1e7e1; */
+  /* min-width: 100px; */
+  padding: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdownSettings-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdownSettings-content a:hover {
+  background-color: #151143;
+}
+
+.dropdownSettings:hover .dropdownSettings-content {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* The dropdown container */
 .dropdown {   
   /* width: 50%; */
