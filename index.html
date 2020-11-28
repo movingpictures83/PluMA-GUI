@@ -135,16 +135,17 @@
 		<div id = "top-column" style="margin-left:50px; margin-top: 5px;">
 			<!-- Drag and Drop Feature  *Rishabh-->
 			<div id="pluginVertical">
-				<div id = "plugin" ondrop = "handlePluginDrop(ev)" ondragover="allowDrop(event)">
+				<img id= "plus-sign" src="plus_sign.png" onclick= "addPluginBox(this)"/>
+				<img id="minus-sign" src= "minus_sign.png" onclick="deleteStage(this)"/>
+				<div id = "plugin">
 					<div style="margin-top:100px; margin-left:50px;">	
 						<input type="file" id="input-file" hidden="hidden" /> 
 						<button type="button" id="custom-IFB-blue">Input File</button><br> 
 					</div>
 					<div class= "empty" id="file">
 						<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
+						<img id="deleteButton" src= "plus_sign.png" onclick="addHorizontalPlugin(this)"/>
 					</div>
-					<img id="deleteButton" src= "master_trash.png" onclick="deleteStage(this)"/>
-					<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
 					<div id="upload-output-file" style="margin-left:55px; margin-top: 5px;">
 						<input type="file" id="output-file" hidden="hidden"/>
 						<button type="button" id="custom-OFB-blue">Output File</button><br>
@@ -157,6 +158,7 @@
 		<div id="add-plugin-btn" style="margin-left: 50px; margin-top: 5px;">
 			<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">Add Stage</button>
 		</div>
+
 
 		<script>
 			// create output file browser button
@@ -439,8 +441,6 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 		function addHorizontalPlugin(i) {
 			var outerDiv = document.createElement("div");
 			outerDiv.id = "plugin"; 
-			outerDiv.ondrop = "handlePluginDrop(ev)";
-			outerDiv.ondragover = "allowDrop(event)"
 			var inputDiv = document.createElement("div");
 			inputDiv.style = "margin-top:100px; margin-left:50px;";
 			var buttonInput = document.createElement("input");
@@ -462,17 +462,12 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			deleteImg.id = "deleteButton"
 			deleteImg.onclick = function(){deletePlugin(this)};
 			innerDiv.appendChild(deleteImg);
-			outerDiv.appendChild(innerDiv);
-			var masterDeleteImg = document.createElement("img");
-			masterDeleteImg.src = "master_trash.png";
-			masterDeleteImg.id = "deleteButton"
-			masterDeleteImg.onclick = function() {deleteStage(this)};
-			outerDiv.appendChild(masterDeleteImg);
 			var plusImg = document.createElement("img");
 			plusImg.src = "plus_sign.png";
-			plusImg.id = "plus-sign"
+			plusImg.id = "deleteButton"
 			plusImg.onclick = function() {addHorizontalPlugin(this)};
-			outerDiv.appendChild(plusImg);
+			innerDiv.appendChild(plusImg);
+			outerDiv.appendChild(innerDiv);
 			var outputDiv = document.createElement("div");
 			outputDiv.id = "upload-output-file";
 			outputDiv.style = "margin-left:55px; margin-top: 5px;"
@@ -489,30 +484,46 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			outerDiv.appendChild(outputDiv);
 			var br = document.createElement("br");
 			outerDiv.appendChild(br);
-			((i.parentNode).parentNode).appendChild(outerDiv);
-			//Change the color grey back to blue now that there is a horizontal plugin
-			if(document.contains(document.getElementById("custom-IFB-gray")))
-			{
-				var inputGray = document.getElementById("custom-IFB-gray");
-				inputGray.id = "custom-IFB-blue";
-			}
-			if(document.contains(document.getElementById("custom-OFB-gray")))
-			{
-				var inputGray = document.getElementById("custom-OFB-gray");
-				inputGray.id = "custom-OFB-blue";
-			}
+			((i.parentNode).parentNode.parentNode).appendChild(outerDiv);
+			setColors(i);
 		}
 	</script>
 
 	<script>
 		function deletePlugin(i) {
 			(((i.parentNode).parentNode).parentNode).removeChild(i.parentNode.parentNode)
+			setColors(i);
 		}
-	</script>
-
-	<script>
+	
 		function deleteStage(i) {
-			(((i.parentNode).parentNode).parentNode).removeChild(i.parentNode.parentNode)
+			(i.parentNode.parentNode).removeChild(i.parentNode);
+			setColors(i);
+		}
+
+		function setColors(i) {
+			var pluginVertical = document.querySelectorAll("#pluginVertical");
+			pluginVertical.forEach(function(vplugin) {
+   				horizontalPlugin = vplugin.querySelectorAll("#plugin");
+				horizontalPlugin.forEach(function(hplugin) 
+				{
+					if( horizontalPlugin.length <= 1)
+					{
+						var buttons = hplugin.querySelectorAll("button");
+						buttons[0].id = "custom-IFB-gray";
+						buttons[1].id = "custom-OFB-gray";
+					}
+					else if(horizontalPlugin.length > 1)
+					{
+						var buttons = hplugin.querySelectorAll("button");
+						buttons[0].id = "custom-IFB-blue";
+						buttons[1].id = "custom-OFB-blue";
+					}
+				})
+			})
+			pluginVertical[0].querySelector("#plugin").querySelector("button").id = "custom-IFB-blue";
+			var lastButtons = pluginVertical[pluginVertical.length-1].querySelectorAll("button");
+			lastButtons[1].id = "custom-OFB-blue";
+
 		}
 	</script>
 
@@ -520,10 +531,18 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 		function addPluginBox(i) {
 			var outerDiv = document.createElement("div");
 			outerDiv.id = "pluginVertical";
+			var plus = document.createElement("img");
+			plus.src = "plus_sign.png";
+			plus.id = "plus-sign";
+			plus.onclick = "addPluginBox(this)";
+			outerDiv.appendChild(plus);
+			var minus = document.createElement("img");
+			minus.id = "minus-sign";
+			minus.src = "minus_sign.png";
+			minus.onclick = "deleteStage(this)";
+			outerDiv.appendChild(minus);
 			var pluginDiv = document.createElement("div");
 			pluginDiv.id = "plugin"; 
-			pluginDiv.ondrop = "handlePluginDrop(ev)";
-			pluginDiv.ondragover = "allowDrop(event)"
 			var inputDiv = document.createElement("div");
 			inputDiv.style = "margin-top:100px; margin-left:50px;";
 			var buttonInput = document.createElement("input");
@@ -533,17 +552,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			inputDiv.appendChild(buttonInput);
 			var buttonInputButton = document.createElement("button");
 			buttonInputButton.type = "button";
-			if(document.contains(document.getElementById("custom-IFB-blue")))
-			{
-				buttonInputButton.id = "custom-IFB-gray";
-				var buttonCollection = document.getElementsByTagName("button")
-				var outputBlue = buttonCollection[buttonCollection.length - 2]
-				outputBlue.id = "custom-OFB-gray";
-			}
-			else
-			{
-				buttonInputButton.id = "custom-IFB-blue";
-			}
+			buttonInputButton.id = "custom-IFB-blue"
 			buttonInputButton.textContent = "Input File";
 			inputDiv.appendChild(buttonInputButton);
 			pluginDiv.appendChild(inputDiv);
@@ -555,17 +564,12 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			deleteImg.id = "deleteButton"
 			deleteImg.onclick = function() {deletePlugin(this)};
 			innerDiv.appendChild(deleteImg);
-			pluginDiv.appendChild(innerDiv);
 			var plusImg = document.createElement("img");
 			plusImg.src = "plus_sign.png";
-			plusImg.id = "plus-sign"
+			plusImg.id = "deleteButton"
 			plusImg.onclick = function() {addHorizontalPlugin(this)};
-			pluginDiv.appendChild(plusImg);
-			var masterDeleteImg = document.createElement("img");
-			masterDeleteImg.src = "master_trash.png";
-			masterDeleteImg.id = "deleteButton"
-			masterDeleteImg.onclick = function() {deleteStage(this)};
-			pluginDiv.appendChild(masterDeleteImg);
+			innerDiv.appendChild(plusImg);
+			pluginDiv.appendChild(innerDiv);
 			var outputDiv = document.createElement("div");
 			outputDiv.id = "upload-output-file";
 			outputDiv.style = "margin-left:55px; margin-top: 5px;";
@@ -584,6 +588,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			pluginDiv.appendChild(br);
 			outerDiv.appendChild(pluginDiv);
 			document.getElementById("top-column").appendChild(outerDiv);
+			setColors(i);
 		}
 	</script>
 
@@ -623,6 +628,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 		 event.dataTransfer.setData("text", event.target.textContent);
 		  // Changes the opacity of the draggable element
 		  event.target.style.opacity = "0.4";
+		  dragged = event.target;
 			
 		});
 		
@@ -683,6 +689,14 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 				console.log(tempNode);
 				tempNode.style.visibility = "hidden";
 			}
+
+			if (this.id = "plugin") {
+      			event.target.text = this.id;
+    		}
+			if(dragged.id = "plugin") {
+				dragged.parentNode.removeChild(dragged);
+			}
+			
 			
 		});
 
@@ -690,6 +704,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 
 		//calls function when draggable element is dropped
 		//drops plugins into the trash can to be deleted
+		/**
 		function drop(ev){
 
 			ev.preventDefault();
@@ -740,7 +755,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			//r.parentNode.children[0].innerText = " ";
 			ev.target.style.opacity = "1";
 			
-		}
+		}**/
 
 		//changes opacity when draggable element enters trash can div
 		function dragenter(ev){
@@ -798,22 +813,3 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 	$(document).ready(showRecentlyUsed());
 </script>
 
-<script>
-function dragPlugin(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function handlePluginDrop(ev) {
-
-	if (dragSrcEl !== this) {
-      dragSrcEl.text = this.id;
-	  print("Working");
-    }
-
-    return false;
-}
-
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-</script>

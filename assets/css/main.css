@@ -908,8 +908,15 @@ display: table;
     margin: auto;
     width: 15px;
     height: 15px;
-    float: right;
+    float: left;
 }
+
+#minus-sign {
+  width: 20px;
+  height: 20px;
+  float: left;
+}
+
 
 .optionBox {
   display: inline-block;
