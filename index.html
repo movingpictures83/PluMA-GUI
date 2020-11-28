@@ -534,12 +534,12 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			var plus = document.createElement("img");
 			plus.src = "plus_sign.png";
 			plus.id = "plus-sign";
-			plus.onclick = "addPluginBox(this)";
+			plus.onclick = function() {addPluginBox(this)};
 			outerDiv.appendChild(plus);
 			var minus = document.createElement("img");
 			minus.id = "minus-sign";
 			minus.src = "minus_sign.png";
-			minus.onclick = "deleteStage(this)";
+			minus.onclick = function() {deleteStage(this)};
 			outerDiv.appendChild(minus);
 			var pluginDiv = document.createElement("div");
 			pluginDiv.id = "plugin"; 
