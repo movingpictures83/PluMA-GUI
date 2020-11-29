@@ -500,17 +500,21 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
    				horizontalPlugin = vplugin.querySelectorAll("#plugin");
 				horizontalPlugin.forEach(function(hplugin) 
 				{
+					var buttons = hplugin.querySelectorAll("button");
 					if( horizontalPlugin.length <= 1)
 					{
-						var buttons = hplugin.querySelectorAll("button");
 						buttons[0].id = "custom-IFB-gray";
 						buttons[1].id = "custom-OFB-gray";
+						
 					}
 					else if(horizontalPlugin.length > 1)
 					{
-						var buttons = hplugin.querySelectorAll("button");
 						buttons[0].id = "custom-IFB-blue";
 						buttons[1].id = "custom-OFB-blue";
+					}
+					if(vplugin.previousElementSibling != null && vplugin.previousElementSibling.querySelectorAll("#plugin").length > 1)
+					{
+							buttons[0].id = "custom-IFB-blue";
 					}
 				})
 			})
