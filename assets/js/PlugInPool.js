@@ -5,15 +5,6 @@ if (local != undefined || local != null) {
 }
 var expanded = false;
 var recentPlugins = [];
-var savedPath = "../plugins/";
-local = localStorage.getItem('savedPath');
-if (local != undefined || local != "null" || local != null || local != "" || !local.includes("../plugins/")) {
-  document.getElementById("nameField").placeholder = local;
-  savedPath = local;
-}
-else {
-  document.getElementById("nameField").placeholder = savedPath;
-}
 
 function showCheckboxes() {
   var checkboxes = document.getElementById("checkboxes");
@@ -121,6 +112,7 @@ function addToRecentlyUsed(plugin, site = "") {
   if (site != "") {
     var exec = require('child_process').exec;
     exec(`cd ${savedPath} & git clone ${site}`);
+    alert("Plugin has been successfully downloaded");
   }
   return false;
 }
@@ -349,24 +341,10 @@ function favorite(plugin) {
   return false;
 }
 
-// Testing for saving directory (inside settings in navbar )
-function getUserName() {
-  var nameField = document.getElementById('nameField').value;
-  if (nameField.length < 3) {
-    result.textContent = 'Path must contain at least 3 characters';
-  } else {
-    result.textContent = 'Your path is: ' + nameField;
-    savedPath = nameField;
-  }
-}
-var subButton = document.getElementById('subButton');
-subButton.addEventListener('click', getUserName, false);
-
 window.onbeforeunload = closingCode;
 function closingCode() {
   localStorage.setItem('favorites', favoritePlugins);
   localStorage.setItem('recentlyUsed', recentPlugins);
-  localStorage.setItem('savedPath', savedPath);
   return null;
 }
 

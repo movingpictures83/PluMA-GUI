@@ -5,804 +5,365 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<!--  <img src= "biorg.png" width = "150" height = "50" > -->
-		<title>PluMA</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="import" href="sections/welcome.html">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	</head>
 
-	<body>
-		<div class="navbar">
-			<img src= "biorg.png" width = "100" height = "40" >
-			<span><h1>Plugin-based Microbiome Analysis</h1></span>
+<head>
+	<title>PluMA</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="import" href="sections/welcome.html">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-			<div class="dropdown">	
-				<button type="button" name="load_data" id="load_data" class="dropbtn">Plugins</button>
-				<div class="dropdown-content">	
-					<!-- Search for plug-ins -->
-					<div class="spacingTitle"></div>
-					
-					<div class="AdvSearch_Background ">
-						<div>
-							<input style="width: 400px; height: 30px"type="text" id="myInput" onkeyup="startFiltering()" placeholder="Type to search">
-							<hr>
-							<div style="padding-left: 10px">
-								Last Updated: 
-								<div id="getMeTime"></div> 
-								<button type="button" id="load_data" onclick="update()">Update</button>
-		
-							</div>
-						</div>
-					</div>
-					<div class="spacingTitle"></div>
-
-					<!-- Filter Checkboxes  -->
-					<form>
-						<div class="multiselect" onclick="showCheckboxes()">
-							<div class="overSelect"></div>
-						</div>					
-						<div id="checkboxes" class="row">
-							<div class="columns">
-								<!-- <input type="checkbox" id="fileconverters" onclick="checkboxClicked()">File Converters -->
-								<ul><label for="one"><input type="checkbox" id="fileconverters" onclick="checkboxClicked()"/>File Converters</label></ul>
-								<ul><label for="two"><input type="checkbox" id="transformations" onclick="checkboxClicked()"/>Transformations</label></ul>
-								<ul><label for="three"><input type="checkbox" id="correlation" onclick="checkboxClicked()"/>Correlation</label></ul>
-							</div>
-
-							<div class="columns">
-								<ul><label for="four"><input type="checkbox" id="visualization" onclick="checkboxClicked()"/>Visualization</label></ul>
-								<ul><label for="five"><input type="checkbox" id="dissimilarity" onclick="checkboxClicked()"/>Dissimilarity</label></ul>
-								<ul><label for="six"><input type="checkbox" id="centrality" onclick="checkboxClicked()"/>Centrality</label></ul>
-							</div>
-
-							<div class="columns">
-								<ul><label for="seven"><input type="checkbox" id="clustering" onclick="checkboxClicked()"/>Clustering</label></ul>
-								<ul><label for="eight"><input type="checkbox" id="timeseries" onclick="checkboxClicked()"/>Time Series</label></ul>
-								<ul><label for="nine"><input type="checkbox" id="externaltools" onclick="checkboxClicked()"/>External tools</label></ul>
-							</div>
-
-							<div class="columns">
-								<ul><label for="ten"><input type="checkbox" id="statistics" onclick="checkboxClicked()"/>Statistics</label></ul>
-								<ul><label for="eleven"><input type="checkbox" id="miscellaneous" onclick="checkboxClicked()"/>Miscellaneous</label></ul>
-								<ul><label for="twelve"><input type="checkbox" id="favorites" onclick="checkboxClicked()"/>Favorites</label></ul>
-							</div>
-						</div>
-					</form>
-					<hr>
-	
-					<form>
-						<div class="spacingTitle"></div>
-						<table>
-							<tr> 
-								<th>Plugins</th>
-								<th>Descriptions</th>
-							</tr>					
-				</div>
-						</table>
-						<div id="details_table"></div>
-					</form> 
-					<div class="spacingContainer"></div>
-				</div>
-			</div>
-			
-			<div class="dropdownSettings">
-				<button type="button" class="dropbtnSettings">Settings</button>
-				<div class="dropdownSettings-content">
-
-					<form>
-						Settings
-						<div class="spacingContainer"></div>
-
-						<div>
-							<!-- <input style="width: 450px; height: 30px" type="text" placeholder="PluMA/Plugins/PathToLegendOfDaPinga"> -->
-							<label id='nameLable' for='nameField'>Download directory</label>
-   							<input id='nameField' style="width: 450px; height: 30px" type='text'></input>
-						</div>
-
-
-						<div class="spacingContainer"></div>
-						<!-- <button type="button">Save Path</button> -->
-						<button id='subButton' type='button'>Save path</button>
-						<p id='result'></p>
-							
-					</form>
-
-				</div>
-			</div> <!--Close dropdownSettings-->
-
-		</div> <!-- Close navbar-->
-		<div class="spacingContainer"></div>
-			
-		<!-- Recently Used -->
-		<div style="margin-left: 50px; ">
-			<div style="width:auto; height:60px;">
-				<button onclick="iPushContent('Demo1')" id="custom-IFB">Recently used plugins</button>
-				<!-- <i class="fa fa-caret-down"></i> -->
-				<div id="Demo1" class="w3-hide w3-container">
-					<table id=recentlyUsed>
-					</table>		
-				</div>
-			</div>
-		</div>			
-	
-		<div id = "top-column" style="margin-left:50px; margin-top: 5px;">
-			<!-- Drag and Drop Feature  *Rishabh-->
-			<div id="pluginVertical">
-				<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
-				<img id="minus-sign" src= "minus_sign.png" onclick="deleteStage(this)"/>
-				<div id = "plugin">
-					<div style="margin-top:100px; margin-left:50px;">	
-						<input type="file" id="input-file" hidden="hidden" /> 
-						<button type="button" id="custom-IFB-blue">Input File</button><br> 
-					</div>
-					<div class= "empty" id="file">
-						<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
-					</div>
-					<div id="upload-output-file" style="margin-left:55px; margin-top: 5px;">
-						<input type="file" id="output-file" hidden="hidden"/>
-						<button type="button" id="custom-OFB-blue">Output File</button><br>
-					</div>
-					<br>
-				</div>
-			</div>
-		</div>
-
-		<div id="add-plugin-btn" style="margin-left: 50px; margin-top: 5px;">
-			<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">Add Stage</button>
-		</div>
-
-
-		<script>
-			// create output file browser button
-			createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
-		</script>
-			
-		<!-- Footer -->
-		<footer id="footer" class="wrapper style1-alt">
-			<div class="inner"></div>	
-		</footer>
-
-		<!-- Scripts -->
-      <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
-		<script>window.i18n = new(require('./translations/i18n'));</script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/skel.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-		<script src="assets/js/PlugInPool.js"></script>
-      <script>
-        require('./assets/js/menu')
-				require('./assets/js/translations')
-				require('./assets/js/ipc')
-				require('./assets/js/dialog')
-	  </script>
-<div> </div>
-
-	<script>
-		const testFolder = '/Users/Ivonne/Desktop/PluMA/plugins';
-		const fs = require('fs');
-
-		const plugin_folders_fullpath = fs.readdirSync(testFolder)
-		.map(function (file_path) {
-			return testFolder + '/' + file_path;
-		})
-		.filter(function (absolute_file_path) {
-			const fileInfo = fs.lstatSync(absolute_file_path);
-			if (!fileInfo.isDirectory()) {
-				return false;
-			}
-			return fs.existsSync(absolute_file_path + '/README.md');
-		});
-
-		const plugin_folders_input_output = plugin_folders_fullpath
-		.map(function(total_file_path){
-			var input_output = fs.readFileSync(total_file_path + '/README.md', 'utf8');
-			input_output = input_output.split("\n");
-			input_index = input_output.reduce(function (index, input_output, actual_index) {
-				if (index !== -1) {
-					return index;
-				}
-
-				if (input_output.substr(0, 10).toLowerCase().indexOf("input:") > -1) {
-					 return actual_index;
-				}
-
-				return -1;
-			}, -1);
-			output_index = input_output.reduce(function (index, input_output, actual_index) {
-				if (index !== -1) {
-					return index;
-				}
-
-				if (input_output.substr(0, 10).toLowerCase().indexOf("output:") > -1) {
-					 return actual_index;
-				}
-
-				return -1;
-			}, -1);
-			
-			return [input_output[input_index].replace("# ","",1), input_output[output_index].replace("# ","",1)];
-
-		});
-
-		const plugin_folders = plugin_folders_fullpath
-		.map(function (absolute_file_path) {
-			return absolute_file_path.replace(testFolder + '/', '');
-		});
-		
-		var flen, i , text;
-		flen = plugin_folders.length;
-		text = "<table>";
-		for (i = 0; i < flen; i++) {
-		text += "<tr>";
-		text += "<td id = 'pname' class = 'a' draggable = true > " + plugin_folders[i] + "</td>";
-		text += "<td draggable = true> " + plugin_folders_input_output[i] + "</td>";
-		text += "</tr>";
-		}
-		text += "</table>";
-		/*text = "<ul style='list-style-type: none';>";
-		for (i = 1; i < flen; i++) {
-		text += "<li class = 'a'> " + plugin_folders[i] + " - " 
-			+ plugin_folders_input_output[0] + "</li>";
-		}
-		text += "</ul>";*/
-		document.getElementById("demo").innerHTML = text;
-	</script>
-
-<div>
-
-
-<!-- <h2 class= "text">Add and Install more Plugins</h2> -->
-<!-- Trigger/Open The Modal -->
-
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-		<p id="bioOrg"></p>
-  </div>
-
-</div>
-
-<script>
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-	openTheWindow();
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-	closeModal();
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-		closeModal();
-  }
-}
-
-function closeModal() {
-	document.getElementById("bioOrg").innerHTML = '';
-}
-
-function openModal() {
-	loadHtmlToModal('http://biorg.cs.fiu.edu/pluma/plugins/').then(() => {
-		const child_process = require("child_process");
-		const { dialog } = require("electron").remote;
-
-		// Attach a click event listener to all plugin links so that when clicked, 
-		// they fire a git clone
-		[].slice.call(
-			document
-				.querySelectorAll("#bigcolumn table")[1]
-				.querySelectorAll("table")).map(tableElem => {
-					const rowList = [].slice.call(tableElem.querySelectorAll("tr"));
-					rowList.shift();
-					rowList.shift();
-					return rowList;
-				}).reduce((aggList, currInnerList) => {
-					for (elem of currInnerList) {
-						aggList.push(elem);
-					}
-					return aggList;
-				}, [])
-				.filter(rowElem => rowElem.querySelector("td:nth-child(3)").innerHTML == 'C++' || rowElem.querySelector("td:nth-child(3)").innerHTML == 'CUDA')
-				.map(rowElem => rowElem.querySelector("a"))
-				.forEach(aElem => { 
-					aElem.addEventListener("click", (e) => {
-						e.preventDefault();
-						e.stopPropagation();
-						child_process.exec(`git status`, {
-							cwd: "/Users/Ivonne/Desktop/PluMA/plugins"
-						}, (error, stdout, stderr) => {
-							if (error) {
-								dialog.showMessageBox({
-									type: "error",
-									title: "Plugin download error",
-									message: `Plugin cant be downloaded, please refer to PluMA in order to recompile with C++ or CUDA`
-								})
-								return;
-							}
-
-							dialog.showMessageBox({
-								type: "error",
-								title: "Plugin download success",
-								message: "Plugin cant be downloaded, please refer to PluMA in order to recompile with C++ or CUDA"
-							});
-						});
-					});
-				});
-
-		[].slice.call(
-			document
-				.querySelectorAll("#bigcolumn table")[1]
-				.querySelectorAll("table")).map(tableElem => {
-					const rowList = [].slice.call(tableElem.querySelectorAll("tr"));
-					rowList.shift();
-					rowList.shift();
-					return rowList;
-				}).reduce((aggList, currInnerList) => {
-					for (elem of currInnerList) {
-						aggList.push(elem);
-					}
-					return aggList;
-				}, [])
-				.filter(rowElem => rowElem.querySelector("td:nth-child(3)").innerHTML != 'C++' && rowElem.querySelector("td:nth-child(3)").innerHTML != 'CUDA')
-				.map(rowElem => rowElem.querySelector("a"))
-				.forEach(aElem => { 
-					aElem.addEventListener("click", (e) => {
-						e.preventDefault();
-						e.stopPropagation();
-						child_process.exec(`git clone ${aElem.href}`, {
-							cwd: "/Users/Ivonne/Desktop/PluMA/plugins"
-						}, (error, stdout, stderr) => {
-							
-							if (error) {
-								dialog.showMessageBox({
-									type: "error",
-									title: "Plugin download error",
-									message: `Plugin was already downloaded at ${aElem.href} \n\n ${stderr} ${error}`
-								})
-								return;
-							}
-
-							dialog.showMessageBox({
-								type: "info",
-								title: "Plugin download success",
-								message: "Plugin was successfully downloaded in the installed plugin list!"
-							});
-						});
-					});
-				});
-
-				// Stop any link on loaded HTML to go anywhere
-				document.getElementById("bioOrg").addEventListener("click", (e) => {
-					e.preventDefault();
-				});
-	});
-}
-
-function loadHtmlToModal(webAddress) {
-	var request = require('request');
-	var cheerio = require('cheerio');
-
-	return new Promise(function (resolve, reject) {
-		request(webAddress, function(err, resp, html) {
-			if (err) {
-				reject(err);
-				return;
-			}
-
-			const $ = cheerio.load(html);
-			document.getElementById("bioOrg").innerHTML = html;
-			resolve(html);
-		});
-	});
-}
-
-</script>
-</div>
-
-<script>
-
-$.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
-  // console.log(response);
-});
-
-</script>
-
-<br/>
-
-	<script>
-		function addHorizontalPlugin(i) {
-			var outerDiv = document.createElement("div");
-			outerDiv.id = "plugin"; 
-			var inputDiv = document.createElement("div");
-			inputDiv.style = "margin-top:100px; margin-left:50px;";
-			var buttonInput = document.createElement("input");
-			buttonInput.type = "file";
-			buttonInput.id = "input-file";
-			buttonInput.hidden = "hidden";
-			inputDiv.appendChild(buttonInput);
-			var buttonInputButton = document.createElement("button");
-			buttonInputButton.type = "button";
-			buttonInputButton.id = "custom-IFB-blue";
-			buttonInputButton.textContent = "Input File";
-			inputDiv.appendChild(buttonInputButton);
-			outerDiv.appendChild(inputDiv);
-			var innerDiv = document.createElement("div");
-			innerDiv.className = "empty";
-			innerDiv.id = "file";
-			var deleteImg = document.createElement("img");
-			deleteImg.src = "trash.png";
-			deleteImg.id = "deleteButton"
-			deleteImg.onclick = function(){deletePlugin(this)};
-			innerDiv.appendChild(deleteImg);
-			outerDiv.appendChild(innerDiv);
-			var outputDiv = document.createElement("div");
-			outputDiv.id = "upload-output-file";
-			outputDiv.style = "margin-left:55px; margin-top: 5px;"
-			var buttonOutput = document.createElement("input");
-			buttonOutput.type = "file";
-			buttonOutput.id = "output-file";
-			buttonOutput.hidden = "hidden";
-			outputDiv.appendChild(buttonOutput);
-			var buttonOutputButton = document.createElement("button");
-			buttonOutputButton.type = "button";
-			buttonOutputButton.id = "custom-OFB-blue";
-			buttonOutputButton.textContent = "Output File";
-			outputDiv.appendChild(buttonOutputButton);
-			outerDiv.appendChild(outputDiv);
-			var br = document.createElement("br");
-			outerDiv.appendChild(br);
-			((i.parentNode)).appendChild(outerDiv);
-			setColors(i);
-		}
-	</script>
-
-	<script>
-		function deletePlugin(i) {
-			(((i.parentNode).parentNode).parentNode).removeChild(i.parentNode.parentNode)
-			setColors(i);
-		}
-	
-		function deleteStage(i) {
-			(i.parentNode.parentNode).removeChild(i.parentNode);
-			setColors(i);
-		}
-
-		function setColors(i) {
-			var pluginVertical = document.querySelectorAll("#pluginVertical");
-			pluginVertical.forEach(function(vplugin) {
-   				horizontalPlugin = vplugin.querySelectorAll("#plugin");
-				horizontalPlugin.forEach(function(hplugin) 
-				{
-					var buttons = hplugin.querySelectorAll("button");
-					if( horizontalPlugin.length <= 1)
-					{
-						buttons[0].id = "custom-IFB-gray";
-						buttons[1].id = "custom-OFB-gray";
-						
-					}
-					else if(horizontalPlugin.length > 1)
-					{
-						buttons[0].id = "custom-IFB-blue";
-						buttons[1].id = "custom-OFB-blue";
-					}
-					if(vplugin.previousElementSibling != null && vplugin.previousElementSibling.querySelectorAll("#plugin").length > 1)
-					{
-							buttons[0].id = "custom-IFB-blue";
-					}
-				})
-			})
-			pluginVertical[0].querySelector("#plugin").querySelector("button").id = "custom-IFB-blue";
-			var lastButtons = pluginVertical[pluginVertical.length-1].querySelectorAll("button");
-			lastButtons[1].id = "custom-OFB-blue";
-
-		}
-	</script>
-
-	<script>
-		function addPluginBox(i) {
-			var outerDiv = document.createElement("div");
-			outerDiv.id = "pluginVertical";
-			var plus = document.createElement("img");
-			plus.src = "plus_sign.png";
-			plus.id = "plus-sign";
-			plus.onclick = function() {addHorizontalPlugin(this)};
-			outerDiv.appendChild(plus);
-			var minus = document.createElement("img");
-			minus.id = "minus-sign";
-			minus.src = "minus_sign.png";
-			minus.onclick = function() {deleteStage(this)};
-			outerDiv.appendChild(minus);
-			var pluginDiv = document.createElement("div");
-			pluginDiv.id = "plugin"; 
-			var inputDiv = document.createElement("div");
-			inputDiv.style = "margin-top:100px; margin-left:50px;";
-			var buttonInput = document.createElement("input");
-			buttonInput.type = "file";
-			buttonInput.id = "input-file";
-			buttonInput.hidden = "hidden";
-			inputDiv.appendChild(buttonInput);
-			var buttonInputButton = document.createElement("button");
-			buttonInputButton.type = "button";
-			buttonInputButton.id = "custom-IFB-blue"
-			buttonInputButton.textContent = "Input File";
-			inputDiv.appendChild(buttonInputButton);
-			pluginDiv.appendChild(inputDiv);
-			var innerDiv = document.createElement("div");
-			innerDiv.className = "empty";
-			innerDiv.id = "file";
-			var deleteImg = document.createElement("img");
-			deleteImg.src = "trash.png";
-			deleteImg.id = "deleteButton"
-			deleteImg.onclick = function() {deletePlugin(this)};
-			innerDiv.appendChild(deleteImg);
-			pluginDiv.appendChild(innerDiv);
-			var outputDiv = document.createElement("div");
-			outputDiv.id = "upload-output-file";
-			outputDiv.style = "margin-left:55px; margin-top: 5px;";
-			var buttonOutput = document.createElement("input");
-			buttonOutput.type = "file";
-			buttonOutput.id = "output-file";
-			buttonOutput.hidden = "hidden";
-			outputDiv.appendChild(buttonOutput);
-			var buttonOutputButton = document.createElement("button");
-			buttonOutputButton.type = "button";
-			buttonOutputButton.id = "custom-OFB-blue";
-			buttonOutputButton.textContent = "Output File";
-			outputDiv.appendChild(buttonOutputButton);
-			pluginDiv.appendChild(outputDiv);
-			var br = document.createElement("br");
-			pluginDiv.appendChild(br);
-			outerDiv.appendChild(pluginDiv);
-			document.getElementById("top-column").appendChild(outerDiv);
-			setColors(i);
-		}
-	</script>
-
+	<!-- Scripts -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
+	<script>window.i18n = new (require('./translations/i18n'));</script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/PlugInPool.js"></script>
+	<script src="assets/js/pipeline.js"></script>
+	<script src="assets/js/settings.js"></script>
 	<script>
-//to generate config file
-		//once the save button is clicked, the filenames are saved into a text file
-		function parseInput(event){
-			require('fs');
-			var data = 	document.getElementById("file").textContent;
-			var inputName = document.getElementById("custom-IFB-text").textContent;
-			var outputName = document.getElementById("custom-OFB-text").textContent;
-			
-			var cl = document.getElementById("file").className;
-			var cl2 = document.getElementsByClassName("empty");
+		require('./assets/js/menu')
+		require('./assets/js/translations')
+		require('./assets/js/ipc')
+		require('./assets/js/dialog')
+	</script>
+</head>
 
-			inputName = inputName.trim()
-			fs.writeFileSync('assets/config.txt', inputName + "\n", (err) => {throw err});
+<body>
+	<!--NavBar-->
+	<div class="navbar">
+		<img src="biorg.png" width="100" height="40">
+		<span>
+			<h1>Plugin-based Microbiome Analysis</h1>
+		</span>
 
-			data = data.trim();
-			fs.appendFileSync('assets/config.txt', data + "\n", (err) => {throw err});
+		<!--Plugin Pool-->
+		<div class="dropdown">
+			<button type="button" name="load_data" id="load_data" class="dropbtn">Plugins</button>
+			<div class="dropdown-content">
 
-			for(var i =0; i < document.getElementsByClassName("empty").length; i++){
-					var n = document.getElementsByClassName("empty")[i].textContent; 
-					n = n.trim();
-					fs.appendFileSync('assets/config.txt', n + "\n", (err) => {throw err});
-			}
-			outputName = outputName.trim()
-			fs.appendFileSync('assets/config.txt', outputName + "\n", (err) => {throw err});
-			alert("Data has been saved");
-		}
-		
-    //calls function at the start of draggging the function
-		document.addEventListener("dragstart", function(event) {
-		  // sets the data type and the value of the dragged filename
-		 event.dataTransfer.setData("text", event.target.textContent);
-		  // Changes the opacity of the draggable element
-		  event.target.style.opacity = "0.4";
-		  dragged = event.target;
-			
-		});
-		
-		
-		//Resets the opacity to 1
-		document.addEventListener("dragend", function(event) {
-		  event.target.style.opacity = "1";
-		});
-				
+				<!-- Search bar-->
+				<div class="spacingTitle"></div>
 
-		//The border is changed when the dragged filename enters the file_drag_area classes
-		document.addEventListener("dragenter", function(event) {
-			if(event.target.className == "file_drag_area" || event.target.className == "empty"){
-			event.target.style.border = "3px dotted black";
-			}
-		});
-		
+				<div>
+					<input style="width: 400px; height: 30px" type="text" id="myInput" onkeyup="startFiltering()"
+						placeholder="Type to search">
+					<hr>
+					<!--Update date and button-->
+					<div style="padding-left: 10px">
+						Last Updated:
+						<div id="getMeTime"></div>
+						<button type="button" id="load_data" onclick="update()">Update</button>
+					</div>
 
-		//allows user to dragover filenames
-		document.addEventListener("dragover", function(event) {
-		  event.preventDefault();
-		});
-		
-		//the border is set back to normal once the filenames are dragged out of the empty class
-		document.addEventListener("dragleave", function(event) {
-			event.target.style.border = "";
-		  
-		});
+				</div>
 
-		//generates random hash string for temporary filenames
-		function hash(s){
-  			return s.split("").reduce(
-				function(a,b){
-			 		a=((a<<5)-a)+b.charCodeAt(0);return a&a
-				} ,0);              
-		}	
-		
-		//the filenames in the empty classes are ready to be parsed
-		//when dropped into the boxes
-		document.addEventListener("drop", function(event) {
-		  event.preventDefault();
-			if(event.target.className == "file_drag_area" || event.target.className == "empty"){
-				event.target.style.backgroundColor = "#FFFFE0";
-				event.target.style.border = "";
-				var node = document.createElement("UL");
-				var tempNode = document.createElement("UL");
-				node.id = "plugin";
-				node.setAttribute('draggable', true);
-				var d = document.createTextNode(event.dataTransfer.getData("text"));
-				var random = hash(Math.random().toString(2));
-				var temp = "\n" + random.toString();
-				temp += ".CSV";
-				var tempText = document.createTextNode(temp);
-				node.appendChild(d);
-				tempNode.appendChild(tempText);
-				event.target.appendChild(node);
-				event.target.appendChild(tempNode);
-				console.log(tempNode);
-				tempNode.style.visibility = "hidden";
-			}
+				<div class="spacingTitle"></div>
 
-			if (this.id = "plugin") {
-      			event.target.text = this.id;
-    		}
-			if(dragged.id = "plugin") {
-				dragged.parentNode.removeChild(dragged);
-			}
-			
-			
-		});
+				<!-- Filter Checkboxes  -->
+				<form>
+					<div class="multiselect" onclick="showCheckboxes()">
+						<div class="overSelect"></div>
+					</div>
+					<div id="checkboxes" class="row">
+						<div class="columns">
+							<ul><label for="one"><input type="checkbox" id="fileconverters"
+										onclick="checkboxClicked()" />File Converters</label></ul>
+							<ul><label for="two"><input type="checkbox" id="transformations"
+										onclick="checkboxClicked()" />Transformations</label></ul>
+							<ul><label for="three"><input type="checkbox" id="correlation"
+										onclick="checkboxClicked()" />Correlation</label></ul>
+						</div>
 
-		/** delete plugin code **/
+						<div class="columns">
+							<ul><label for="four"><input type="checkbox" id="visualization"
+										onclick="checkboxClicked()" />Visualization</label></ul>
+							<ul><label for="five"><input type="checkbox" id="dissimilarity"
+										onclick="checkboxClicked()" />Dissimilarity</label></ul>
+							<ul><label for="six"><input type="checkbox" id="centrality"
+										onclick="checkboxClicked()" />Centrality</label></ul>
+						</div>
 
-		//calls function when draggable element is dropped
-		//drops plugins into the trash can to be deleted
-		/**
-		function drop(ev){
+						<div class="columns">
+							<ul><label for="seven"><input type="checkbox" id="clustering"
+										onclick="checkboxClicked()" />Clustering</label></ul>
+							<ul><label for="eight"><input type="checkbox" id="timeseries"
+										onclick="checkboxClicked()" />Time Series</label></ul>
+							<ul><label for="nine"><input type="checkbox" id="externaltools"
+										onclick="checkboxClicked()" />External tools</label></ul>
+						</div>
 
-			ev.preventDefault();
-			var r = document.getElementById("plugin"); 
-			var s = document.getElementsByClassName("empty");
-			var txt = event.dataTransfer.getData("Text");
-			var count  = r.parentNode.childElementCount;
-			var count2 = s.length;
-			var child_index = 0 ;
-			var sec_index = 0 ;
-			txt = txt.trim();
-			console.log(txt);
-			var str = "";
-			console.log(s);
-			for(var g =0; g < count2; g++){
-				str = s[g].innerText.trim();
-					if(txt === str){
-						sec_index = g;
-						break;
-					}
-			}
-			var newStr = str.split("")
+						<div class="columns">
+							<ul><label for="ten"><input type="checkbox" id="statistics"
+										onclick="checkboxClicked()" />Statistics</label></ul>
+							<ul><label for="eleven"><input type="checkbox" id="miscellaneous"
+										onclick="checkboxClicked()" />Miscellaneous</label></ul>
+							<ul><label for="twelve"><input type="checkbox" id="favorites"
+										onclick="checkboxClicked()" />Favorites</label></ul>
+						</div>
+					</div>
+				</form>
+				<hr>
 
-			str = s[sec_index].innerText.trim();
-			console.log(str);
+				<!--Plugin Table-->
+				<form>
+					<div class="spacingTitle"></div>
+					<table>
+						<tr>
+							<th>Plugins</th>
+							<th>Descriptions</th>
+						</tr>
+						<!-- </div> -->
+					</table>
+					<div id="details_table"></div>
+				</form>
+				<div class="spacingContainer"></div>
+			</div>
+		</div>
 
-			if(txt === str){
-				s[sec_index].innerText = "";
-			}
-			
-			
-			try{
-				for (var i = 0; i < count; i++) {
-						if(txt === r.parentNode.children[i].innerText){
-							child_index = i;
-							break;
-						}
-				}
-			
-				
-				if(txt === r.parentNode.children[child_index].innerText){
-					r.parentNode.children[child_index].innerText = "";
-				}
-			}
-			catch(error){
-				console.error(error);
-			}
-			//r.parentNode.children[0].innerText = " ";
-			ev.target.style.opacity = "1";
-			
-		}**/
 
-		//changes opacity when draggable element enters trash can div
-		function dragenter(ev){
-			ev.target.style.opacity = "0.4";
-		}
-		
-		//changes opacity when draggable element leaves trash can div
-		function dragleave(ev){
-			ev.target.style.opacity = "1";
-		}
+		<!--Settings-->
+		<div class="dropdownSettings">
+			<button class="dropbtnSettings">Settings</button>
+			<div class="dropdownSettings-content">
 
-		//changes opacity when dragging ends
-		function dragend(ev){
-			ev.target.style.opacity = "1";
-		}
+				<form>
+					Settings
+					<div class="spacingContainer"></div>
 
-	</script> 
+					<div>
+						<!-- <input style="width: 450px; height: 30px" type="text" placeholder="PluMA/Plugins/PathToLegendOfDaPinga"> -->
+						<label id='nameLable' for='nameField'>Download directory</label>
+						<input id='nameField' style="width: 450px; height: 30px" type='text'></input>
+					</div>
 
-	<!-- <div  id="trash" ondrop="drop(event)" ondragenter="dragenter(event)" ondragleave="dragleave(event)" ondragend="dragend(event)">
-		<img class = "trashcan" src= "trash.png" >
+
+					<div class="spacingContainer"></div>
+					<!-- <button type="button">Save Path</button> -->
+					<button id='subButton' onclick="return saveSettings()">Save path</button>
+					<p id='result'></p>
+
+				</form>
+
+			</div>
+		</div>
+		<!--Close dropdownSettings-->
+
+	</div> <!-- Close navbar-->
+	<div class="spacingContainer"></div>
+
+	<!-- Recently Used Plugins -->
+	<div style="margin-left: 50px; ">
+		<div style="width:auto; height:60px;">
+			<button onclick="iPushContent('Demo1')" id="custom-IFB">Recently used plugins</button>
+			<div id="Demo1" class="w3-hide w3-container">
+				<table id=recentlyUsed>
+				</table>
+			</div>
+		</div>
 	</div>
-	<button class= "button save" onclick="parseInput()">Save</button>
-	
-	<script src = "assets/js/drag.js"></script> -->
+	<!--Pipeline-->
+	<div id="top-column" style="margin-left:45px; margin-top: 5px;">
+		<!--Plugin Stage-->
+		<div id="pluginVertical">
+			<img id="plus-sign" src="plus_sign.png" onclick="addHorizontalPlugin(this)" />
+			<img id="minus-sign" src="minus_sign.png" onclick="deleteStage(this)" />
+			<div id="plugin">
 
-	  <!-- footer -->
+				<!--Input Button-->
+				<div style="margin-top:100px; margin-left:50px;">
+					<input type="file" id="input-file" hidden="hidden" />
+					<button type="button" id="custom-IFB"
+						onclick="createFileBrowserBtn(document.getElementById('input-file'), document.getElementById('custom-IFB'), document.getElementById('custom-IFB-text'))">Input
+						File</button><br>
+					<span id="custom-IFB-text">No file chosen</span>
+				</div>
+
+				<script>//review and delete what isn't needed
+					//uploading file code
+					const plugin_folders_input_output = plugin_folders_fullpath
+						.map(function (total_file_path) {
+							var input_output = fs.readFileSync(total_file_path + '/README.md', 'utf8');
+							input_output = input_output.split("\n");
+							input_index = input_output.reduce(function (index, input_output, actual_index) {
+								if (index !== -1) {
+									return index;
+								}
+
+								if (input_output.substr(0, 10).toLowerCase().indexOf("input:") > -1) {
+									return actual_index;
+								}
+
+								return -1;
+							}, -1);
+							output_index = input_output.reduce(function (index, input_output, actual_index) {
+								if (index !== -1) {
+									return index;
+								}
+
+								if (input_output.substr(0, 10).toLowerCase().indexOf("output:") > -1) {
+									return actual_index;
+								}
+
+								return -1;
+							}, -1);
+
+							return [input_output[input_index].replace("# ", "", 1), input_output[output_index].replace("# ", "", 1)];
+
+						});
+
+					function getNameFromPath(filePath) {
+						return filePath.substr(filePath.lastIndexOf('\\') + 1);
+					}
+
+					// function to validate uploaded file type
+					function ValidateType(uploadedFile) {
+						var isValid = false;
+						if (uploadedFile.type == "file") {
+							var fileName = getNameFromPath(uploadedFile.value);
+							if (fileName.length > 0) {
+								// p is the plugin associated with the specific button
+								var p = "";
+								// if input button, get plugin name from first box
+								if (uploadedFile.id === "input-file") {
+									p = document.getElementById("first-plugin");
+									console.log(p);
+									console.log(p.innerText + "...");
+								}
+								// if output button, get plugin name from last box
+								if (uploadedFile.id === "output-file") {
+									p = document.getElementById("last-plugin");
+									console.log(p);
+									console.log(p.innerText);
+								}
+								// now p.innerText contains name of plugin
+
+								// variable to store valid extension
+								var validExt = "";
+								// simple search for now
+								for (var i = 0; i < pluginNames.length; i++) {
+									var compareText = pluginNames[i] + '\n';
+									if (p.innerText === compareText) {
+										if (uploadedFile.id === "input-file") {
+											validExt = "." + pluginInputTypes[i];
+										}
+										if (uploadedFile.id === "output-file") {
+											validExt = "." + pluginOutputTypes[i];
+										}
+									}
+								}
+								console.log(validExt);
+								var fileExt = fileName.substr(fileName.length - validExt.length, validExt.length);
+								if (fileExt.toLowerCase() == validExt.toLowerCase())
+									isValid = true;
+								if (!isValid) {
+									alert("ERROR: " + fileName + " couldn't be uploaded"
+										+ "\n Only " + validExt + " files are allowed"
+										+ "\n Please try again");
+									uploadedFile.value = "";
+								}
+							}
+						}
+						return isValid;
+					}
+
+					function createFileBrowserBtn(actualFileBtn, customBtn, customTxt) {
+						customBtn.addEventListener("click", function () {
+							// p is the plugin associated with the specific button
+							var p = "";
+							// assign value to p depending on which button it is
+							console.log(actualFileBtn.id);
+							if (actualFileBtn.id === "input-file") {
+								p = document.getElementById("first-plugin");
+							}
+
+							if (actualFileBtn.id === "output-file") {
+								p = document.getElementById("last-plugin");
+							}
+
+							// check if p is empty
+							if (p.innerText === "") {
+								alert("Please add a plugin first");
+							}
+							else {
+								actualFileBtn.click();
+							}
+						});
+						actualFileBtn.addEventListener("change", function () {
+							if (ValidateType(actualFileBtn)) {
+								customTxt.innerHTML = actualFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+							} else {
+								customTxt.innerHTML = "No file chosen";
+							}
+						});
+					}
+					//end of review to delete
+				</script>
+
+				<!--Plugin Box-->
+				<div class="empty" id="file">
+					<img id="deleteButton" src="trash.png" onclick="deletePlugin(this)" />
+				</div>
+
+				<!--Output Button-->
+				<div id="upload-output-file" style="margin-left:55px; margin-top: 5px;">
+					<input type="file" id="output-file" hidden="hidden" />
+					<button type="button" id="custom-OFB">Output File</button><br>
+					<span id="custom-OFB-text">No file chosen</span>
+				</div>
+
+				<br>
+			</div>
+		</div>
+	</div>
+	<!--End of Pipeline Block-->
+
+	<!--Add Stage Button-->
+	<div id="add-plugin-btn" style="margin-left: 50px; margin-top: 5px;">
+		<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">Add Stage</button>
+	</div>
+	<button type="button" class="button save" id="button" onclick="parseInput()"
+		style="margin-left: 50px; margin-top: 5px;">Run</button>
+
+	<!-- footer -->
 	<footer class="site-footer">
 		<div class="footer-container">
-		  <div class="row">
-			<div class="footer-about">
-			  <h6>About</h6>
-			  <p>School of Computing and Information Sciences <br> Florida International University <br>ECS-254 University Park Campus Miami, FL 33199 USA<br>E-mail: biorg.fiu@gmail.com or <br>giri.narasimhan@fiu.edu</p>
+			<div class="row">
+				<div class="footer-about">
+					<h6>About</h6>
+					<p>School of Computing and Information Sciences <br> Florida International University <br>ECS-254
+						University Park Campus Miami, FL 33199 USA<br>E-mail: biorg.fiu@gmail.com or
+						<br>giri.narasimhan@fiu.edu</p>
+				</div>
+
+				<div class="footer-links">
+					<h6>Helpful Links</h6>
+					<ul style="list-style-type: none;">
+						<li><a href="http://biorg.cis.fiu.edu/pluma/">About PluMA</a></li>
+						<li><a href="http://biorg.cis.fiu.edu/pluma/userguide.pdf">User Guide</a></li>
+					</ul>
+				</div>
+
+				<div class="footer-image">
+					<img src="fiuscis.png" alt="FIU SCIS" width="160" height="60">
+				</div>
 			</div>
-  
-			<div class="footer-links">
-			  <h6>Helpful Links</h6>
-			  <ul style="list-style-type: none;">
-				<li><a href="http://biorg.cis.fiu.edu/pluma/">About PluMA</a></li>
-				<li><a href="http://biorg.cis.fiu.edu/pluma/userguide.pdf">User Guide</a></li>
-			  </ul>
-			</div>
-  
-			<div class="footer-image">
-				<img src="fiuscis.png" alt="FIU SCIS" width = "160" height = "60">
-			</div>
-		  </div>
 		</div>
 	</footer>
-	</body>
+</body>
+
 </html>
 
 <script type="module">
 	$(document).ready(writeFullTable());
-
 	$(document).ready(showRecentlyUsed());
+	$(document).ready(loadSettings());
 </script>
-
