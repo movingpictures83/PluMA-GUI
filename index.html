@@ -135,7 +135,7 @@
 		<div id = "top-column" style="margin-left:50px; margin-top: 5px;">
 			<!-- Drag and Drop Feature  *Rishabh-->
 			<div id="pluginVertical">
-				<img id= "plus-sign" src="plus_sign.png" onclick= "addPluginBox(this)"/>
+				<img id= "plus-sign" src="plus_sign.png" onclick= "addHorizontalPlugin(this)"/>
 				<img id="minus-sign" src= "minus_sign.png" onclick="deleteStage(this)"/>
 				<div id = "plugin">
 					<div style="margin-top:100px; margin-left:50px;">	
@@ -144,7 +144,6 @@
 					</div>
 					<div class= "empty" id="file">
 						<img id="deleteButton" src= "trash.png" onclick="deletePlugin(this)"/>
-						<img id="deleteButton" src= "plus_sign.png" onclick="addHorizontalPlugin(this)"/>
 					</div>
 					<div id="upload-output-file" style="margin-left:55px; margin-top: 5px;">
 						<input type="file" id="output-file" hidden="hidden"/>
@@ -462,11 +461,6 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			deleteImg.id = "deleteButton"
 			deleteImg.onclick = function(){deletePlugin(this)};
 			innerDiv.appendChild(deleteImg);
-			var plusImg = document.createElement("img");
-			plusImg.src = "plus_sign.png";
-			plusImg.id = "deleteButton"
-			plusImg.onclick = function() {addHorizontalPlugin(this)};
-			innerDiv.appendChild(plusImg);
 			outerDiv.appendChild(innerDiv);
 			var outputDiv = document.createElement("div");
 			outputDiv.id = "upload-output-file";
@@ -484,7 +478,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			outerDiv.appendChild(outputDiv);
 			var br = document.createElement("br");
 			outerDiv.appendChild(br);
-			((i.parentNode).parentNode.parentNode).appendChild(outerDiv);
+			((i.parentNode)).appendChild(outerDiv);
 			setColors(i);
 		}
 	</script>
@@ -534,7 +528,7 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			var plus = document.createElement("img");
 			plus.src = "plus_sign.png";
 			plus.id = "plus-sign";
-			plus.onclick = function() {addPluginBox(this)};
+			plus.onclick = function() {addHorizontalPlugin(this)};
 			outerDiv.appendChild(plus);
 			var minus = document.createElement("img");
 			minus.id = "minus-sign";
@@ -564,11 +558,6 @@ $.get('http://biorg.cs.fiu.edu/pluma/plugins/', function(response) {
 			deleteImg.id = "deleteButton"
 			deleteImg.onclick = function() {deletePlugin(this)};
 			innerDiv.appendChild(deleteImg);
-			var plusImg = document.createElement("img");
-			plusImg.src = "plus_sign.png";
-			plusImg.id = "deleteButton"
-			plusImg.onclick = function() {addHorizontalPlugin(this)};
-			innerDiv.appendChild(plusImg);
 			pluginDiv.appendChild(innerDiv);
 			var outputDiv = document.createElement("div");
 			outputDiv.id = "upload-output-file";
