@@ -178,15 +178,6 @@
 			<img id="minus-sign" src="minus_sign.png" onclick="deleteStage(this)" />
 			<div id="plugin">
 
-				<!--Input Button-->
-				<div style="margin-top:100px; margin-left:50px;">
-					<input type="file" id="input-file" hidden="hidden" />
-					<button type="button" id="custom-IFB"
-						onclick="createFileBrowserBtn(document.getElementById('input-file'), document.getElementById('custom-IFB'), document.getElementById('custom-IFB-text'))">Input
-						File</button><br>
-					<span id="custom-IFB-text">No file chosen</span>
-				</div>
-
 				<script>//review and delete what isn't needed
 					//uploading file code
 					const plugin_folders_input_output = plugin_folders_fullpath
@@ -234,13 +225,13 @@
 								var p = "";
 								// if input button, get plugin name from first box
 								if (uploadedFile.id === "input-file") {
-									p = document.getElementById("first-plugin");
+									p = document.getElementById("plugin");
 									console.log(p);
 									console.log(p.innerText + "...");
 								}
 								// if output button, get plugin name from last box
 								if (uploadedFile.id === "output-file") {
-									p = document.getElementById("last-plugin");
+									p = document.getElementById("plugin");
 									console.log(p);
 									console.log(p.innerText);
 								}
@@ -282,15 +273,15 @@
 							// assign value to p depending on which button it is
 							console.log(actualFileBtn.id);
 							if (actualFileBtn.id === "input-file") {
-								p = document.getElementById("first-plugin");
+								p = document.getElementById("plugin");
 							}
 
 							if (actualFileBtn.id === "output-file") {
-								p = document.getElementById("last-plugin");
+								p = document.getElementById("plugin");
 							}
 
 							// check if p is empty
-							if (p.innerText === "") {
+							if (p == null || p.innerText === "") {
 								alert("Please add a plugin first");
 							}
 							else {
@@ -298,14 +289,23 @@
 							}
 						});
 						actualFileBtn.addEventListener("change", function () {
-							if (ValidateType(actualFileBtn)) {
-								customTxt.innerHTML = actualFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
-							} else {
-								customTxt.innerHTML = "No file chosen";
-							}
+							customTxt.innerHTML = actualFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
 						});
 					}
 					//end of review to delete
+				</script>
+
+				<!--Input Button-->
+				<div id= "upload-input-file" style="margin-top:100px; margin-left:50px;">
+					<input type="file" id="input-file" hidden="hidden" />
+					<button type="button" id="custom-IFB">Input	File</button>
+					<br>
+					<span id="custom-IFB-text">No file chosen</span>
+				</div>
+
+				<script>
+					// create input file browser button
+					createFileBrowserBtn(document.getElementById("input-file"), document.getElementById("custom-IFB"), document.getElementById("custom-IFB-text")); 
 				</script>
 
 				<!--Plugin Box-->
@@ -316,11 +316,16 @@
 				<!--Output Button-->
 				<div id="upload-output-file" style="margin-left:55px; margin-top: 5px;">
 					<input type="file" id="output-file" hidden="hidden" />
-					<button type="button" id="custom-OFB">Output File</button><br>
+					<button type="button" id="custom-OFB">Output File</button>
+					<br>
 					<span id="custom-OFB-text">No file chosen</span>
 				</div>
 
 				<br>
+				<script>
+					// create output file browser button
+					createFileBrowserBtn(document.getElementById("output-file"), document.getElementById("custom-OFB"), document.getElementById("custom-OFB-text")); 
+				</script>
 			</div>
 		</div>
 	</div>

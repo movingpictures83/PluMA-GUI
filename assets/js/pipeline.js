@@ -234,10 +234,7 @@ document.addEventListener("drop", function (event) {
         tempNode.style.visibility = "hidden";
     }
 
-    if (this.id = "plugin") {
-        event.target.text = this.id;
-    }
-    if (dragged.id = "plugin") {
+    if (dragged.className = "empty") {
         dragged.parentNode.removeChild(dragged);
     }
 
