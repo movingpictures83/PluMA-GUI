@@ -10,7 +10,7 @@ function addHorizontalPlugin(i) {
     inputDiv.appendChild(buttonInput);
     var buttonInputButton = document.createElement("button");
     buttonInputButton.type = "button";
-    buttonInputButton.id = "custom-IFB-blue";
+    buttonInputButton.id = "custom-IFB";
     buttonInputButton.textContent = "Input File";
     inputDiv.appendChild(buttonInputButton);
     outerDiv.appendChild(inputDiv);
@@ -40,7 +40,7 @@ function addHorizontalPlugin(i) {
     var br = document.createElement("br");
     outerDiv.appendChild(br);
     ((i.parentNode)).appendChild(outerDiv);
-    setColors(i);
+    setColors(i); 
 }
 
 function deletePlugin(i) {
@@ -65,15 +65,15 @@ function setColors(i) {
 
             }
             else if (horizontalPlugin.length > 1) {
-                buttons[0].id = "custom-IFB-blue";
-                buttons[1].id = "custom-OFB-blue";
+                buttons[0].id = "custom-IFB";
+                buttons[1].id = "custom-OFB";
             }
             if (vplugin.previousElementSibling != null && vplugin.previousElementSibling.querySelectorAll("#plugin").length > 1) {
-                buttons[0].id = "custom-IFB-blue";
+                buttons[0].id = "custom-IFB";
             }
         })
     })
-    pluginVertical[0].querySelector("#plugin").querySelector("button").id = "custom-IFB-blue";
+    pluginVertical[0].querySelector("#plugin").querySelector("button").id = "custom-IFB";
     var lastButtons = pluginVertical[pluginVertical.length - 1].querySelectorAll("button");
     lastButtons[1].id = "custom-OFB-blue";
 }
@@ -102,7 +102,7 @@ function addPluginBox(i) {
     inputDiv.appendChild(buttonInput);
     var buttonInputButton = document.createElement("button");
     buttonInputButton.type = "button";
-    buttonInputButton.id = "custom-IFB-blue"
+    buttonInputButton.id = "custom-IFB"
     buttonInputButton.textContent = "Input File";
     inputDiv.appendChild(buttonInputButton);
     pluginDiv.appendChild(inputDiv);
@@ -125,7 +125,7 @@ function addPluginBox(i) {
     outputDiv.appendChild(buttonOutput);
     var buttonOutputButton = document.createElement("button");
     buttonOutputButton.type = "button";
-    buttonOutputButton.id = "custom-OFB-blue";
+    buttonOutputButton.id = "custom-OFB";
     buttonOutputButton.textContent = "Output File";
     outputDiv.appendChild(buttonOutputButton);
     pluginDiv.appendChild(outputDiv);

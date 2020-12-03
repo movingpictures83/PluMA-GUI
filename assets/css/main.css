@@ -776,6 +776,19 @@ display: table;
   border-radius: 8px;
 }
 
+/* RUP */
+#custom{
+  width: 150px;
+  left: 8px;
+  bottom: 54px;
+  padding: 10px;
+  color: #FFFDEE;
+  background-color: #221D5C;
+  cursor: pointer; 
+  border: none;
+  border-radius: 8px;
+}
+
 /* Input/output file upload buttons *Bhavyta */
 #custom-IFB {
   width: 150px;
