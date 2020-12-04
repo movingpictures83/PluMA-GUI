@@ -178,123 +178,6 @@
 			<img id="minus-sign" src="minus_sign.png" onclick="deleteStage(this)" />
 			<div id="plugin">
 
-				<script>//review and delete what isn't needed
-					//uploading file code
-					const plugin_folders_input_output = plugin_folders_fullpath
-						.map(function (total_file_path) {
-							var input_output = fs.readFileSync(total_file_path + '/README.md', 'utf8');
-							input_output = input_output.split("\n");
-							input_index = input_output.reduce(function (index, input_output, actual_index) {
-								if (index !== -1) {
-									return index;
-								}
-
-								if (input_output.substr(0, 10).toLowerCase().indexOf("input:") > -1) {
-									return actual_index;
-								}
-
-								return -1;
-							}, -1);
-							output_index = input_output.reduce(function (index, input_output, actual_index) {
-								if (index !== -1) {
-									return index;
-								}
-
-								if (input_output.substr(0, 10).toLowerCase().indexOf("output:") > -1) {
-									return actual_index;
-								}
-
-								return -1;
-							}, -1);
-
-							return [input_output[input_index].replace("# ", "", 1), input_output[output_index].replace("# ", "", 1)];
-
-						});
-
-					function getNameFromPath(filePath) {
-						return filePath.substr(filePath.lastIndexOf('\\') + 1);
-					}
-
-					// function to validate uploaded file type
-					function ValidateType(uploadedFile) {
-						var isValid = false;
-						if (uploadedFile.type == "file") {
-							var fileName = getNameFromPath(uploadedFile.value);
-							if (fileName.length > 0) {
-								// p is the plugin associated with the specific button
-								var p = "";
-								// if input button, get plugin name from first box
-								if (uploadedFile.id === "input-file") {
-									p = document.getElementById("plugin");
-									console.log(p);
-									console.log(p.innerText + "...");
-								}
-								// if output button, get plugin name from last box
-								if (uploadedFile.id === "output-file") {
-									p = document.getElementById("plugin");
-									console.log(p);
-									console.log(p.innerText);
-								}
-								// now p.innerText contains name of plugin
-
-								// variable to store valid extension
-								var validExt = "";
-								// simple search for now
-								for (var i = 0; i < pluginNames.length; i++) {
-									var compareText = pluginNames[i] + '\n';
-									if (p.innerText === compareText) {
-										if (uploadedFile.id === "input-file") {
-											validExt = "." + pluginInputTypes[i];
-										}
-										if (uploadedFile.id === "output-file") {
-											validExt = "." + pluginOutputTypes[i];
-										}
-									}
-								}
-								console.log(validExt);
-								var fileExt = fileName.substr(fileName.length - validExt.length, validExt.length);
-								if (fileExt.toLowerCase() == validExt.toLowerCase())
-									isValid = true;
-								if (!isValid) {
-									alert("ERROR: " + fileName + " couldn't be uploaded"
-										+ "\n Only " + validExt + " files are allowed"
-										+ "\n Please try again");
-									uploadedFile.value = "";
-								}
-							}
-						}
-						return isValid;
-					}
-
-					function createFileBrowserBtn(actualFileBtn, customBtn, customTxt) {
-						customBtn.addEventListener("click", function () {
-							// p is the plugin associated with the specific button
-							var p = "";
-							// assign value to p depending on which button it is
-							console.log(actualFileBtn.id);
-							if (actualFileBtn.id === "input-file") {
-								p = document.getElementById("plugin");
-							}
-
-							if (actualFileBtn.id === "output-file") {
-								p = document.getElementById("plugin");
-							}
-
-							// check if p is empty
-							if (p == null || p.innerText === "") {
-								alert("Please add a plugin first");
-							}
-							else {
-								actualFileBtn.click();
-							}
-						});
-						actualFileBtn.addEventListener("change", function () {
-							customTxt.innerHTML = actualFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
-						});
-					}
-					//end of review to delete
-				</script>
-
 				<!--Input Button-->
 				<div id= "upload-input-file" style="margin-top:100px; margin-left:50px;">
 					<input type="file" id="input-file" hidden="hidden" />
@@ -335,7 +218,7 @@
 	<div id="add-plugin-btn" style="margin-left: 50px; margin-top: 5px;">
 		<button type="button" id="add-plugin-inner" onclick="addPluginBox(this)">Add Stage</button>
 	</div>
-	<button type="button" class="button save" id="button" onclick="parseInput()"
+	<button type="button" class="button save" id="button" onclick="run()"
 		style="margin-left: 50px; margin-top: 5px;">Run</button>
 
 	<!-- footer -->

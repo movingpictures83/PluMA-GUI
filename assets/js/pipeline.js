@@ -136,34 +136,67 @@ function addPluginBox(i) {
     setColors(i);
 }
 
+function createFileBrowserBtn(actualFileBtn, customBtn, customTxt) {
+    customBtn.addEventListener("click", function () {
+        // p is the plugin associated with the specific button
+        var p = "";
+        // assign value to p depending on which button it is
+        console.log(actualFileBtn.id);
+        if (actualFileBtn.id === "input-file") {
+            p = document.getElementById("plugin");
+        }
+
+        if (actualFileBtn.id === "output-file") {
+            p = document.getElementById("plugin");
+        }
+
+        // check if p is empty
+        if (p == null || p.innerText === "") {
+            alert("Please add a plugin first");
+        }
+        else {
+            actualFileBtn.click();
+        }
+    });
+    actualFileBtn.addEventListener("change", function () {
+        customTxt.innerHTML = actualFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+    });
+}
+
 //to generate config file
 //once the save button is clicked, the filenames are saved into a text file
-
-function parseInput(event) {
+function run(event) {
     var fs = require('fs');
     var data = document.getElementById("file").textContent;
-    // var inputName = document.getElementById("custom-IFB-text").textContent;
-    // var outputName = document.getElementById("custom-OFB-text").textContent;
+    var inputName = document.getElementById("custom-IFB-text").textContent;
+    var outputName = document.getElementById("custom-OFB-text").textContent;
 
     var cl = document.getElementById("file").className;
     var cl2 = document.getElementsByClassName("empty");
 
-    //inputName = inputName.trim()
-    fs.writeFileSync('assets/config.txt', (err) => { throw err });
-
-    data = data.trim();
-    fs.appendFileSync('assets/config.txt', data + "\n", (err) => { throw err });
+    inputName = inputName.trim()
+    fs.writeFileSync('assets/config.txt', inputName + '\n', (err) => { throw err });
 
     for (var i = 0; i < document.getElementsByClassName("empty").length; i++) {
         var n = document.getElementsByClassName("empty")[i].textContent;
         n = n.trim();
         fs.appendFileSync('assets/config.txt', n + "\n", (err) => { throw err });
     }
-    //outputName = outputName.trim()
-    fs.appendFileSync('assets/config.txt', (err) => { throw err });
+    outputName = outputName.trim()
+    fs.appendFileSync('assets/config.txt', inputName + '\n', (err) => { throw err });
     alert("Data has been saved. Running PluMA...");
 
     //call pluma
+    var exec = require('child_process').exec;
+
+    child = exec('"Release/PluMA Windows.exe" ./pluma ../config.txt',
+      function (error, stdout, stderr) {
+        console.log('stdout: ' + stdout);
+        console.log('stderr: ' + stderr);
+        if (error !== null) {
+          console.log('exec error: ' + error);
+        }
+      });
 }
 
 //calls function at the start of draggging the function
@@ -229,9 +262,9 @@ document.addEventListener("drop", function (event) {
         node.appendChild(d);
         tempNode.appendChild(tempText);
         event.target.appendChild(node);
-        event.target.appendChild(tempNode);
-        console.log(tempNode);
-        tempNode.style.visibility = "hidden";
+        // event.target.appendChild(tempNode);
+        // console.log(tempNode);
+        // tempNode.style.visibility = "hidden";
     }
 
     if (dragged.className = "empty") {
